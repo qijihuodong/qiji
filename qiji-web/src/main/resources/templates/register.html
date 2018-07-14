@@ -1,0 +1,124 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<title>注册</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" th:href="@{css/reset.css}" />
+		<link rel="stylesheet" type="text/css" href="css/login.css" th:href="@{css/login.css}" />
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js" th:src="@{js/jquery-2.2.3.min.js}"></script>
+		<script type="text/javascript">
+		$(function(){
+			$("#user_register_getCode").removeAttr("disabled");
+			
+			
+			//验证
+			$("#validate").click(function(){	
+				/*
+				$.ajax({
+					url:"codeServlet",
+					data:{
+						"code":$("#code").val()
+					},
+					type:"post",
+					async:false,
+					dataType:"text",
+					success : function(data) {
+						if(data=='true'){
+							alert("恭喜您，验证成功");
+						} else {
+							alert("验证失败");
+						}
+					},
+					error : function() {
+						alert("error");
+					}
+				});
+				*/
+			});
+			
+		});
+		function sendSms(e){
+			time(e);
+		}
+		
+		//验证码倒计时
+		var wait = 60;
+		function time(obj) {
+			if(wait==0) {
+				//$("#user_register_getCode").removeAttr("disabled");
+				$("#user_register_getCode").attr("onclick","sendSms(this)")
+				$("#user_register_getCode").html("获取验证码");
+				wait = 60;
+			}else {
+				$("#user_register_getCode").removeAttr("onclick");
+				$("#user_register_getCode").html(wait+"秒后重试");
+				wait--;
+				setTimeout(function() {		//倒计时方法
+					time(obj);
+				},1000);	//间隔为1s
+			}
+		}
+		
+	</script>
+	</head>
+	<body>
+		<div class="login-area">
+			<div class="login-header">			
+				<div class="login-logo left"><img src="img/login-logo.png"/></div>
+				<p class="right">已有账号，<a href="">马上登陆</a>|<a href="/qiji/index.html">返回首页</a></p>
+			</div>
+			<div class="forgetBox">
+				<div class="forget-title">新用户注册</div>	
+				<form id="userlogina" class="form" action="">
+					<input name="utype" id="user_register_utype" value="3" hidden="true"/>
+					<div class="userCenter-tab">
+						<span id="user_login_business" class="userCenter-tab-selected"><i></i>雇主（企业）</span>
+						<span id="user_login_student"><i></i>服务商（学生）</span>
+					</div>
+	                <div id="number" class="number">
+	                    <input class="tel" type="text" id="user_register_tel" name="utel" maxlength="11" placeholder="请输入您的手机号码"/>	                    
+	                </div>
+	                <div id="yzmBox" class="number">
+	                    <input class="yzm" type="text" id="user_register_code" name="yzm" placeholder="请输入验证码"/>
+	                    <span id="user_register_getCode" onclick="sendSms(this)" style="cursor:pointer">发送验证码</span>
+	                </div>
+	                <div id="password_box" class="number">
+	                    <input id="user_register_password" name="upwd" type="text" placeholder="密码长度6-12位"/>
+	                </div>
+	                <div class="xieyi">
+	                	<input name="remind" type="checkbox" id="user_register_remind"/>
+		                <span>我已阅读并接受<a href="">用户协议</a></span>
+	                </div>
+					<span id="user_register_error"></span>
+	                <input type="button" id="user_register_btn" value="注册"/>	                                
+	                <span class="right el">已有账户<a href="">去登陆</a></span> 	                
+	            </form>
+				<p class="info">京ICP备11017824号-4 / 京ICP证130164号 北京市公安局朝阳分局备案编号110105000501</p>
+				<p class="info">Copyright © 2016-2017 奇迹活动</p>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+			$("#user_login_student").click(function(){
+				$(".userCenter-tab>span").removeClass("userCenter-tab-selected");
+				$(this).addClass('userCenter-tab-selected');
+				$("#user_register_utype").val("2");
+			});
+			$("#user_login_business").click(function(){
+				$(".userCenter-tab>span").removeClass("userCenter-tab-selected");
+				$(this).addClass('userCenter-tab-selected');
+				$("#user_register_utype").val("3");
+				
+			});
+			$("#user_register_remind").click(function(){
+				$(this).attr("checked",!$(this).attr("checked"));
+			});
+			
+			
+		});
+	</script>
+</html>

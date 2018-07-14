@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroActFeedbackMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroActFeedback" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ogid" property="ogid" jdbcType="INTEGER" />
+    <result column="actid" property="actid" jdbcType="INTEGER" />
+    <result column="material" property="material" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ogid, actid, material, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_act_feedback
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_act_feedback
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroActFeedback" >
+    insert into micro_act_feedback (id, ogid, actid, 
+      material, create_time)
+    values (#{id,jdbcType=INTEGER}, #{ogid,jdbcType=INTEGER}, #{actid,jdbcType=INTEGER}, 
+      #{material,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroActFeedback" >
+    insert into micro_act_feedback
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ogid != null" >
+        ogid,
+      </if>
+      <if test="actid != null" >
+        actid,
+      </if>
+      <if test="material != null" >
+        material,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ogid != null" >
+        #{ogid,jdbcType=INTEGER},
+      </if>
+      <if test="actid != null" >
+        #{actid,jdbcType=INTEGER},
+      </if>
+      <if test="material != null" >
+        #{material,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroActFeedback" >
+    update micro_act_feedback
+    <set >
+      <if test="ogid != null" >
+        ogid = #{ogid,jdbcType=INTEGER},
+      </if>
+      <if test="actid != null" >
+        actid = #{actid,jdbcType=INTEGER},
+      </if>
+      <if test="material != null" >
+        material = #{material,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroActFeedback" >
+    update micro_act_feedback
+    set ogid = #{ogid,jdbcType=INTEGER},
+      actid = #{actid,jdbcType=INTEGER},
+      material = #{material,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

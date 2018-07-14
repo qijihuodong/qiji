@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="buy_uid" property="buyUid" jdbcType="INTEGER" />
+    <result column="sell_uid" property="sellUid" jdbcType="INTEGER" />
+    <result column="standard_id" property="standardId" jdbcType="INTEGER" />
+    <result column="service_id" property="serviceId" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="taobao_trade_no" property="taobaoTradeNo" jdbcType="VARCHAR" />
+    <result column="trade_status" property="tradeStatus" jdbcType="TINYINT" />
+    <result column="weixin_trade_no" property="weixinTradeNo" jdbcType="VARCHAR" />
+    <result column="requirement" property="requirement" jdbcType="VARCHAR" />
+    <result column="feedback" property="feedback" jdbcType="VARCHAR" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="requirement_attach" property="requirementAttach" jdbcType="VARCHAR" />
+    <result column="feedback_attach" property="feedbackAttach" jdbcType="VARCHAR" />
+    <result column="comment_attach" property="commentAttach" jdbcType="VARCHAR" />
+    <result column="order" property="order" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, buy_uid, sell_uid, standard_id, service_id, price, number, add_time, status, 
+    trade_no, taobao_trade_no, trade_status, weixin_trade_no, requirement, feedback, 
+    comment, requirement_attach, feedback_attach, comment_attach, order
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroOrder" >
+    insert into micro_order (id, buy_uid, sell_uid, 
+      standard_id, service_id, price, 
+      number, add_time, status, 
+      trade_no, taobao_trade_no, trade_status, 
+      weixin_trade_no, requirement, feedback, 
+      comment, requirement_attach, feedback_attach, 
+      comment_attach, order)
+    values (#{id,jdbcType=INTEGER}, #{buyUid,jdbcType=INTEGER}, #{sellUid,jdbcType=INTEGER}, 
+      #{standardId,jdbcType=INTEGER}, #{serviceId,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
+      #{number,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, 
+      #{tradeNo,jdbcType=VARCHAR}, #{taobaoTradeNo,jdbcType=VARCHAR}, #{tradeStatus,jdbcType=TINYINT}, 
+      #{weixinTradeNo,jdbcType=VARCHAR}, #{requirement,jdbcType=VARCHAR}, #{feedback,jdbcType=VARCHAR}, 
+      #{comment,jdbcType=VARCHAR}, #{requirementAttach,jdbcType=VARCHAR}, #{feedbackAttach,jdbcType=VARCHAR}, 
+      #{commentAttach,jdbcType=VARCHAR}, #{order,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroOrder" >
+    insert into micro_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="buyUid != null" >
+        buy_uid,
+      </if>
+      <if test="sellUid != null" >
+        sell_uid,
+      </if>
+      <if test="standardId != null" >
+        standard_id,
+      </if>
+      <if test="serviceId != null" >
+        service_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="taobaoTradeNo != null" >
+        taobao_trade_no,
+      </if>
+      <if test="tradeStatus != null" >
+        trade_status,
+      </if>
+      <if test="weixinTradeNo != null" >
+        weixin_trade_no,
+      </if>
+      <if test="requirement != null" >
+        requirement,
+      </if>
+      <if test="feedback != null" >
+        feedback,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="requirementAttach != null" >
+        requirement_attach,
+      </if>
+      <if test="feedbackAttach != null" >
+        feedback_attach,
+      </if>
+      <if test="commentAttach != null" >
+        comment_attach,
+      </if>
+      <if test="order != null" >
+        order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="buyUid != null" >
+        #{buyUid,jdbcType=INTEGER},
+      </if>
+      <if test="sellUid != null" >
+        #{sellUid,jdbcType=INTEGER},
+      </if>
+      <if test="standardId != null" >
+        #{standardId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaoTradeNo != null" >
+        #{taobaoTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStatus != null" >
+        #{tradeStatus,jdbcType=TINYINT},
+      </if>
+      <if test="weixinTradeNo != null" >
+        #{weixinTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requirement != null" >
+        #{requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="feedback != null" >
+        #{feedback,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="requirementAttach != null" >
+        #{requirementAttach,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackAttach != null" >
+        #{feedbackAttach,jdbcType=VARCHAR},
+      </if>
+      <if test="commentAttach != null" >
+        #{commentAttach,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null" >
+        #{order,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroOrder" >
+    update micro_order
+    <set >
+      <if test="buyUid != null" >
+        buy_uid = #{buyUid,jdbcType=INTEGER},
+      </if>
+      <if test="sellUid != null" >
+        sell_uid = #{sellUid,jdbcType=INTEGER},
+      </if>
+      <if test="standardId != null" >
+        standard_id = #{standardId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceId != null" >
+        service_id = #{serviceId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaoTradeNo != null" >
+        taobao_trade_no = #{taobaoTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStatus != null" >
+        trade_status = #{tradeStatus,jdbcType=TINYINT},
+      </if>
+      <if test="weixinTradeNo != null" >
+        weixin_trade_no = #{weixinTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requirement != null" >
+        requirement = #{requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="feedback != null" >
+        feedback = #{feedback,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="requirementAttach != null" >
+        requirement_attach = #{requirementAttach,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackAttach != null" >
+        feedback_attach = #{feedbackAttach,jdbcType=VARCHAR},
+      </if>
+      <if test="commentAttach != null" >
+        comment_attach = #{commentAttach,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null" >
+        order = #{order,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroOrder" >
+    update micro_order
+    set buy_uid = #{buyUid,jdbcType=INTEGER},
+      sell_uid = #{sellUid,jdbcType=INTEGER},
+      standard_id = #{standardId,jdbcType=INTEGER},
+      service_id = #{serviceId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      number = #{number,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      taobao_trade_no = #{taobaoTradeNo,jdbcType=VARCHAR},
+      trade_status = #{tradeStatus,jdbcType=TINYINT},
+      weixin_trade_no = #{weixinTradeNo,jdbcType=VARCHAR},
+      requirement = #{requirement,jdbcType=VARCHAR},
+      feedback = #{feedback,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR},
+      requirement_attach = #{requirementAttach,jdbcType=VARCHAR},
+      feedback_attach = #{feedbackAttach,jdbcType=VARCHAR},
+      comment_attach = #{commentAttach,jdbcType=VARCHAR},
+      order = #{order,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroSchoolResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroSchoolResource" >
+    <id column="resource_id" property="resourceId" jdbcType="INTEGER" />
+    <result column="school_name" property="schoolName" jdbcType="VARCHAR" />
+    <result column="resource_category" property="resourceCategory" jdbcType="VARCHAR" />
+    <result column="resource_style" property="resourceStyle" jdbcType="VARCHAR" />
+    <result column="resource_size" property="resourceSize" jdbcType="VARCHAR" />
+    <result column="resource_name" property="resourceName" jdbcType="VARCHAR" />
+    <result column="resource_mark" property="resourceMark" jdbcType="VARCHAR" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="resource_price" property="resourcePrice" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    resource_id, school_name, resource_category, resource_style, resource_size, resource_name, 
+    resource_mark, img_url, add_time, resource_price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_school_resource
+    where resource_id = #{resourceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_school_resource
+    where resource_id = #{resourceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroSchoolResource" >
+    insert into micro_school_resource (resource_id, school_name, resource_category, 
+      resource_style, resource_size, resource_name, 
+      resource_mark, img_url, add_time, 
+      resource_price)
+    values (#{resourceId,jdbcType=INTEGER}, #{schoolName,jdbcType=VARCHAR}, #{resourceCategory,jdbcType=VARCHAR}, 
+      #{resourceStyle,jdbcType=VARCHAR}, #{resourceSize,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR}, 
+      #{resourceMark,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, #{addTime,jdbcType=INTEGER}, 
+      #{resourcePrice,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroSchoolResource" >
+    insert into micro_school_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        resource_id,
+      </if>
+      <if test="schoolName != null" >
+        school_name,
+      </if>
+      <if test="resourceCategory != null" >
+        resource_category,
+      </if>
+      <if test="resourceStyle != null" >
+        resource_style,
+      </if>
+      <if test="resourceSize != null" >
+        resource_size,
+      </if>
+      <if test="resourceName != null" >
+        resource_name,
+      </if>
+      <if test="resourceMark != null" >
+        resource_mark,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="resourcePrice != null" >
+        resource_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=INTEGER},
+      </if>
+      <if test="schoolName != null" >
+        #{schoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceCategory != null" >
+        #{resourceCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceStyle != null" >
+        #{resourceStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceSize != null" >
+        #{resourceSize,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceName != null" >
+        #{resourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceMark != null" >
+        #{resourceMark,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="resourcePrice != null" >
+        #{resourcePrice,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroSchoolResource" >
+    update micro_school_resource
+    <set >
+      <if test="schoolName != null" >
+        school_name = #{schoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceCategory != null" >
+        resource_category = #{resourceCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceStyle != null" >
+        resource_style = #{resourceStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceSize != null" >
+        resource_size = #{resourceSize,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceName != null" >
+        resource_name = #{resourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceMark != null" >
+        resource_mark = #{resourceMark,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="resourcePrice != null" >
+        resource_price = #{resourcePrice,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where resource_id = #{resourceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroSchoolResource" >
+    update micro_school_resource
+    set school_name = #{schoolName,jdbcType=VARCHAR},
+      resource_category = #{resourceCategory,jdbcType=VARCHAR},
+      resource_style = #{resourceStyle,jdbcType=VARCHAR},
+      resource_size = #{resourceSize,jdbcType=VARCHAR},
+      resource_name = #{resourceName,jdbcType=VARCHAR},
+      resource_mark = #{resourceMark,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      resource_price = #{resourcePrice,jdbcType=VARCHAR}
+    where resource_id = #{resourceId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroUsersMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroUsers" >
+    <id column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="utel" property="utel" jdbcType="CHAR" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="upwd" property="upwd" jdbcType="VARCHAR" />
+    <result column="vcode" property="vcode" jdbcType="CHAR" />
+    <result column="utype" property="utype" jdbcType="TINYINT" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="email" property="email" jdbcType="CHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="logourl" property="logourl" jdbcType="VARCHAR" />
+    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="check_time" property="checkTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="gender" property="gender" jdbcType="TINYINT" />
+    <result column="intro" property="intro" jdbcType="VARCHAR" />
+    <result column="school" property="school" jdbcType="VARCHAR" />
+    <result column="qrcode" property="qrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uid, utel, nickname, upwd, vcode, utype, login_ip, create_time, status, email, address, 
+    logourl, integral, password, check_time, update_time, gender, intro, school, qrcode
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_users
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_users
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroUsers" >
+    insert into micro_users (uid, utel, nickname, 
+      upwd, vcode, utype, login_ip, 
+      create_time, status, email, 
+      address, logourl, integral, 
+      password, check_time, update_time, 
+      gender, intro, school, 
+      qrcode)
+    values (#{uid,jdbcType=INTEGER}, #{utel,jdbcType=CHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{upwd,jdbcType=VARCHAR}, #{vcode,jdbcType=CHAR}, #{utype,jdbcType=TINYINT}, #{loginIp,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, #{email,jdbcType=CHAR}, 
+      #{address,jdbcType=VARCHAR}, #{logourl,jdbcType=VARCHAR}, #{integral,jdbcType=INTEGER}, 
+      #{password,jdbcType=VARCHAR}, #{checkTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{gender,jdbcType=TINYINT}, #{intro,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, 
+      #{qrcode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroUsers" >
+    insert into micro_users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="utel != null" >
+        utel,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="upwd != null" >
+        upwd,
+      </if>
+      <if test="vcode != null" >
+        vcode,
+      </if>
+      <if test="utype != null" >
+        utype,
+      </if>
+      <if test="loginIp != null" >
+        login_ip,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="logourl != null" >
+        logourl,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="checkTime != null" >
+        check_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+      <if test="school != null" >
+        school,
+      </if>
+      <if test="qrcode != null" >
+        qrcode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="utel != null" >
+        #{utel,jdbcType=CHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="upwd != null" >
+        #{upwd,jdbcType=VARCHAR},
+      </if>
+      <if test="vcode != null" >
+        #{vcode,jdbcType=CHAR},
+      </if>
+      <if test="utype != null" >
+        #{utype,jdbcType=TINYINT},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="logourl != null" >
+        #{logourl,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcode != null" >
+        #{qrcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroUsers" >
+    update micro_users
+    <set >
+      <if test="utel != null" >
+        utel = #{utel,jdbcType=CHAR},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="upwd != null" >
+        upwd = #{upwd,jdbcType=VARCHAR},
+      </if>
+      <if test="vcode != null" >
+        vcode = #{vcode,jdbcType=CHAR},
+      </if>
+      <if test="utype != null" >
+        utype = #{utype,jdbcType=TINYINT},
+      </if>
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="logourl != null" >
+        logourl = #{logourl,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        check_time = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcode != null" >
+        qrcode = #{qrcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroUsers" >
+    update micro_users
+    set utel = #{utel,jdbcType=CHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      upwd = #{upwd,jdbcType=VARCHAR},
+      vcode = #{vcode,jdbcType=CHAR},
+      utype = #{utype,jdbcType=TINYINT},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      email = #{email,jdbcType=CHAR},
+      address = #{address,jdbcType=VARCHAR},
+      logourl = #{logourl,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=INTEGER},
+      password = #{password,jdbcType=VARCHAR},
+      check_time = #{checkTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      gender = #{gender,jdbcType=TINYINT},
+      intro = #{intro,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      qrcode = #{qrcode,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findAllUsers" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_users
+  </select>
+  
+  <select id="isUserExists" resultType="int"  >
+    select count(1) from micro_users where utel = #{utel,jdbcType=CHAR}
+  </select>
+  
+  <select id="getLoginUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from micro_users where utel = #{utel,jdbcType=CHAR} and utype = #{utype,jdbcType=TINYINT} and upwd = #{upwd,jdbcType=VARCHAR};
+  </select>
+  
+</mapper>

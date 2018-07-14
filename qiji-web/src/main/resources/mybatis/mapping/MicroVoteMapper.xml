@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroVoteMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroVote" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="orgname" property="orgname" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="rule" property="rule" jdbcType="VARCHAR" />
+    <result column="banner" property="banner" jdbcType="VARCHAR" />
+    <result column="begintime" property="begintime" jdbcType="TIMESTAMP" />
+    <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="needaudit" property="needaudit" jdbcType="TINYINT" />
+    <result column="intervalhour" property="intervalhour" jdbcType="INTEGER" />
+    <result column="proposer" property="proposer" jdbcType="VARCHAR" />
+    <result column="process" property="process" jdbcType="VARCHAR" />
+    <result column="awards" property="awards" jdbcType="VARCHAR" />
+    <result column="proxyname" property="proxyname" jdbcType="VARCHAR" />
+    <result column="bg_pic" property="bgPic" jdbcType="VARCHAR" />
+    <result column="declaration_notice" property="declarationNotice" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, orgname, name, introduce, rule, banner, begintime, endtime, createtime, needaudit, 
+    intervalhour, proposer, process, awards, proxyname, bg_pic, declaration_notice
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_vote
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_vote
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroVote" >
+    insert into micro_vote (id, orgname, name, 
+      introduce, rule, banner, 
+      begintime, endtime, createtime, 
+      needaudit, intervalhour, proposer, 
+      process, awards, proxyname, 
+      bg_pic, declaration_notice)
+    values (#{id,jdbcType=INTEGER}, #{orgname,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{introduce,jdbcType=VARCHAR}, #{rule,jdbcType=VARCHAR}, #{banner,jdbcType=VARCHAR}, 
+      #{begintime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{needaudit,jdbcType=TINYINT}, #{intervalhour,jdbcType=INTEGER}, #{proposer,jdbcType=VARCHAR}, 
+      #{process,jdbcType=VARCHAR}, #{awards,jdbcType=VARCHAR}, #{proxyname,jdbcType=VARCHAR}, 
+      #{bgPic,jdbcType=VARCHAR}, #{declarationNotice,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroVote" >
+    insert into micro_vote
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orgname != null" >
+        orgname,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="rule != null" >
+        rule,
+      </if>
+      <if test="banner != null" >
+        banner,
+      </if>
+      <if test="begintime != null" >
+        begintime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="needaudit != null" >
+        needaudit,
+      </if>
+      <if test="intervalhour != null" >
+        intervalhour,
+      </if>
+      <if test="proposer != null" >
+        proposer,
+      </if>
+      <if test="process != null" >
+        process,
+      </if>
+      <if test="awards != null" >
+        awards,
+      </if>
+      <if test="proxyname != null" >
+        proxyname,
+      </if>
+      <if test="bgPic != null" >
+        bg_pic,
+      </if>
+      <if test="declarationNotice != null" >
+        declaration_notice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orgname != null" >
+        #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="rule != null" >
+        #{rule,jdbcType=VARCHAR},
+      </if>
+      <if test="banner != null" >
+        #{banner,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="needaudit != null" >
+        #{needaudit,jdbcType=TINYINT},
+      </if>
+      <if test="intervalhour != null" >
+        #{intervalhour,jdbcType=INTEGER},
+      </if>
+      <if test="proposer != null" >
+        #{proposer,jdbcType=VARCHAR},
+      </if>
+      <if test="process != null" >
+        #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="awards != null" >
+        #{awards,jdbcType=VARCHAR},
+      </if>
+      <if test="proxyname != null" >
+        #{proxyname,jdbcType=VARCHAR},
+      </if>
+      <if test="bgPic != null" >
+        #{bgPic,jdbcType=VARCHAR},
+      </if>
+      <if test="declarationNotice != null" >
+        #{declarationNotice,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroVote" >
+    update micro_vote
+    <set >
+      <if test="orgname != null" >
+        orgname = #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="rule != null" >
+        rule = #{rule,jdbcType=VARCHAR},
+      </if>
+      <if test="banner != null" >
+        banner = #{banner,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        begintime = #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="needaudit != null" >
+        needaudit = #{needaudit,jdbcType=TINYINT},
+      </if>
+      <if test="intervalhour != null" >
+        intervalhour = #{intervalhour,jdbcType=INTEGER},
+      </if>
+      <if test="proposer != null" >
+        proposer = #{proposer,jdbcType=VARCHAR},
+      </if>
+      <if test="process != null" >
+        process = #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="awards != null" >
+        awards = #{awards,jdbcType=VARCHAR},
+      </if>
+      <if test="proxyname != null" >
+        proxyname = #{proxyname,jdbcType=VARCHAR},
+      </if>
+      <if test="bgPic != null" >
+        bg_pic = #{bgPic,jdbcType=VARCHAR},
+      </if>
+      <if test="declarationNotice != null" >
+        declaration_notice = #{declarationNotice,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroVote" >
+    update micro_vote
+    set orgname = #{orgname,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      rule = #{rule,jdbcType=VARCHAR},
+      banner = #{banner,jdbcType=VARCHAR},
+      begintime = #{begintime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      needaudit = #{needaudit,jdbcType=TINYINT},
+      intervalhour = #{intervalhour,jdbcType=INTEGER},
+      proposer = #{proposer,jdbcType=VARCHAR},
+      process = #{process,jdbcType=VARCHAR},
+      awards = #{awards,jdbcType=VARCHAR},
+      proxyname = #{proxyname,jdbcType=VARCHAR},
+      bg_pic = #{bgPic,jdbcType=VARCHAR},
+      declaration_notice = #{declarationNotice,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

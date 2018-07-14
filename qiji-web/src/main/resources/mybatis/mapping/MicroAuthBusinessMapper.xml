@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroAuthBusinessMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroAuthBusiness" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="service" property="service" jdbcType="VARCHAR" />
+    <result column="img1" property="img1" jdbcType="VARCHAR" />
+    <result column="img2" property="img2" jdbcType="VARCHAR" />
+    <result column="img3" property="img3" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="check_time" property="checkTime" jdbcType="TIMESTAMP" />
+    <result column="apply_name" property="applyName" jdbcType="VARCHAR" />
+    <result column="apply_contact" property="applyContact" jdbcType="VARCHAR" />
+    <result column="apply_email" property="applyEmail" jdbcType="VARCHAR" />
+    <result column="bak_apply_name" property="bakApplyName" jdbcType="VARCHAR" />
+    <result column="bak_apply_contact" property="bakApplyContact" jdbcType="VARCHAR" />
+    <result column="bak_apply_email" property="bakApplyEmail" jdbcType="VARCHAR" />
+    <result column="production" property="production" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="logourl" property="logourl" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.qiji.domain.MicroAuthBusiness" extends="BaseResultMap" >
+    <result column="intro" property="intro" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, name, service, img1, img2, img3, address, create_time, update_time, status, 
+    check_time, apply_name, apply_contact, apply_email, bak_apply_name, bak_apply_contact, 
+    bak_apply_email, production, email, logourl
+  </sql>
+  <sql id="Blob_Column_List" >
+    intro
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from micro_auth_business
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_auth_business
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroAuthBusiness" >
+    insert into micro_auth_business (id, uid, name, 
+      service, img1, img2, 
+      img3, address, create_time, 
+      update_time, status, check_time, 
+      apply_name, apply_contact, apply_email, 
+      bak_apply_name, bak_apply_contact, bak_apply_email, 
+      production, email, logourl, 
+      intro)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{service,jdbcType=VARCHAR}, #{img1,jdbcType=VARCHAR}, #{img2,jdbcType=VARCHAR}, 
+      #{img3,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, #{checkTime,jdbcType=TIMESTAMP}, 
+      #{applyName,jdbcType=VARCHAR}, #{applyContact,jdbcType=VARCHAR}, #{applyEmail,jdbcType=VARCHAR}, 
+      #{bakApplyName,jdbcType=VARCHAR}, #{bakApplyContact,jdbcType=VARCHAR}, #{bakApplyEmail,jdbcType=VARCHAR}, 
+      #{production,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{logourl,jdbcType=VARCHAR}, 
+      #{intro,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroAuthBusiness" >
+    insert into micro_auth_business
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="service != null" >
+        service,
+      </if>
+      <if test="img1 != null" >
+        img1,
+      </if>
+      <if test="img2 != null" >
+        img2,
+      </if>
+      <if test="img3 != null" >
+        img3,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="checkTime != null" >
+        check_time,
+      </if>
+      <if test="applyName != null" >
+        apply_name,
+      </if>
+      <if test="applyContact != null" >
+        apply_contact,
+      </if>
+      <if test="applyEmail != null" >
+        apply_email,
+      </if>
+      <if test="bakApplyName != null" >
+        bak_apply_name,
+      </if>
+      <if test="bakApplyContact != null" >
+        bak_apply_contact,
+      </if>
+      <if test="bakApplyEmail != null" >
+        bak_apply_email,
+      </if>
+      <if test="production != null" >
+        production,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="logourl != null" >
+        logourl,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="service != null" >
+        #{service,jdbcType=VARCHAR},
+      </if>
+      <if test="img1 != null" >
+        #{img1,jdbcType=VARCHAR},
+      </if>
+      <if test="img2 != null" >
+        #{img2,jdbcType=VARCHAR},
+      </if>
+      <if test="img3 != null" >
+        #{img3,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyName != null" >
+        #{applyName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyContact != null" >
+        #{applyContact,jdbcType=VARCHAR},
+      </if>
+      <if test="applyEmail != null" >
+        #{applyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="bakApplyName != null" >
+        #{bakApplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="bakApplyContact != null" >
+        #{bakApplyContact,jdbcType=VARCHAR},
+      </if>
+      <if test="bakApplyEmail != null" >
+        #{bakApplyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="production != null" >
+        #{production,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="logourl != null" >
+        #{logourl,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroAuthBusiness" >
+    update micro_auth_business
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="service != null" >
+        service = #{service,jdbcType=VARCHAR},
+      </if>
+      <if test="img1 != null" >
+        img1 = #{img1,jdbcType=VARCHAR},
+      </if>
+      <if test="img2 != null" >
+        img2 = #{img2,jdbcType=VARCHAR},
+      </if>
+      <if test="img3 != null" >
+        img3 = #{img3,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="checkTime != null" >
+        check_time = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyName != null" >
+        apply_name = #{applyName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyContact != null" >
+        apply_contact = #{applyContact,jdbcType=VARCHAR},
+      </if>
+      <if test="applyEmail != null" >
+        apply_email = #{applyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="bakApplyName != null" >
+        bak_apply_name = #{bakApplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="bakApplyContact != null" >
+        bak_apply_contact = #{bakApplyContact,jdbcType=VARCHAR},
+      </if>
+      <if test="bakApplyEmail != null" >
+        bak_apply_email = #{bakApplyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="production != null" >
+        production = #{production,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="logourl != null" >
+        logourl = #{logourl,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qiji.domain.MicroAuthBusiness" >
+    update micro_auth_business
+    set uid = #{uid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      service = #{service,jdbcType=VARCHAR},
+      img1 = #{img1,jdbcType=VARCHAR},
+      img2 = #{img2,jdbcType=VARCHAR},
+      img3 = #{img3,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      check_time = #{checkTime,jdbcType=TIMESTAMP},
+      apply_name = #{applyName,jdbcType=VARCHAR},
+      apply_contact = #{applyContact,jdbcType=VARCHAR},
+      apply_email = #{applyEmail,jdbcType=VARCHAR},
+      bak_apply_name = #{bakApplyName,jdbcType=VARCHAR},
+      bak_apply_contact = #{bakApplyContact,jdbcType=VARCHAR},
+      bak_apply_email = #{bakApplyEmail,jdbcType=VARCHAR},
+      production = #{production,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      logourl = #{logourl,jdbcType=VARCHAR},
+      intro = #{intro,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroAuthBusiness" >
+    update micro_auth_business
+    set uid = #{uid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      service = #{service,jdbcType=VARCHAR},
+      img1 = #{img1,jdbcType=VARCHAR},
+      img2 = #{img2,jdbcType=VARCHAR},
+      img3 = #{img3,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      check_time = #{checkTime,jdbcType=TIMESTAMP},
+      apply_name = #{applyName,jdbcType=VARCHAR},
+      apply_contact = #{applyContact,jdbcType=VARCHAR},
+      apply_email = #{applyEmail,jdbcType=VARCHAR},
+      bak_apply_name = #{bakApplyName,jdbcType=VARCHAR},
+      bak_apply_contact = #{bakApplyContact,jdbcType=VARCHAR},
+      bak_apply_email = #{bakApplyEmail,jdbcType=VARCHAR},
+      production = #{production,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      logourl = #{logourl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

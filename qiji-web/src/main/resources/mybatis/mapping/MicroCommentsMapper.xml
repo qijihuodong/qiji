@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroCommentsMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroComments" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ogid" property="ogid" jdbcType="INTEGER" />
+    <result column="actid" property="actid" jdbcType="INTEGER" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="ogname" property="ogname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ogid, actid, comment, grade, create_time, ogname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_comments
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_comments
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroComments" >
+    insert into micro_comments (id, ogid, actid, 
+      comment, grade, create_time, 
+      ogname)
+    values (#{id,jdbcType=INTEGER}, #{ogid,jdbcType=INTEGER}, #{actid,jdbcType=INTEGER}, 
+      #{comment,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{ogname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroComments" >
+    insert into micro_comments
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ogid != null" >
+        ogid,
+      </if>
+      <if test="actid != null" >
+        actid,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="ogname != null" >
+        ogname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ogid != null" >
+        #{ogid,jdbcType=INTEGER},
+      </if>
+      <if test="actid != null" >
+        #{actid,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ogname != null" >
+        #{ogname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroComments" >
+    update micro_comments
+    <set >
+      <if test="ogid != null" >
+        ogid = #{ogid,jdbcType=INTEGER},
+      </if>
+      <if test="actid != null" >
+        actid = #{actid,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ogname != null" >
+        ogname = #{ogname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroComments" >
+    update micro_comments
+    set ogid = #{ogid,jdbcType=INTEGER},
+      actid = #{actid,jdbcType=INTEGER},
+      comment = #{comment,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      ogname = #{ogname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroCategoryConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroCategoryConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="formtype" property="formtype" jdbcType="TINYINT" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="show" property="show" jdbcType="TINYINT" />
+    <result column="intro" property="intro" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, formtype, sort, category_id, show, intro
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_category_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_category_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroCategoryConfig" >
+    insert into micro_category_config (id, name, formtype, 
+      sort, category_id, show, 
+      intro)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{formtype,jdbcType=TINYINT}, 
+      #{sort,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{show,jdbcType=TINYINT}, 
+      #{intro,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroCategoryConfig" >
+    insert into micro_category_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="formtype != null" >
+        formtype,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="show != null" >
+        show,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="formtype != null" >
+        #{formtype,jdbcType=TINYINT},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="show != null" >
+        #{show,jdbcType=TINYINT},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroCategoryConfig" >
+    update micro_category_config
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="formtype != null" >
+        formtype = #{formtype,jdbcType=TINYINT},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="show != null" >
+        show = #{show,jdbcType=TINYINT},
+      </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroCategoryConfig" >
+    update micro_category_config
+    set name = #{name,jdbcType=VARCHAR},
+      formtype = #{formtype,jdbcType=TINYINT},
+      sort = #{sort,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      show = #{show,jdbcType=TINYINT},
+      intro = #{intro,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

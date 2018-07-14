@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroTransferMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroTransfer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="fromuid" property="fromuid" jdbcType="INTEGER" />
+    <result column="touid" property="touid" jdbcType="INTEGER" />
+    <result column="ogid" property="ogid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, fromuid, touid, ogid, create_time, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_transfer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_transfer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroTransfer" >
+    insert into micro_transfer (id, fromuid, touid, 
+      ogid, create_time, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{fromuid,jdbcType=INTEGER}, #{touid,jdbcType=INTEGER}, 
+      #{ogid,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroTransfer" >
+    insert into micro_transfer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fromuid != null" >
+        fromuid,
+      </if>
+      <if test="touid != null" >
+        touid,
+      </if>
+      <if test="ogid != null" >
+        ogid,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fromuid != null" >
+        #{fromuid,jdbcType=INTEGER},
+      </if>
+      <if test="touid != null" >
+        #{touid,jdbcType=INTEGER},
+      </if>
+      <if test="ogid != null" >
+        #{ogid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroTransfer" >
+    update micro_transfer
+    <set >
+      <if test="fromuid != null" >
+        fromuid = #{fromuid,jdbcType=INTEGER},
+      </if>
+      <if test="touid != null" >
+        touid = #{touid,jdbcType=INTEGER},
+      </if>
+      <if test="ogid != null" >
+        ogid = #{ogid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroTransfer" >
+    update micro_transfer
+    set fromuid = #{fromuid,jdbcType=INTEGER},
+      touid = #{touid,jdbcType=INTEGER},
+      ogid = #{ogid,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

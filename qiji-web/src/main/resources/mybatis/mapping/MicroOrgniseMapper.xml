@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroOrgniseMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroOrgnise" >
+    <id column="ogid" property="ogid" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="ogname" property="ogname" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="CHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="utype" property="utype" jdbcType="INTEGER" />
+    <result column="logo_url" property="logoUrl" jdbcType="VARCHAR" />
+    <result column="renzhen_url" property="renzhenUrl" jdbcType="VARCHAR" />
+    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="rank" property="rank" jdbcType="INTEGER" />
+    <result column="intro" property="intro" jdbcType="VARCHAR" />
+    <result column="nums" property="nums" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="check_time" property="checkTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ogid, uid, ogname, address, tel, email, utype, logo_url, renzhen_url, integral, rank, 
+    intro, nums, create_time, update_time, status, check_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_orgnise
+    where ogid = #{ogid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_orgnise
+    where ogid = #{ogid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroOrgnise" >
+    insert into micro_orgnise (ogid, uid, ogname, 
+      address, tel, email, utype, 
+      logo_url, renzhen_url, integral, 
+      rank, intro, nums, 
+      create_time, update_time, status, 
+      check_time)
+    values (#{ogid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{ogname,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{tel,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, #{utype,jdbcType=INTEGER}, 
+      #{logoUrl,jdbcType=VARCHAR}, #{renzhenUrl,jdbcType=VARCHAR}, #{integral,jdbcType=INTEGER}, 
+      #{rank,jdbcType=INTEGER}, #{intro,jdbcType=VARCHAR}, #{nums,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, 
+      #{checkTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroOrgnise" >
+    insert into micro_orgnise
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ogid != null" >
+        ogid,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="ogname != null" >
+        ogname,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="utype != null" >
+        utype,
+      </if>
+      <if test="logoUrl != null" >
+        logo_url,
+      </if>
+      <if test="renzhenUrl != null" >
+        renzhen_url,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="rank != null" >
+        rank,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+      <if test="nums != null" >
+        nums,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="checkTime != null" >
+        check_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ogid != null" >
+        #{ogid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="ogname != null" >
+        #{ogname,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="utype != null" >
+        #{utype,jdbcType=INTEGER},
+      </if>
+      <if test="logoUrl != null" >
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="renzhenUrl != null" >
+        #{renzhenUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="rank != null" >
+        #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="nums != null" >
+        #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroOrgnise" >
+    update micro_orgnise
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="ogname != null" >
+        ogname = #{ogname,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="utype != null" >
+        utype = #{utype,jdbcType=INTEGER},
+      </if>
+      <if test="logoUrl != null" >
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="renzhenUrl != null" >
+        renzhen_url = #{renzhenUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="rank != null" >
+        rank = #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="nums != null" >
+        nums = #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="checkTime != null" >
+        check_time = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ogid = #{ogid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroOrgnise" >
+    update micro_orgnise
+    set uid = #{uid,jdbcType=INTEGER},
+      ogname = #{ogname,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=CHAR},
+      email = #{email,jdbcType=VARCHAR},
+      utype = #{utype,jdbcType=INTEGER},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      renzhen_url = #{renzhenUrl,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=INTEGER},
+      rank = #{rank,jdbcType=INTEGER},
+      intro = #{intro,jdbcType=VARCHAR},
+      nums = #{nums,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      check_time = #{checkTime,jdbcType=TIMESTAMP}
+    where ogid = #{ogid,jdbcType=INTEGER}
+  </update>
+</mapper>

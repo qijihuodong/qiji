@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroActivityApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroActivityApply" >
+    <id column="apply_id" property="applyId" jdbcType="INTEGER" />
+    <result column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="orgnise_id" property="orgniseId" jdbcType="INTEGER" />
+    <result column="is_win" property="isWin" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="ogname" property="ogname" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="check_time" property="checkTime" jdbcType="INTEGER" />
+    <result column="act_type" property="actType" jdbcType="TINYINT" />
+    <result column="trade_status" property="tradeStatus" jdbcType="TINYINT" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="feedback" property="feedback" jdbcType="VARCHAR" />
+    <result column="feedback_attach" property="feedbackAttach" jdbcType="VARCHAR" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="comment_attach" property="commentAttach" jdbcType="VARCHAR" />
+    <result column="star" property="star" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    apply_id, activity_id, orgnise_id, is_win, add_time, ogname, title, check_time, act_type, 
+    trade_status, uid, feedback, feedback_attach, comment, comment_attach, star
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_activity_apply
+    where apply_id = #{applyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_activity_apply
+    where apply_id = #{applyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroActivityApply" >
+    insert into micro_activity_apply (apply_id, activity_id, orgnise_id, 
+      is_win, add_time, ogname, 
+      title, check_time, act_type, 
+      trade_status, uid, feedback, 
+      feedback_attach, comment, comment_attach, 
+      star)
+    values (#{applyId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, #{orgniseId,jdbcType=INTEGER}, 
+      #{isWin,jdbcType=VARCHAR}, #{addTime,jdbcType=INTEGER}, #{ogname,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{checkTime,jdbcType=INTEGER}, #{actType,jdbcType=TINYINT}, 
+      #{tradeStatus,jdbcType=TINYINT}, #{uid,jdbcType=INTEGER}, #{feedback,jdbcType=VARCHAR}, 
+      #{feedbackAttach,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{commentAttach,jdbcType=VARCHAR}, 
+      #{star,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroActivityApply" >
+    insert into micro_activity_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="applyId != null" >
+        apply_id,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="orgniseId != null" >
+        orgnise_id,
+      </if>
+      <if test="isWin != null" >
+        is_win,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="ogname != null" >
+        ogname,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="checkTime != null" >
+        check_time,
+      </if>
+      <if test="actType != null" >
+        act_type,
+      </if>
+      <if test="tradeStatus != null" >
+        trade_status,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="feedback != null" >
+        feedback,
+      </if>
+      <if test="feedbackAttach != null" >
+        feedback_attach,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="commentAttach != null" >
+        comment_attach,
+      </if>
+      <if test="star != null" >
+        star,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="applyId != null" >
+        #{applyId,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="orgniseId != null" >
+        #{orgniseId,jdbcType=INTEGER},
+      </if>
+      <if test="isWin != null" >
+        #{isWin,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="ogname != null" >
+        #{ogname,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=INTEGER},
+      </if>
+      <if test="actType != null" >
+        #{actType,jdbcType=TINYINT},
+      </if>
+      <if test="tradeStatus != null" >
+        #{tradeStatus,jdbcType=TINYINT},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="feedback != null" >
+        #{feedback,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackAttach != null" >
+        #{feedbackAttach,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="commentAttach != null" >
+        #{commentAttach,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null" >
+        #{star,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroActivityApply" >
+    update micro_activity_apply
+    <set >
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="orgniseId != null" >
+        orgnise_id = #{orgniseId,jdbcType=INTEGER},
+      </if>
+      <if test="isWin != null" >
+        is_win = #{isWin,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="ogname != null" >
+        ogname = #{ogname,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        check_time = #{checkTime,jdbcType=INTEGER},
+      </if>
+      <if test="actType != null" >
+        act_type = #{actType,jdbcType=TINYINT},
+      </if>
+      <if test="tradeStatus != null" >
+        trade_status = #{tradeStatus,jdbcType=TINYINT},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="feedback != null" >
+        feedback = #{feedback,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackAttach != null" >
+        feedback_attach = #{feedbackAttach,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="commentAttach != null" >
+        comment_attach = #{commentAttach,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null" >
+        star = #{star,jdbcType=TINYINT},
+      </if>
+    </set>
+    where apply_id = #{applyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroActivityApply" >
+    update micro_activity_apply
+    set activity_id = #{activityId,jdbcType=INTEGER},
+      orgnise_id = #{orgniseId,jdbcType=INTEGER},
+      is_win = #{isWin,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      ogname = #{ogname,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      check_time = #{checkTime,jdbcType=INTEGER},
+      act_type = #{actType,jdbcType=TINYINT},
+      trade_status = #{tradeStatus,jdbcType=TINYINT},
+      uid = #{uid,jdbcType=INTEGER},
+      feedback = #{feedback,jdbcType=VARCHAR},
+      feedback_attach = #{feedbackAttach,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR},
+      comment_attach = #{commentAttach,jdbcType=VARCHAR},
+      star = #{star,jdbcType=TINYINT}
+    where apply_id = #{applyId,jdbcType=INTEGER}
+  </update>
+</mapper>

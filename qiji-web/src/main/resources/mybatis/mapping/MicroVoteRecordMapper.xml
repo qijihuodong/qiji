@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroVoteRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroVoteRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="touserid" property="touserid" jdbcType="INTEGER" />
+    <result column="voteid" property="voteid" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, touserid, voteid, createtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_vote_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_vote_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroVoteRecord" >
+    insert into micro_vote_record (id, userid, touserid, 
+      voteid, createtime)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{touserid,jdbcType=INTEGER}, 
+      #{voteid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroVoteRecord" >
+    insert into micro_vote_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="touserid != null" >
+        touserid,
+      </if>
+      <if test="voteid != null" >
+        voteid,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="touserid != null" >
+        #{touserid,jdbcType=INTEGER},
+      </if>
+      <if test="voteid != null" >
+        #{voteid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroVoteRecord" >
+    update micro_vote_record
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="touserid != null" >
+        touserid = #{touserid,jdbcType=INTEGER},
+      </if>
+      <if test="voteid != null" >
+        voteid = #{voteid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroVoteRecord" >
+    update micro_vote_record
+    set userid = #{userid,jdbcType=INTEGER},
+      touserid = #{touserid,jdbcType=INTEGER},
+      voteid = #{voteid,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

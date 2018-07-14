@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroTagMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroTag" >
+    <id column="tag_id" property="tagId" jdbcType="INTEGER" />
+    <result column="tag_name" property="tagName" jdbcType="VARCHAR" />
+    <result column="tag_order" property="tagOrder" jdbcType="VARCHAR" />
+    <result column="tag_desc" property="tagDesc" jdbcType="VARCHAR" />
+    <result column="is_show" property="isShow" jdbcType="TINYINT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tag_id, tag_name, tag_order, tag_desc, is_show, type, add_time, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_tag
+    where tag_id = #{tagId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_tag
+    where tag_id = #{tagId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroTag" >
+    insert into micro_tag (tag_id, tag_name, tag_order, 
+      tag_desc, is_show, type, 
+      add_time, is_delete)
+    values (#{tagId,jdbcType=INTEGER}, #{tagName,jdbcType=VARCHAR}, #{tagOrder,jdbcType=VARCHAR}, 
+      #{tagDesc,jdbcType=VARCHAR}, #{isShow,jdbcType=TINYINT}, #{type,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=INTEGER}, #{isDelete,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroTag" >
+    insert into micro_tag
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tagId != null" >
+        tag_id,
+      </if>
+      <if test="tagName != null" >
+        tag_name,
+      </if>
+      <if test="tagOrder != null" >
+        tag_order,
+      </if>
+      <if test="tagDesc != null" >
+        tag_desc,
+      </if>
+      <if test="isShow != null" >
+        is_show,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tagId != null" >
+        #{tagId,jdbcType=INTEGER},
+      </if>
+      <if test="tagName != null" >
+        #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagOrder != null" >
+        #{tagOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="tagDesc != null" >
+        #{tagDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null" >
+        #{isShow,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroTag" >
+    update micro_tag
+    <set >
+      <if test="tagName != null" >
+        tag_name = #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagOrder != null" >
+        tag_order = #{tagOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="tagDesc != null" >
+        tag_desc = #{tagDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null" >
+        is_show = #{isShow,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+    </set>
+    where tag_id = #{tagId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroTag" >
+    update micro_tag
+    set tag_name = #{tagName,jdbcType=VARCHAR},
+      tag_order = #{tagOrder,jdbcType=VARCHAR},
+      tag_desc = #{tagDesc,jdbcType=VARCHAR},
+      is_show = #{isShow,jdbcType=TINYINT},
+      type = #{type,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=TINYINT}
+    where tag_id = #{tagId,jdbcType=INTEGER}
+  </update>
+</mapper>

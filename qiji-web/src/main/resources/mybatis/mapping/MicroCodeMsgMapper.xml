@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroCodeMsgMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroCodeMsg" >
+    <id column="code_id" property="codeId" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="result" property="result" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    code_id, code, mobile, add_time, result
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_code_msg
+    where code_id = #{codeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_code_msg
+    where code_id = #{codeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroCodeMsg" >
+    insert into micro_code_msg (code_id, code, mobile, 
+      add_time, result)
+    values (#{codeId,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=INTEGER}, #{result,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroCodeMsg" >
+    insert into micro_code_msg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codeId != null" >
+        code_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codeId != null" >
+        #{codeId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroCodeMsg" >
+    update micro_code_msg
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where code_id = #{codeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroCodeMsg" >
+    update micro_code_msg
+    set code = #{code,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      result = #{result,jdbcType=VARCHAR}
+    where code_id = #{codeId,jdbcType=INTEGER}
+  </update>
+</mapper>

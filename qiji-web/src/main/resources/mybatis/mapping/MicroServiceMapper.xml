@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroService" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="ogid" property="ogid" jdbcType="INTEGER" />
+    <result column="utype" property="utype" jdbcType="TINYINT" />
+    <result column="parent_category_id" property="parentCategoryId" jdbcType="INTEGER" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, ogid, utype, parent_category_id, category_id, create_time, status, reason
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_service
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_service
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroService" >
+    insert into micro_service (id, uid, ogid, 
+      utype, parent_category_id, category_id, 
+      create_time, status, reason
+      )
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{ogid,jdbcType=INTEGER}, 
+      #{utype,jdbcType=TINYINT}, #{parentCategoryId,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, #{reason,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroService" >
+    insert into micro_service
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="ogid != null" >
+        ogid,
+      </if>
+      <if test="utype != null" >
+        utype,
+      </if>
+      <if test="parentCategoryId != null" >
+        parent_category_id,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="ogid != null" >
+        #{ogid,jdbcType=INTEGER},
+      </if>
+      <if test="utype != null" >
+        #{utype,jdbcType=TINYINT},
+      </if>
+      <if test="parentCategoryId != null" >
+        #{parentCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroService" >
+    update micro_service
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="ogid != null" >
+        ogid = #{ogid,jdbcType=INTEGER},
+      </if>
+      <if test="utype != null" >
+        utype = #{utype,jdbcType=TINYINT},
+      </if>
+      <if test="parentCategoryId != null" >
+        parent_category_id = #{parentCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroService" >
+    update micro_service
+    set uid = #{uid,jdbcType=INTEGER},
+      ogid = #{ogid,jdbcType=INTEGER},
+      utype = #{utype,jdbcType=TINYINT},
+      parent_category_id = #{parentCategoryId,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      reason = #{reason,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

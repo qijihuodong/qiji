@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroActivitiesMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroActivities" >
+    <id column="actid" property="actid" jdbcType="INTEGER" />
+    <result column="ogid" property="ogid" jdbcType="INTEGER" />
+    <result column="ogname" property="ogname" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="CHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="picture_url" property="pictureUrl" jdbcType="VARCHAR" />
+    <result column="star" property="star" jdbcType="INTEGER" />
+    <result column="act_type" property="actType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="is_qiangdan" property="isQiangdan" jdbcType="INTEGER" />
+    <result column="join_num" property="joinNum" jdbcType="INTEGER" />
+    <result column="apply_num" property="applyNum" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="category_pid" property="categoryPid" jdbcType="INTEGER" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="applyname" property="applyname" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="check_time" property="checkTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.qiji.domain.MicroActivitiesWithBLOBs" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="needs" property="needs" jdbcType="LONGVARCHAR" />
+    <result column="actback" property="actback" jdbcType="LONGVARCHAR" />
+    <result column="money" property="money" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    actid, ogid, ogname, tel, title, address, picture_url, star, act_type, status, is_qiangdan, 
+    join_num, apply_num, create_time, update_time, start_time, end_time, category_pid, 
+    category_id, applyname, email, job, check_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    content, needs, actback, money
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from micro_activities
+    where actid = #{actid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_activities
+    where actid = #{actid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroActivitiesWithBLOBs" >
+    insert into micro_activities (actid, ogid, ogname, 
+      tel, title, address, picture_url, 
+      star, act_type, status, 
+      is_qiangdan, join_num, apply_num, 
+      create_time, update_time, start_time, 
+      end_time, category_pid, category_id, 
+      applyname, email, job, 
+      check_time, content, needs, 
+      actback, money)
+    values (#{actid,jdbcType=INTEGER}, #{ogid,jdbcType=INTEGER}, #{ogname,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=CHAR}, #{title,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{pictureUrl,jdbcType=VARCHAR}, 
+      #{star,jdbcType=INTEGER}, #{actType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{isQiangdan,jdbcType=INTEGER}, #{joinNum,jdbcType=INTEGER}, #{applyNum,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{categoryPid,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, 
+      #{applyname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
+      #{checkTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}, #{needs,jdbcType=LONGVARCHAR}, 
+      #{actback,jdbcType=LONGVARCHAR}, #{money,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroActivitiesWithBLOBs" >
+    insert into micro_activities
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="actid != null" >
+        actid,
+      </if>
+      <if test="ogid != null" >
+        ogid,
+      </if>
+      <if test="ogname != null" >
+        ogname,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="pictureUrl != null" >
+        picture_url,
+      </if>
+      <if test="star != null" >
+        star,
+      </if>
+      <if test="actType != null" >
+        act_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isQiangdan != null" >
+        is_qiangdan,
+      </if>
+      <if test="joinNum != null" >
+        join_num,
+      </if>
+      <if test="applyNum != null" >
+        apply_num,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="categoryPid != null" >
+        category_pid,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="applyname != null" >
+        applyname,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="checkTime != null" >
+        check_time,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="needs != null" >
+        needs,
+      </if>
+      <if test="actback != null" >
+        actback,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="actid != null" >
+        #{actid,jdbcType=INTEGER},
+      </if>
+      <if test="ogid != null" >
+        #{ogid,jdbcType=INTEGER},
+      </if>
+      <if test="ogname != null" >
+        #{ogname,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=CHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureUrl != null" >
+        #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null" >
+        #{star,jdbcType=INTEGER},
+      </if>
+      <if test="actType != null" >
+        #{actType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isQiangdan != null" >
+        #{isQiangdan,jdbcType=INTEGER},
+      </if>
+      <if test="joinNum != null" >
+        #{joinNum,jdbcType=INTEGER},
+      </if>
+      <if test="applyNum != null" >
+        #{applyNum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="categoryPid != null" >
+        #{categoryPid,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="applyname != null" >
+        #{applyname,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="needs != null" >
+        #{needs,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="actback != null" >
+        #{actback,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroActivitiesWithBLOBs" >
+    update micro_activities
+    <set >
+      <if test="ogid != null" >
+        ogid = #{ogid,jdbcType=INTEGER},
+      </if>
+      <if test="ogname != null" >
+        ogname = #{ogname,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=CHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureUrl != null" >
+        picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null" >
+        star = #{star,jdbcType=INTEGER},
+      </if>
+      <if test="actType != null" >
+        act_type = #{actType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isQiangdan != null" >
+        is_qiangdan = #{isQiangdan,jdbcType=INTEGER},
+      </if>
+      <if test="joinNum != null" >
+        join_num = #{joinNum,jdbcType=INTEGER},
+      </if>
+      <if test="applyNum != null" >
+        apply_num = #{applyNum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="categoryPid != null" >
+        category_pid = #{categoryPid,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="applyname != null" >
+        applyname = #{applyname,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        check_time = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="needs != null" >
+        needs = #{needs,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="actback != null" >
+        actback = #{actback,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where actid = #{actid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qiji.domain.MicroActivitiesWithBLOBs" >
+    update micro_activities
+    set ogid = #{ogid,jdbcType=INTEGER},
+      ogname = #{ogname,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=CHAR},
+      title = #{title,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      star = #{star,jdbcType=INTEGER},
+      act_type = #{actType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      is_qiangdan = #{isQiangdan,jdbcType=INTEGER},
+      join_num = #{joinNum,jdbcType=INTEGER},
+      apply_num = #{applyNum,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      category_pid = #{categoryPid,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      applyname = #{applyname,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      check_time = #{checkTime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR},
+      needs = #{needs,jdbcType=LONGVARCHAR},
+      actback = #{actback,jdbcType=LONGVARCHAR},
+      money = #{money,jdbcType=LONGVARCHAR}
+    where actid = #{actid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroActivities" >
+    update micro_activities
+    set ogid = #{ogid,jdbcType=INTEGER},
+      ogname = #{ogname,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=CHAR},
+      title = #{title,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      star = #{star,jdbcType=INTEGER},
+      act_type = #{actType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      is_qiangdan = #{isQiangdan,jdbcType=INTEGER},
+      join_num = #{joinNum,jdbcType=INTEGER},
+      apply_num = #{applyNum,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      category_pid = #{categoryPid,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      applyname = #{applyname,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      check_time = #{checkTime,jdbcType=TIMESTAMP}
+    where actid = #{actid,jdbcType=INTEGER}
+  </update>
+</mapper>

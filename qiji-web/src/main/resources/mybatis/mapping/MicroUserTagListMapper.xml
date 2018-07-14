@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.MicroUserTagListMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.MicroUserTagList" >
+    <id column="user_tag_id" property="userTagId" jdbcType="INTEGER" />
+    <result column="tag_id" property="tagId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_tag_id, tag_id, user_id, add_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_user_tag_list
+    where user_tag_id = #{userTagId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_user_tag_list
+    where user_tag_id = #{userTagId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiji.domain.MicroUserTagList" >
+    insert into micro_user_tag_list (user_tag_id, tag_id, user_id, 
+      add_time)
+    values (#{userTagId,jdbcType=INTEGER}, #{tagId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.MicroUserTagList" >
+    insert into micro_user_tag_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userTagId != null" >
+        user_tag_id,
+      </if>
+      <if test="tagId != null" >
+        tag_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userTagId != null" >
+        #{userTagId,jdbcType=INTEGER},
+      </if>
+      <if test="tagId != null" >
+        #{tagId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiji.domain.MicroUserTagList" >
+    update micro_user_tag_list
+    <set >
+      <if test="tagId != null" >
+        tag_id = #{tagId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_tag_id = #{userTagId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiji.domain.MicroUserTagList" >
+    update micro_user_tag_list
+    set tag_id = #{tagId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=VARCHAR}
+    where user_tag_id = #{userTagId,jdbcType=INTEGER}
+  </update>
+</mapper>
