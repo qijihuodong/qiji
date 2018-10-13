@@ -4,6 +4,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class MicroOrder {
+	
+	private String buyOrSell;//购买还是卖出（1-购买 2-卖出）
+	private String buyOrSellDesc;//购买、卖出
+	
+	
+	
     private Integer id;
 
     private Integer buyUid;
@@ -44,7 +50,25 @@ public class MicroOrder {
 
     private Byte order;
 
-    public Integer getId() {
+    
+    
+    public String getBuyOrSell() {
+		return buyOrSell;
+	}
+
+	public void setBuyOrSell(String buyOrSell) {
+		this.buyOrSell = buyOrSell;
+	}
+
+	public String getBuyOrSellDesc() {
+		return buyOrSellDesc;
+	}
+
+	public void setBuyOrSellDesc(String buyOrSellDesc) {
+		this.buyOrSellDesc = buyOrSellDesc;
+	}
+
+	public Integer getId() {
         return id;
     }
 

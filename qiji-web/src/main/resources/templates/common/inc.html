@@ -8,9 +8,22 @@
 		<link rel="stylesheet" type="text/css" href="css/reset.css" th:href="@{css/reset.css}" />
 		<link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css" th:href="@{css/jquery.bxslider.css}" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" th:href="@{css/index.css}" />
+		<link rel="stylesheet" type="text/css" href="css/tinyImgUpload.css" th:href="@{css/tinyImgUpload.css}" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" th:href="@{css/style.css}"/>
 		<script type="text/javascript" src="js/jquery-2.2.3.min.js" th:src="@{js/jquery-2.2.3.min.js}"></script>
 		<script type="text/javascript" src="js/jquery.bxslider.js"  th:src="@{js/jquery.bxslider.js}"></script>
+		<script type="text/javascript" src="js/jquery.downCount.js"  th:src="@{js/jquery.downCount.js}"></script>
+		<script type="text/javascript" src="js/jqPaginator.min.js"  th:src="@{js/jqPaginator.min.js}"></script>
+		<script type="text/javascript" src="js/myStorage.js"  th:src="@{js/myStorage.js}"></script>
+		<script type="text/javascript" src="js/common.js"  th:src="@{js/common.js}"></script>
 		<script type="text/javascript" src="js/index.js"  th:src="@{js/index.js}"></script>
-		
+		<script type="text/javascript" th:inline="javascript">
+			/*<![CDATA[*/  
+			ctxPath = /*[[@{/}]]*/ '';
+			var loginUser = /*[[${session.user}]]*/;
+			/*]]>*/
+		</script>
 	</head>
+	
+	
 </html>

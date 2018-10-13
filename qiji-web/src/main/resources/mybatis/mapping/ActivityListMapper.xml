@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.ActivityListMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.ActivityList" >
+    <result column="activity_actid" property="activityActid" jdbcType="VARCHAR" />
+    <result column="activity_ogid" property="activityOgid" jdbcType="VARCHAR" />
+    <result column="activity_ogname" property="activityOgname" jdbcType="VARCHAR" />
+    <result column="activity_tel" property="activityTel" jdbcType="VARCHAR" />
+    <result column="activity_title" property="activityTitle" jdbcType="VARCHAR" />
+    <result column="activity_address" property="activityAddress" jdbcType="VARCHAR" />
+    <result column="activity_picture_url" property="activityPictureUrl" jdbcType="VARCHAR" />
+    <result column="activity_star" property="activityStar" jdbcType="BIGINT" />
+    <result column="activity_act_type" property="activityActType" jdbcType="BIGINT" />
+    <result column="activity_status" property="activityStatus" jdbcType="BIGINT" />
+    <result column="activity_is_qiangdan" property="activityIsQiangdan" jdbcType="BIGINT" />
+    <result column="activity_join_num" property="activityJoinNum" jdbcType="BIGINT" />
+    <result column="activity_apply_num" property="activityApplyNum" jdbcType="BIGINT" />
+    <result column="activity_create_time" property="activityCreateTime" jdbcType="VARCHAR" />
+    <result column="activity_update_time" property="activityUpdateTime" jdbcType="VARCHAR" />
+    <result column="activity_start_time" property="activityStartTime" jdbcType="VARCHAR" />
+    <result column="activity_end_time" property="activityEndTime" jdbcType="VARCHAR" />
+    <result column="activity_category_pid" property="activityCategoryPid" jdbcType="BIGINT" />
+    <result column="activity_category_id" property="activityCategoryId" jdbcType="BIGINT" />
+    <result column="activity_applyname" property="activityApplyname" jdbcType="VARCHAR" />
+    <result column="activity_email" property="activityEmail" jdbcType="VARCHAR" />
+    <result column="activity_job" property="activityJob" jdbcType="VARCHAR" />
+    <result column="activity_check_time" property="activityCheckTime" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
+    <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+    <result column="category_parent_id" property="categoryParentId" jdbcType="BIGINT" />
+    <result column="category_type" property="categoryType" jdbcType="INTEGER" />
+    <result column="category_sort" property="categorySort" jdbcType="BIGINT" />
+    <result column="parent_category_id" property="parentCategoryId" jdbcType="BIGINT" />
+    <result column="parent_category_name" property="parentCategoryName" jdbcType="VARCHAR" />
+    <result column="parent_category_parent_id" property="parentCategoryParentId" jdbcType="BIGINT" />
+    <result column="parent_category_type" property="parentCategoryType" jdbcType="INTEGER" />
+    <result column="parent_category_sort" property="parentCategorySort" jdbcType="BIGINT" />
+    <result column="activity_content" property="activityContent" jdbcType="LONGVARCHAR" />
+    <result column="activity_needs" property="activityNeeds" jdbcType="LONGVARCHAR" />
+    <result column="activity_actback" property="activityActback" jdbcType="LONGVARCHAR" />
+    <result column="activity_MONEY" property="activityMoney" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
+  <sql id="Blob_Column_List" >
+    activity_content, activity_needs, activity_actback, activity_MONEY
+  </sql>
+  <insert id="insert" parameterType="com.qiji.domain.ActivityListWithBLOBs" >
+    insert into v_activity_list (activity_actid, activity_ogid, activity_ogname, 
+      activity_tel, activity_title, activity_address, 
+      activity_picture_url, activity_star, activity_act_type, 
+      activity_status, activity_is_qiangdan, activity_join_num, 
+      activity_apply_num, activity_create_time, activity_update_time, 
+      activity_start_time, activity_end_time, activity_category_pid, 
+      activity_category_id, activity_applyname, activity_email, 
+      activity_job, activity_check_time, category_id, 
+      category_name, category_parent_id, category_type, 
+      category_sort, parent_category_id, parent_category_name, 
+      parent_category_parent_id, parent_category_type, 
+      parent_category_sort, activity_content, 
+      activity_needs, activity_actback, 
+      activity_MONEY)
+    values (#{activityActid,jdbcType=VARCHAR}, #{activityOgid,jdbcType=VARCHAR}, #{activityOgname,jdbcType=VARCHAR}, 
+      #{activityTel,jdbcType=VARCHAR}, #{activityTitle,jdbcType=VARCHAR}, #{activityAddress,jdbcType=VARCHAR}, 
+      #{activityPictureUrl,jdbcType=VARCHAR}, #{activityStar,jdbcType=BIGINT}, #{activityActType,jdbcType=BIGINT}, 
+      #{activityStatus,jdbcType=BIGINT}, #{activityIsQiangdan,jdbcType=BIGINT}, #{activityJoinNum,jdbcType=BIGINT}, 
+      #{activityApplyNum,jdbcType=BIGINT}, #{activityCreateTime,jdbcType=VARCHAR}, #{activityUpdateTime,jdbcType=VARCHAR}, 
+      #{activityStartTime,jdbcType=VARCHAR}, #{activityEndTime,jdbcType=VARCHAR}, #{activityCategoryPid,jdbcType=BIGINT}, 
+      #{activityCategoryId,jdbcType=BIGINT}, #{activityApplyname,jdbcType=VARCHAR}, #{activityEmail,jdbcType=VARCHAR}, 
+      #{activityJob,jdbcType=VARCHAR}, #{activityCheckTime,jdbcType=VARCHAR}, #{categoryId,jdbcType=BIGINT}, 
+      #{categoryName,jdbcType=VARCHAR}, #{categoryParentId,jdbcType=BIGINT}, #{categoryType,jdbcType=INTEGER}, 
+      #{categorySort,jdbcType=BIGINT}, #{parentCategoryId,jdbcType=BIGINT}, #{parentCategoryName,jdbcType=VARCHAR}, 
+      #{parentCategoryParentId,jdbcType=BIGINT}, #{parentCategoryType,jdbcType=INTEGER}, 
+      #{parentCategorySort,jdbcType=BIGINT}, #{activityContent,jdbcType=LONGVARCHAR}, 
+      #{activityNeeds,jdbcType=LONGVARCHAR}, #{activityActback,jdbcType=LONGVARCHAR}, 
+      #{activityMoney,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.ActivityListWithBLOBs" >
+    insert into v_activity_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="activityActid != null" >
+        activity_actid,
+      </if>
+      <if test="activityOgid != null" >
+        activity_ogid,
+      </if>
+      <if test="activityOgname != null" >
+        activity_ogname,
+      </if>
+      <if test="activityTel != null" >
+        activity_tel,
+      </if>
+      <if test="activityTitle != null" >
+        activity_title,
+      </if>
+      <if test="activityAddress != null" >
+        activity_address,
+      </if>
+      <if test="activityPictureUrl != null" >
+        activity_picture_url,
+      </if>
+      <if test="activityStar != null" >
+        activity_star,
+      </if>
+      <if test="activityActType != null" >
+        activity_act_type,
+      </if>
+      <if test="activityStatus != null" >
+        activity_status,
+      </if>
+      <if test="activityIsQiangdan != null" >
+        activity_is_qiangdan,
+      </if>
+      <if test="activityJoinNum != null" >
+        activity_join_num,
+      </if>
+      <if test="activityApplyNum != null" >
+        activity_apply_num,
+      </if>
+      <if test="activityCreateTime != null" >
+        activity_create_time,
+      </if>
+      <if test="activityUpdateTime != null" >
+        activity_update_time,
+      </if>
+      <if test="activityStartTime != null" >
+        activity_start_time,
+      </if>
+      <if test="activityEndTime != null" >
+        activity_end_time,
+      </if>
+      <if test="activityCategoryPid != null" >
+        activity_category_pid,
+      </if>
+      <if test="activityCategoryId != null" >
+        activity_category_id,
+      </if>
+      <if test="activityApplyname != null" >
+        activity_applyname,
+      </if>
+      <if test="activityEmail != null" >
+        activity_email,
+      </if>
+      <if test="activityJob != null" >
+        activity_job,
+      </if>
+      <if test="activityCheckTime != null" >
+        activity_check_time,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="categoryName != null" >
+        category_name,
+      </if>
+      <if test="categoryParentId != null" >
+        category_parent_id,
+      </if>
+      <if test="categoryType != null" >
+        category_type,
+      </if>
+      <if test="categorySort != null" >
+        category_sort,
+      </if>
+      <if test="parentCategoryId != null" >
+        parent_category_id,
+      </if>
+      <if test="parentCategoryName != null" >
+        parent_category_name,
+      </if>
+      <if test="parentCategoryParentId != null" >
+        parent_category_parent_id,
+      </if>
+      <if test="parentCategoryType != null" >
+        parent_category_type,
+      </if>
+      <if test="parentCategorySort != null" >
+        parent_category_sort,
+      </if>
+      <if test="activityContent != null" >
+        activity_content,
+      </if>
+      <if test="activityNeeds != null" >
+        activity_needs,
+      </if>
+      <if test="activityActback != null" >
+        activity_actback,
+      </if>
+      <if test="activityMoney != null" >
+        activity_MONEY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="activityActid != null" >
+        #{activityActid,jdbcType=VARCHAR},
+      </if>
+      <if test="activityOgid != null" >
+        #{activityOgid,jdbcType=VARCHAR},
+      </if>
+      <if test="activityOgname != null" >
+        #{activityOgname,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTel != null" >
+        #{activityTel,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTitle != null" >
+        #{activityTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="activityAddress != null" >
+        #{activityAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="activityPictureUrl != null" >
+        #{activityPictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="activityStar != null" >
+        #{activityStar,jdbcType=BIGINT},
+      </if>
+      <if test="activityActType != null" >
+        #{activityActType,jdbcType=BIGINT},
+      </if>
+      <if test="activityStatus != null" >
+        #{activityStatus,jdbcType=BIGINT},
+      </if>
+      <if test="activityIsQiangdan != null" >
+        #{activityIsQiangdan,jdbcType=BIGINT},
+      </if>
+      <if test="activityJoinNum != null" >
+        #{activityJoinNum,jdbcType=BIGINT},
+      </if>
+      <if test="activityApplyNum != null" >
+        #{activityApplyNum,jdbcType=BIGINT},
+      </if>
+      <if test="activityCreateTime != null" >
+        #{activityCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="activityUpdateTime != null" >
+        #{activityUpdateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="activityStartTime != null" >
+        #{activityStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="activityEndTime != null" >
+        #{activityEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="activityCategoryPid != null" >
+        #{activityCategoryPid,jdbcType=BIGINT},
+      </if>
+      <if test="activityCategoryId != null" >
+        #{activityCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="activityApplyname != null" >
+        #{activityApplyname,jdbcType=VARCHAR},
+      </if>
+      <if test="activityEmail != null" >
+        #{activityEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="activityJob != null" >
+        #{activityJob,jdbcType=VARCHAR},
+      </if>
+      <if test="activityCheckTime != null" >
+        #{activityCheckTime,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryName != null" >
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryParentId != null" >
+        #{categoryParentId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryType != null" >
+        #{categoryType,jdbcType=INTEGER},
+      </if>
+      <if test="categorySort != null" >
+        #{categorySort,jdbcType=BIGINT},
+      </if>
+      <if test="parentCategoryId != null" >
+        #{parentCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="parentCategoryName != null" >
+        #{parentCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCategoryParentId != null" >
+        #{parentCategoryParentId,jdbcType=BIGINT},
+      </if>
+      <if test="parentCategoryType != null" >
+        #{parentCategoryType,jdbcType=INTEGER},
+      </if>
+      <if test="parentCategorySort != null" >
+        #{parentCategorySort,jdbcType=BIGINT},
+      </if>
+      <if test="activityContent != null" >
+        #{activityContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="activityNeeds != null" >
+        #{activityNeeds,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="activityActback != null" >
+        #{activityActback,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="activityMoney != null" >
+        #{activityMoney,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="getNewestActivity" resultMap="BaseResultMap">
+  	select * from v_activity_list where category_id is not null and category_parent_id is not null 
+  	<if test="activityActid != null" >
+        and activity_actid = #{activityActid,jdbcType=VARCHAR}
+      </if>
+      <if test="activityOgid != null" >
+        and activity_ogid = #{activityOgid,jdbcType=VARCHAR}
+      </if>
+      <if test="activityOgname != null" >
+        and activity_ogname = #{activityOgname,jdbcType=VARCHAR}
+      </if>
+      <if test="activityTel != null" >
+        and activity_tel = #{activityTel,jdbcType=VARCHAR}
+      </if>
+      <if test="activityTitle != null" >
+        and activity_title = #{activityTitle,jdbcType=VARCHAR}
+      </if>
+
+      <if test="activityPictureUrl != null" >
+        and activity_picture_url = #{activityPictureUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="activityStar != null" >
+        and activity_star = #{activityStar,jdbcType=BIGINT}
+      </if>
+      <if test="activityActType != null" >
+        and activity_act_type = #{activityActType,jdbcType=BIGINT}
+      </if>
+      <if test="activityStatus != null" >
+        and activity_status = #{activityStatus,jdbcType=BIGINT}
+      </if>
+      <if test="activityIsQiangdan != null" >
+        and activity_is_qiangdan = #{activityIsQiangdan,jdbcType=BIGINT}
+      </if>
+      <if test="activityJoinNum != null" >
+        and activity_join_num = #{activityJoinNum,jdbcType=BIGINT}
+      </if>
+      
+      <if test="categoryId != null" >
+        and category_id = #{categoryId,jdbcType=BIGINT}
+      </if>
+      <if test="categoryName != null" >
+        and category_name = #{categoryName,jdbcType=VARCHAR}
+      </if>
+      <if test="categoryParentId != null" >
+        and category_parent_id = #{categoryParentId,jdbcType=BIGINT}
+      </if>
+      <if test="parentCategoryName != null" >
+        and parent_category_name = #{parentCategoryName,jdbcType=VARCHAR}
+      </if>
+      <if test="parentCategoryParentId != null" >
+        and parent_category_parent_id = #{parentCategoryParentId,jdbcType=BIGINT}
+      </if>
+     
+  	
+  	
+  	
+  	order by activity_create_time desc 
+  	limit #{startIndex},#{nums}
+  </select>
+  <select id="getActivityByProp" resultMap="BaseResultMap" parameterType="com.qiji.domain.ActivityList">
+  	select * from v_activity_list 
+  	where category_id is not null and category_parent_id is not null 
+  	 <if test="activityActid != null" >
+        and activity_actid = #{activityActid,jdbcType=VARCHAR}
+      </if>
+      <if test="activityOgid != null" >
+        and activity_ogid = #{activityOgid,jdbcType=VARCHAR}
+      </if>
+      <if test="activityOgname != null" >
+        and activity_ogname = #{activityOgname,jdbcType=VARCHAR}
+      </if>
+      <if test="activityTel != null" >
+        and activity_tel = #{activityTel,jdbcType=VARCHAR}
+      </if>
+      <if test="activityTitle != null" >
+        and activity_title = #{activityTitle,jdbcType=VARCHAR}
+      </if>
+
+      <if test="activityPictureUrl != null" >
+        and activity_picture_url = #{activityPictureUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="activityStar != null" >
+        and activity_star = #{activityStar,jdbcType=BIGINT}
+      </if>
+      <if test="activityActType != null" >
+        and activity_act_type = #{activityActType,jdbcType=BIGINT}
+      </if>
+      <if test="activityStatus != null" >
+        and activity_status = #{activityStatus,jdbcType=BIGINT}
+      </if>
+      <if test="activityIsQiangdan != null" >
+        and activity_is_qiangdan = #{activityIsQiangdan,jdbcType=BIGINT}
+      </if>
+      <if test="activityJoinNum != null" >
+        and activity_join_num = #{activityJoinNum,jdbcType=BIGINT}
+      </if>
+      
+      <if test="categoryId != null" >
+        and category_id = #{categoryId,jdbcType=BIGINT}
+      </if>
+      <if test="categoryName != null" >
+        and category_name = #{categoryName,jdbcType=VARCHAR}
+      </if>
+      <if test="categoryParentId != null" >
+        and category_parent_id = #{categoryParentId,jdbcType=BIGINT}
+      </if>
+      <if test="parentCategoryName != null" >
+        and parent_category_name = #{parentCategoryName,jdbcType=VARCHAR}
+      </if>
+      <if test="parentCategoryParentId != null" >
+        and parent_category_parent_id = #{parentCategoryParentId,jdbcType=BIGINT}
+      </if>
+      
+      order by activity_create_time desc 
+  </select>
+  
+  <select id="getActivityById" resultMap="BaseResultMap">
+  	select * from v_activity_list where activity_actid = #{activityActid}
+  </select>
+  
+  
+</mapper>

@@ -1,0 +1,86 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="common/inc::common_header('服务资源')">
+	</head>
+<body>
+   <header th:replace="common/header :: header"></header>
+<div class="page">
+	<div class="requireXQ area" style="padding-top: 0px;">
+		<div class="requireXQ-top">
+			<div class="search-list">
+				<span class="left">服务类型</span>
+				<div class="search-list-r left">
+					<a href="javascript:void(0)" th:each="entry,iterEntry:${service_rootCategoryLists}" th:text="${entry.name}" th:attr="category_parent_id=${entry.id}">线上</a>
+				</div>
+			</div>
+			<div class="search-list secondCategory clearfix">
+				<span class="left">服务分类</span>
+				<div class="search-list-r left" id="service_secondCategoryLists">
+					<a href="javascript:void(0)" th:each="entry,iterEntry:${service_secondCategoryLists}" th:text="${entry.name}" th:attr="category_id=${entry.id}">微信公众号</a>
+				</div>
+				<span class="secondCategoryTaggle"><i></i></span>
+			</div>
+			<div class="search-list" style="display: none;">
+				<span class="left">价格</span>
+				<div class="search-list-r left">
+					<a href="javascript:void(0)">&lt;50</a>
+					<a href="javascript:void(0)">500-1000</a>
+					<a href="javascript:void(0)">1000-2000</a>
+					<a href="javascript:void(0)">2000-5000</a>
+					<a href="javascript:void(0)">&gt;5000</a>
+				</div>
+			</div>
+			<div class="search-list city clearfix"  style="display: none;">
+				<span class="left">地区</span>
+				<div class="search-list-r left">
+					<a href="javascript:void(0)"  th:each="entry,iterEntry:${service_microCitiesLists}" th:text="${entry.city}" th:attr="cid=${entry.id},cityid=${entry.cityid},provinceid=${entry.provinceid}">北京</a>
+				</div>
+				<span class="cityTaggle"><i></i></span>
+			</div>
+			<div class="search-list"  style="display: none;">
+				<span class="left">院校</span>
+				<div class="search-list-r left">
+					<a href="javascript:void(0)"  th:each="entry,iterEntry:${service_schoolTypes}" th:text="${entry}">985</a>
+				</div>
+			</div>
+			
+			<div class="sortBox sortBox_b">
+					<span>筛选条件</span>
+					<a href="javascript:void(0)">省</a>
+					<a href="javascript:void(0)">市</a>
+					<a href="javascript:void(0)">区</a>
+					<a href="javascript:void(0)">学校类别</a>
+					<a href="javascript:void(0)">学校名称</a>
+					<a href="javascript:void(0)">院系</a>
+				</div>
+		</div>
+		<div class="title">
+			<h2>服务列表</h2>
+		</div>
+		<div class="service_title">
+				<span class="service_title_active">综合排序</span>
+				<span>价格</span>
+				<span>预约时间</span>
+				<span>评分</span>
+			</div>
+		<div class="line"></div>
+		<div class="required-main">
+			
+			</div>
+		<ul class="pagination" id="pagination"></ul>
+	</div>
+		
+		
+</div>
+   <footer th:replace="common/footer :: footer"></footer>
+</body>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script type="text/javascript" src="js/service.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".nav-selected").removeClass("nav-selected");
+	$(".navBox li").eq(2).addClass("nav-selected");
+});
+</script>
+</html>

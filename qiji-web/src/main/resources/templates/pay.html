@@ -1,0 +1,79 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="common/inc::common_header('服务详情')">
+	</head>
+<body>
+   <header th:replace="common/header :: header"></header>
+		<div class="page">
+			<div class="pay area">
+				<h2 class="pay_title">确认订单</h2>
+				<div class="order" id="pay_order" th:attr="serviceId=${payVo.serviceId},contentStandardId=${payVo.serviceStandardId}">
+					<div class="order_l">					
+						<img src="img/11.png"/>
+					</div>
+					<div class="order_c">
+						<h2 class="pay_title" th:text="${payVo.title}">线上-朋友圈转发</h2>
+						<h2 class="pay_title"><span>X</span>1</h2>
+					</div>
+					<h2 class="price"><i>￥</i><span th:text="${payVo.priceAll}">69.00</span></h2>
+				</div>
+				<div class="order beizhu">
+					<h2 class="pay_title">备注</h2>
+					<textarea name="" rows="" cols="" placeholder="请在此输入对任务的要求，以保证服务质量..."></textarea>
+				</div>
+				<div class="fujian">
+					<h2 class="pay_title">附件</h2>
+					<div class="fujian_file">
+						<input type="file" name="" id="pay_file"  style="display:none" onchange="setFilePath(this)"/>
+						<span id="pay_file_result">请选择文件...</span></div>
+					<a href="javascript:void(0)" class="fujian_ipt">上传文件</a>
+				</div>
+				<div class="pay_type clearfix">
+					<div class="pay_type_l">
+						<h3><i></i>支付说明</h3>
+						<p>1.关于服务对接：您在奇迹活动平台付款后，奇迹助手会在24小时内与您联系，并为您对接相关服务，请您放心购买。</p>
+						<p>2.关于定金：因部分校园营销资源位稀缺且成本较高，您预付定金后平台会为您锁定此项服务，因此需要支付定金。</p>
+						<p>3.关于退款：您购买商品后，在服务未开始执行前您可申请退款，一旦服务开始执行，因服务商已产生成本，则不可退
+						款，具体以双方协商为准。</p>
+						<p>4.如有疑问请咨询售后电话：<i>010-57158847</i>奇迹助手1：<i>18518516372</i>奇迹助手2：<i>Vvvlyd789</i></p>
+					</div>
+					<div class="pay_type_r">
+						<h2 class="all_price select_price"><i></i><p>全款：</p><span th:text="${payVo.priceAll}">69.00</span></h2>
+						<!-- <h2 class="ding_price"><i></i><p>定金：</p><span>30.00</span></h2> -->
+						<a class="pay_btn" href="javascript:void(0);" id="pay_btn">确定购买</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer th:replace="common/footer :: footer"></footer>
+	</body>
+	<script type="text/javascript">
+			$(function(){
+				$('.pay_type_r>h2').click(function(){
+					$(this).addClass('select_price').siblings('h2').removeClass('select_price');
+				});
+				
+				$('.fujian_ipt').click(function(){
+					$('#pay_file').trigger("click");
+				});
+				
+				
+				
+				
+			});
+			$('#pay_btn').click(function(){
+				var contentStandardId = $('#pay_order').attr('contentStandardId');
+				var serviceId = $('#pay_order').attr('serviceId');
+				
+				if(contentStandardId == undefined){
+					contentStandardId = -1;
+				}
+				window.location.href="/qiji/pay_type?serviceId=" + serviceId + "&contentStandardId=" + contentStandardId;
+			});
+			
+			function setFilePath(_this){
+				$('#pay_file_result').html(_this.value);
+			}
+		</script>
+</html>

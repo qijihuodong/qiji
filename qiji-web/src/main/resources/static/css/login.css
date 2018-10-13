@@ -32,3 +32,5 @@ a{color:#d7532e;}
 #user_login_remind{width:16px;height:16px;float:left;margin-right:6px;border:1px solid #b2b2b2;border-radius:2px;-webkit-appearance:checkbox;}
 #yzmBox span,#user_register_btn{border:0;float:right;width:200px;border-radius:4px;background:#d7532e;color:#fff;text-align:center;line-height:50px;}
 #user_register_btn{float:inherit;width:100%;font-size:14px;margin:10px 0;}
+#yzmBox span,#user_forget_btn{border:0;float:right;width:200px;border-radius:4px;background:#d7532e;color:#fff;text-align:center;line-height:50px;}
+#user_forget_btn{float:inherit;width:100%;font-size:14px;margin:10px 0;}

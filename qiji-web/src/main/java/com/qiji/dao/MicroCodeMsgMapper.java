@@ -14,4 +14,10 @@ public interface MicroCodeMsgMapper {
     int updateByPrimaryKeySelective(MicroCodeMsg record);
 
     int updateByPrimaryKey(MicroCodeMsg record);
+    
+    public int isVCodeRight(MicroCodeMsg record);
+    
+    public int isVCodeExits(MicroCodeMsg record);
+    
+    
 }

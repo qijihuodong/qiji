@@ -1,0 +1,213 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/inc::common_header('发布需求')">
+</head>
+<body>
+	<header th:replace="common/header :: header"></header>
+	<div class="page">
+		<div class="publishXQ">
+			<div class="publishXQ-tab">
+				<span class="tabselected">发布活动</span>
+				<span>雇主发布需求</span>
+			</div>
+			<div class="publishXQ-tabview">
+				<div class="publishXQ-tablist">
+					<h3 class="title">基础信息</h3>
+					<div class="label-item">
+						<span class="label">活动名称:</span> 
+						<input type="text" name="title" id="publishActivity_title" />
+					</div>
+					<div class="label-item label-info">
+						<span class="label">活动简介:</span>
+						<textarea name="content" rows="" cols="" id="publishActivity_content"></textarea>
+					</div>
+					<div class="label-item">
+						<span class="label">可提供服务:</span>
+						<div class="label-item-select">
+							<select name="category_pid" id="publishActivity_category_pid">
+								<option th:each="entry,iterEntry:${publishXQ_rootCategoryLists}" th:text="${entry.name}" th:value="${entry.id}">线上</option>
+							</select>
+							<select name="category_id" id="publishActivity_category_id">
+								<option th:each="entry,iterEntry:${publishXQ_secondCategoryLists}" th:text="${entry.name}" th:value="${entry.id}">朋友圈</option>
+							</select>
+						</div>
+					</div>
+					<div class="label-item">
+						<span class="label">开始时间:</span>
+						<div id="publishActivity_start_date" class="date label-item-select">
+							<select name="year" id="publishActivity_start_year">
+								<option value="">选择年份</option>
+							</select> <span>年</span> <select name="month" id="publishActivity_start_month">
+								<option value="">选择月份</option>
+							</select> <span>月</span> <select id="publishActivity_start_days" class="days">
+								<option value="">选择日期</option>
+							</select> <span>日</span>
+						</div>
+					</div>
+					<div class="label-item">
+						<span class="label">结束时间:</span>
+						<div id="publishActivity_end_date" class="date label-item-select">
+							<select name="year2" id="publishActivity_end_year">
+								<option value="">选择年份</option>
+							</select> <span>年</span> <select name="month2" id="publishActivity_end_month">
+								<option value="">选择月份</option>
+							</select> <span>月</span> <select id="publishActivity_end_days" class="day2">
+								<option value="">选择日期</option>
+							</select> <span>日</span>
+						</div>
+					</div>
+					<div class="label-item">
+						<span class="label">地址:</span>
+						<div class="date label-item-select">
+							<select name="province" id="publishActivity_provinces">
+								<option value="">=请选择=</option>
+							</select>
+							<span>省</span>
+							<select name="city" id="publishActivity_city">
+								<option value="">=请选择=</option>
+							</select>
+							<span>市</span>
+							<select name="area" id="publishActivity_area">
+								<option value="">=请选择=</option>
+							</select>
+							<span>区</span>
+						</div>
+					</div>
+					<div class="label-item label-info">
+						<span class="label">需求:</span>
+						<textarea name="needs" rows="" cols="" id="publishActivity_needs"></textarea>
+					</div>
+					<div class="label-item addImg">
+						<span class="label">上传图片/文档:</span>
+						<div class="addImg-box">
+							<div id="publishActivity_uploadImg">
+								
+							</div>
+							<p>最多上传5张图片</p>
+						</div>
+					</div>
+					<div class="label-item">
+						<span class="label">联系人:</span>
+						<input type="text" name="applyname" value="" id="publishActivity_applyname"/>
+					</div>
+					<div class="label-item">
+						<span class="label">联系方式:</span>
+						<input type="text" name="tel" value="" id="publishActivity_tel" />
+					</div>
+					<div class="info-btn">
+						<input class="btn" type="button" value="发布" id="publishActivity_save">
+					</div>
+				</div>
+
+				<div class="publishXQ-tablist" style="display: none">
+					<h3 class="title">基础信息</h3>
+					<div class="label-item">
+						<span class="label">企业名称:</span> 
+						<input type="text" name="ogname" id="publishRequire_ogname"/>
+					</div>
+					<div class="label-item">
+						<span class="label">需求名称:</span>
+						<input type="text" name="title" id='publishRequire_title' />
+					</div>
+
+					<div class="label-item">
+						<span class="label">需求类型:</span>
+						<div class="label-item-select">
+							<select name="category_pid" id="publishRequire_category_pid">
+								<option th:each="entry,iterEntry:${publishXQ_rootCategoryLists}" th:text="${entry.name}" th:value="${entry.id}">线上</option>
+							</select>
+							<select name="category_id" id="publishRequire_category_id">
+								<option th:each="entry,iterEntry:${publishXQ_secondCategoryLists}" th:text="${entry.name}" th:value="${entry.id}">朋友圈</option>
+							</select>
+						</div>
+					</div>
+					<div class="label-item label-info">
+						<span class="label">需求简介:</span>
+						<textarea name="content" rows="" cols="" id="publishRequire_content"></textarea>
+					</div>
+					<div class="label-item label-info">
+						<span class="label">任务要求:</span>
+						<textarea name="needs" rows="" cols="" id="publishRequire_needs"></textarea>
+					</div>
+					<div class="label-item">
+						<span class="label">开始时间:</span>
+						<div id="publishRequire_start_date" class="date label-item-select">
+							<select name="year" id="publishRequire_start_year">
+								<option value="">选择年份</option>
+							</select> <span>年</span> <select name="month" id="publishRequire_start_month">
+								<option value="">选择月份</option>
+							</select> <span>月</span> <select id="publishRequire_start_days" class="days">
+								<option value="">选择日期</option>
+							</select> <span>日</span>
+						</div>
+					</div>
+					<div class="label-item">
+						<span class="label">结束时间:</span>
+						<div id="publishRequire_end_date" class="date label-item-select">
+							<select name="year2" id="publishRequire_end_year">
+								<option value="">选择年份</option>
+							</select>
+							<span>年</span>
+							<select name="month2" id="publishRequire_end_month">
+								<option value="">选择月份</option>
+							</select>
+							<span>月</span>
+							<select id="publishRequire_end_days" class="day2">
+								<option value="">选择日期</option>
+							</select>
+							<span>日</span>
+						</div>
+					</div>
+					<div class="label-item">
+						<span class="label">地址:</span>
+						<div class="date label-item-select">
+							<select name="province" id="publishRequire_provinces">
+								<option value="">=请选择=</option>
+							</select>
+							<span>省</span>
+							<select name="city" id="publishRequire_city">
+								<option value="">=请选择=</option>
+							</select>
+							<span>市</span>
+							<select name="area" id="publishRequire_area">
+								<option value="">=请选择=</option>
+							</select>
+							<span>区</span>
+						</div>
+					</div>
+					<div class="label-item addImg">
+						<span class="label">上传图片/文档:</span>
+						<div class="addImg-box">
+							<div id="publishRequire_uploadImg">
+								
+							</div>
+							<p>最多上传5张图片</p>
+						</div>
+					</div>
+					<div class="label-item">
+						<span class="label">预算:</span> 
+						<input type="text" name="money" value="" id="publishRequire_money" />
+					</div>
+					<div class="label-item">
+						<span class="label">联系人:</span>
+						<input type="text" name="applyname" value="" id="publishRequire_applyname"/>
+					</div>
+					<div class="label-item">
+						<span class="label">联系方式:</span>
+						<input type="text" name="tel" value="" id="publishRequire_tel" />
+					</div>
+					<div class="info-btn">
+						<input class="btn" type="button" value="发布" id="publishRequire_save">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="common/footer :: footer"></footer>
+</body>
+
+<script type="text/javascript" src="js/select.js"></script>
+<script type="text/javascript" src="js/tinyImgUpload.js"></script>
+<script type="text/javascript" src="js/publishXQ.js"></script>
+</html>

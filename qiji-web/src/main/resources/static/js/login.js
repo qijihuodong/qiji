@@ -20,6 +20,11 @@ $('#login_btn').click(function(){
 $('#user_register_btn').click(function(){
 	userRegister();
 });
+
+$('#user_register_getCode').click(function(){
+	sendVcode();
+});
+
 function userLogin(){
 	var user_login_tel = $('#user_login_tel').val();
 	var user_login_password = $('#user_login_password').val();
@@ -50,11 +55,27 @@ function userLogin(){
      	async :true ,
      	success: function(data) {
      		if(data.operSucc && data.succ){
+     			myStorage.setItem("uid",data.obj.uid);
+     			myStorage.setItem("utel",data.obj.utel);
+     			myStorage.setItem("upwd",user_login_password);
+     			myStorage.setItem("nickname",data.obj.nickname);
+     			myStorage.setItem("utype",data.obj.utype);
+     			myStorage.setItem("logourl",data.obj.logourl);
+     			myStorage.setItem("status",data.obj.status);
+     			myStorage.setItem("isLogin","1");
+     			
+     			
      			//div切换
-     			$('#user_login_before').hide();
-     			$('#userlogina').hide();
+//     			$('#user_login_before').hide();
+//     			$('#userlogina').hide();
+//     			$('#user_login_after_tel').html(data.obj.utel);
+//     			$('#user_login_after').show();
+     			//div切换
+
      			$('#user_login_after_tel').html(data.obj.utel);
-     			$('#user_login_after').show();
+     			$('.userCenter-tab').hide();
+     			$('.loginBox').hide();
+     			$('.login-userMsg').show();
      		}else{
      			$('#user_login_error').html("<font color='red'>" +data.message+ "</font>");
      		}
@@ -68,10 +89,17 @@ function userLogin(){
 
 function userRegister(){
 	var user_register_tel = $('#user_register_tel').val();
+	var user_register_code = $('#user_register_code').val();
 	var user_register_password = $('#user_register_password').val();
 	var user_register_utype = $('#user_register_utype').val();
+
 	if(null == user_register_tel || "" == user_register_tel){
 		$('#user_register_error').html("<font color='red'>" +"请输入手机号！"+ "</font>");
+		return;
+	}
+	
+	if(null == user_register_code || "" == user_register_code){
+		$('#user_register_error').html("<font color='red'>" +"请输入验证码！"+ "</font>");
 		return;
 	}
 	if(null == user_register_password || "" == user_register_password){
@@ -83,12 +111,16 @@ function userRegister(){
 		$('#user_register_error').html("<font color='red'>" +"手机号格式错误！"+ "</font>");
 		return;
 	}
-	
+	if(!$('#user_register_remind').attr('checked')){
+		$('#user_register_error').html("<font color='red'>" +"请先认真阅读并接受用户协议！"+ "</font>");
+		return;
+	}
 	$.ajax({
      	type :"post" ,
      	url :"/qiji/users/register",
      	data :{
      		utel : user_register_tel,
+     		vcode: user_register_code,
      		upwd : user_register_password,
      		utype : user_register_utype
      	},
@@ -96,8 +128,70 @@ function userRegister(){
      	async :true ,
      	success: function(data) {
      		if(data.operSucc && data.succ){
-     			alert("登录成功");
+     			myStorage.setItem("uid",data.obj.uid);
+     			myStorage.setItem("utel",data.obj.utel);
+     			myStorage.setItem("upwd",user_register_password);
+     			myStorage.setItem("nickname",data.obj.nickname);
+     			myStorage.setItem("utype",data.obj.utype);
+     			myStorage.setItem("logourl",data.obj.logourl);
+     			myStorage.setItem("status",data.obj.status);
+     			myStorage.setItem("isLogin","1");
+     			
+     			
      			window.location.href="/qiji/index.html";
+     		}else{
+     			$('#user_register_error').html("<font color='red'>" +data.message+ "</font>");
+     		}
+     	},
+        error: function(data) {
+        	$('#user_register_error').html("<font color='red'>" +"系统错误！"+ "</font>");
+       }
+	});
+	
+}
+
+//验证码倒计时
+var wait = 60;
+function time(obj) {
+	if(wait==0) {
+		//$("#user_register_getCode").removeAttr("disabled");
+		$("#user_register_getCode").attr("onclick","sendVcode(this)")
+		$("#user_register_getCode").html("获取验证码");
+		wait = 60;
+	}else {
+		$("#user_register_getCode").removeAttr("onclick");
+		$("#user_register_getCode").html(wait+"秒后重试");
+		wait--;
+		setTimeout(function() {		//倒计时方法
+			time(obj);
+		},1000);	//间隔为1s
+	}
+}
+
+function sendVcode(e){
+	var user_register_tel = $('#user_register_tel').val();
+	if(null == user_register_tel || "" == user_register_tel){
+		$('#user_register_error').html("<font color='red'>" +"请输入手机号！"+ "</font>");
+		return;
+	}
+	if(!phonehaoReg.test(user_register_tel)){
+		$('#user_register_error').html("<font color='red'>" +"手机号格式错误！"+ "</font>");
+		return;
+	}
+	
+	$.ajax({
+     	type :"post" ,
+     	url :"/qiji/users/getVCode",
+     	data :{
+     		utel : user_register_tel
+     	},
+     	dataType: "json" ,
+     	async :true ,
+     	success: function(data) {
+     		if(data.operSucc && data.succ){
+     			wait = 60;
+     			time(e);//倒计时
+     			$('#user_register_error').html("<font color='red'>" +""+ "</font>");
      		}else{
      			$('#user_register_error').html("<font color='red'>" +data.message+ "</font>");
      		}
@@ -111,7 +205,32 @@ function userRegister(){
 
 
 
-
+$('#index_logout').click(function(){
+	myStorage.removeItem("isLogin");
+	$('#user_login_after_tel').html('');
+	$('.userCenter-tab').show();
+	$('.loginBox').show();
+	$('.login-userMsg').hide();
+	alert("退出成功，欢迎回来！");
+	//调用服务销毁session
+	$.ajax({
+     	type :"post" ,
+     	url :"/qiji/users/logout",
+     	data :{},
+     	dataType: "json" ,
+     	async :true ,
+     	success: function(data) {
+     		if(data.operSucc && data.succ){
+     		}else{
+     			window.location.href="/qiji/index.html";
+     		}
+     	},
+        error: function(data) {
+        	window.location.href="/qiji/index.html";
+       }
+	});
+	
+})
 
 
 

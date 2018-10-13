@@ -1,5 +1,7 @@
 package com.qiji.dao;
 
+import java.util.List;
+
 import com.qiji.domain.MicroCities;
 
 public interface MicroCitiesMapper {
@@ -14,4 +16,11 @@ public interface MicroCitiesMapper {
     int updateByPrimaryKeySelective(MicroCities record);
 
     int updateByPrimaryKey(MicroCities record);
+    
+    
+    public List<MicroCities> getAllCities();
+    
+    public List<MicroCities> getCapitals();
+    
+    public List<MicroCities> getCitiesByProvinceId(String proviceid);
 }

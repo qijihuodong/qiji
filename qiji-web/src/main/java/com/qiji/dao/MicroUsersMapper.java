@@ -22,4 +22,8 @@ public interface MicroUsersMapper {
     int isUserExists(MicroUsers record);
     
     MicroUsers getLoginUser(MicroUsers user);
+    
+    public MicroUsers getUserByUtel(String utel);
+    
+    public void updateMyInfoByPrimaryKey(MicroUsers user);
 }

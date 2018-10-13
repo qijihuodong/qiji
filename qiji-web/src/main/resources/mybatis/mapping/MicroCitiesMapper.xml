@@ -79,4 +79,27 @@
       provinceid = #{provinceid,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="getAllCities" resultMap="BaseResultMap" >
+  	 select 
+    <include refid="Base_Column_List" />
+    from micro_cities
+  </select>
+  
+   <select id="getCapitals" resultMap="BaseResultMap" >
+  	 select 
+    <include refid="Base_Column_List" />
+    from micro_cities
+    where right(cityid,4)='0100'
+	order by cityid
+    
+  </select>
+  
+   <select id="getCitiesByProvinceId" resultMap="BaseResultMap" >
+  	 select 
+    <include refid="Base_Column_List" />
+    from micro_cities
+    where  provinceid = #{provinceid,jdbcType=VARCHAR}
+    order by cityid
+  </select>
 </mapper>

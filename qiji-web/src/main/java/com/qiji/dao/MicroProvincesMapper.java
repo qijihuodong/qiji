@@ -1,5 +1,7 @@
 package com.qiji.dao;
 
+import java.util.List;
+
 import com.qiji.domain.MicroProvinces;
 
 public interface MicroProvincesMapper {
@@ -14,4 +16,6 @@ public interface MicroProvincesMapper {
     int updateByPrimaryKeySelective(MicroProvinces record);
 
     int updateByPrimaryKey(MicroProvinces record);
+    
+    public List<MicroProvinces> getAllProvinces();
 }

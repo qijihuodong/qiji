@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的订单</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/my.css"/>
+		<script src="js/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript">
+			$.fn.hc_proTabChange = function(ev) {
+				var ev = ev || 'click';
+				var _this = $(this);
+				_this.find('.order-status>h4').each(function(i) {
+					$(this)[ev](function() {
+						$(this).addClass('staSelected').siblings('.order-status>h4').removeClass('staSelected');
+						_this.find('.order-content>.order-list').eq(i).show().siblings('.order-content>.order-list').hide();
+					})
+				})
+			}
+			$(function() {
+				$('.cooperative-employer').hc_proTabChange();
+			});
+		</script>
+	</head>
+	<body>
+		<div class="page">
+			<div class="case clearfix area">
+				<div class="case-l left">
+					<ul>
+						<li>
+							<h3>用户中心</h3>
+							<a href="javascript:void(0)">个人资料</a>
+							<a href="javascript:void(0)">组织管理</a>
+							<a href="javascript:void(0)">资金管理</a>
+							<a href="javascript:void(0)">账户管理</a>
+						</li>
+						<li>
+							<h3>服务管理</h3>
+							<a href="javascript:void(0)">认证的服务</a>
+							<a href="javascript:void(0)">增加服务</a>
+							<a href="javascript:void(0)">限时促销</a>
+							<a href="javascript:void(0)">案例管理</a>
+						</li>
+						<li>
+							<h3>订单管理</h3>
+							<a href="javascript:void(0)">我的抢单</a>
+							<a href="javascript:void(0)">我的订单</a>
+							<a href="javascript:void(0)">交易记录</a>
+							<a href="javascript:void(0)">数据统计</a>
+						</li>
+						<li>
+							<h3>订单管理</h3>
+							<a href="javascript:void(0)">我的抢单</a>
+							<a class="active" href="javascript:void(0)">我的订单</a>
+							<a href="javascript:void(0)">交易记录</a>
+							<a href="javascript:void(0)">数据统计</a>
+						</li>
+						<li>
+							<h3>雇主管理</h3>
+							<a href="javascript:void(0)">服务商访问记录</a>
+							<a href="javascript:void(0)">合作的雇主</a>
+						</li>
+						<li>
+							<h3>消息中心</h3>
+							<a href="javascript:void(0)">未读消息</a>
+							<a href="javascript:void(0)">已读消息</a>
+						</li>
+					</ul>
+				</div>
+				<div class="case-r right">					
+					<div class="pageSlider"><a href="">我是服务商</a>>我的订单</div>
+					<div class="cooperative-employer">
+						<div class="order-status">
+							<h4 class="staSelected">全部订单</h4>
+							<h4>我发布的</h4>
+							<h4>待付款的</h4>
+							<h4>进行中的</h4>
+							<h4>收到的评价</h4>
+							<h4>我的发票</h4>
+							<h4>效果报告</h4>
+						</div>
+						<div class="order-content">
+							<div class="order-list">															
+								<div class="order-title">
+									<h4>名称</h4>
+									<h4>雇主</h4>
+									<h4>简介</h4>
+									<h4>地点</h4>
+									<h4>金额</h4>
+									<h4>截止时间</h4>
+									<h4>状态</h4>
+								</div>
+								<div class="cooperative-list">
+									<div class="cooperative-item">
+										<div class="cooperative-item-title">
+											<span class="cit-t">1.</span>
+											<span class="cit-t">2017.10.9</span> 
+											<p class="cit-t">订单编号：15241525225545221522</p>
+										</div>
+										<div class="cooperative-item-con order-item-con">
+											<div class="cooperative-name itbottom">
+												<div class="cooperative-item-img"><img src="img/11.png"/></div>
+												<p>需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求</p>
+											</div>
+											<p class="orderInfo-item1">雅思教育</p>
+											<p class="orderInfo-item2">需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求</p>
+											<p class="orderInfo-item3">昆明</p>
+											<p class="orderInfo-item4">6000</p>
+											<p class="orderInfo-item5">2017.11.11</p>
+											<p class="orderInfo-item6">已抢单</p>
+										</div>
+									</div>	
+								</div>
+							</div>
+							<div class="order-list" style="display: none;">															
+								<div class="order-title">
+									<h4>名称</h4>
+									<h4>雇主</h4>
+									<h4>简介</h4>
+									<h4>地点</h4>
+									<h4>金额</h4>
+									<h4>截止时间</h4>
+									<h4>状态</h4>
+								</div>
+								<div class="cooperative-list">
+									<div class="cooperative-item">
+										<div class="cooperative-item-title">
+											<span class="cit-t">1.</span>
+											<span class="cit-t">2017.10.9</span> 
+											<p class="cit-t">订单编号：15241525225545221522</p>
+										</div>
+										<div class="cooperative-item-con order-item-con">
+											<div class="cooperative-name itbottom">
+												<div class="cooperative-item-img"><img src="img/11.png"/></div>
+												<p>需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求</p>
+											</div>
+											<p class="orderInfo-item1">雅思教育</p>
+											<p class="orderInfo-item2">需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求</p>
+											<p class="orderInfo-item3">昆明</p>
+											<p class="orderInfo-item4">6000</p>
+											<p class="orderInfo-item5">2017.11.11</p>
+											<p class="orderInfo-item6">已抢单</p>
+										</div>
+									</div>
+									<div class="cooperative-item">
+										<div class="cooperative-item-title">
+											<span class="cit-t">1.</span>
+											<span class="cit-t">2017.10.9</span> 
+											<p class="cit-t">订单编号：15241525225545221522</p>
+										</div>
+										<div class="cooperative-item-con order-item-con">
+											<div class="cooperative-name itbottom">
+												<div class="cooperative-item-img"><img src="img/11.png"/></div>
+												<p>需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求</p>
+											</div>
+											<p class="orderInfo-item1">雅思教育</p>
+											<p class="orderInfo-item2">需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求</p>
+											<p class="orderInfo-item3">昆明</p>
+											<p class="orderInfo-item4">6000</p>
+											<p class="orderInfo-item5">2017.11.11</p>
+											<p class="orderInfo-item6 wait">等待抢单</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="order-list" style="display: none;">															
+								<div class="order-title">
+									<h4>名称</h4>
+									<h4>雇主</h4>
+									<h4>简介</h4>
+									<h4>地点</h4>
+									<h4>金额</h4>
+									<h4>截止时间</h4>
+									<h4>状态</h4>
+								</div>
+								<div class="cooperative-list">
+									<div class="cooperative-item">
+										<div class="cooperative-item-title">
+											<span class="cit-t">1.</span>
+											<span class="cit-t">2017.10.9</span> 
+											<p class="cit-t">订单编号：15241525225545221522</p>
+										</div>
+										<div class="cooperative-item-con order-item-con">
+											<div class="cooperative-name itbottom">
+												<div class="cooperative-item-img"><img src="img/11.png"/></div>
+												<p>需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求</p>
+											</div>
+											<p class="orderInfo-item1">雅思教育</p>
+											<p class="orderInfo-item2">需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求</p>
+											<p class="orderInfo-item3">昆明</p>
+											<p class="orderInfo-item4">6000</p>
+											<p class="orderInfo-item5">2017.11.11</p>
+											<p class="orderInfo-item6 waitPay">待付款</p>
+										</div>
+									</div>	
+								</div>
+							</div>
+							<div class="order-list" style="display: none;">															
+								<div class="order-title">
+									<h4>名称</h4>
+									<h4>雇主</h4>
+									<h4>简介</h4>
+									<h4>地点</h4>
+									<h4>金额</h4>
+									<h4>截止时间</h4>
+									<h4>状态</h4>
+								</div>
+								<div class="cooperative-list">
+									<div class="cooperative-item">
+										<div class="cooperative-item-title">
+											<span class="cit-t">1.</span>
+											<span class="cit-t">2017.10.9</span> 
+											<p class="cit-t">订单编号：15241525225545221522</p>
+										</div>
+										<div class="cooperative-item-con order-item-con">
+											<div class="cooperative-name itbottom">
+												<div class="cooperative-item-img"><img src="img/11.png"/></div>
+												<p>需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求</p>
+											</div>
+											<p class="orderInfo-item1">雅思教育</p>
+											<p class="orderInfo-item2">需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求</p>
+											<p class="orderInfo-item3">昆明</p>
+											<p class="orderInfo-item4">6000</p>
+											<p class="orderInfo-item5">2017.11.11</p>
+											<p class="orderInfo-item6 waitPay">进行中</p>
+										</div>
+									</div>	
+								</div>
+							</div>
+							<div class="order-list" style="display: none;">
+								<div class="cooperative-list">
+									<div class="cooperative-item">
+										<div class="cooperative-item-title">
+											<span class="cit-t">1.</span>
+											<span class="cit-t">2017.10.9</span> 
+											<p class="cit-t">订单编号：15241525225545221522</p>
+										</div>
+										<div class="cooperative-item-con order-item-con">
+											<div class="order-item-img"><img src="img/11.png"/></div>
+											<div class="order-item-text">
+												<p>需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求</p>
+												<span>我的评价内容我的评价内容我的评价内容我的评价内容我的评价内容我的评价内容我的评价内容我的评价内容</span>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+							<div class="order-list" style="display: none;">
+								<div class="cooperative-list">
+									<div class="cooperative-item">
+										<div class="cooperative-item-title">
+											<span class="cit-t">1.</span>
+											<span class="cit-t">2017.10.9</span> 
+											<p class="cit-t">订单编号：15241525225545221522</p>
+										</div>
+										<div class="cooperative-item-con order-item-con">
+											<div class="order-item-img"><img src="img/11.png"/></div>
+											<div class="order-item-text">
+												<p>需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求</p>
+												<span>发票状态:<i>已开</i></span>
+											</div>
+										</div>
+									</div>
+									<div class="cooperative-item">
+										<div class="cooperative-item-title">
+											<span class="cit-t">1.</span>
+											<span class="cit-t">2017.10.9</span> 
+											<p class="cit-t">订单编号：15241525225545221522</p>
+										</div>
+										<div class="cooperative-item-con order-item-con">
+											<div class="order-item-img"><img src="img/11.png"/></div>
+											<div class="order-item-text">
+												<p>需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求需求名字需求名字需求</p>
+												<span>发票状态:<i class="wait">未开</i></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

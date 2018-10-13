@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.ServiceContentStandardMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.ServiceContentStandard" >
+    <result column="content_standard_id" property="contentStandardId" jdbcType="BIGINT" />
+    <result column="content_standard_server_id" property="contentStandardServerId" jdbcType="BIGINT" />
+    <result column="content_standard_config_id" property="contentStandardConfigId" jdbcType="BIGINT" />
+    <result column="content_standard_name" property="contentStandardName" jdbcType="VARCHAR" />
+    <result column="content_standard_price" property="contentStandardPrice" jdbcType="VARCHAR" />
+    <result column="config_id" property="configId" jdbcType="BIGINT" />
+    <result column="config_name" property="configName" jdbcType="VARCHAR" />
+    <result column="config_formtype" property="configFormtype" jdbcType="INTEGER" />
+    <result column="config_sort" property="configSort" jdbcType="BIGINT" />
+    <result column="config_category_id" property="configCategoryId" jdbcType="BIGINT" />
+    <result column="config_show" property="configShow" jdbcType="INTEGER" />
+    <result column="config_intro" property="configIntro" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.qiji.domain.ServiceContentStandard" >
+    insert into v_service_content_standard (content_standard_id, content_standard_server_id, 
+      content_standard_config_id, content_standard_name, 
+      content_standard_price, config_id, config_name, 
+      config_formtype, config_sort, config_category_id, 
+      config_show, config_intro)
+    values (#{contentStandardId,jdbcType=BIGINT}, #{contentStandardServerId,jdbcType=BIGINT}, 
+      #{contentStandardConfigId,jdbcType=BIGINT}, #{contentStandardName,jdbcType=VARCHAR}, 
+      #{contentStandardPrice,jdbcType=VARCHAR}, #{configId,jdbcType=BIGINT}, #{configName,jdbcType=VARCHAR}, 
+      #{configFormtype,jdbcType=INTEGER}, #{configSort,jdbcType=BIGINT}, #{configCategoryId,jdbcType=BIGINT}, 
+      #{configShow,jdbcType=INTEGER}, #{configIntro,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.ServiceContentStandard" >
+    insert into v_service_content_standard
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contentStandardId != null" >
+        content_standard_id,
+      </if>
+      <if test="contentStandardServerId != null" >
+        content_standard_server_id,
+      </if>
+      <if test="contentStandardConfigId != null" >
+        content_standard_config_id,
+      </if>
+      <if test="contentStandardName != null" >
+        content_standard_name,
+      </if>
+      <if test="contentStandardPrice != null" >
+        content_standard_price,
+      </if>
+      <if test="configId != null" >
+        config_id,
+      </if>
+      <if test="configName != null" >
+        config_name,
+      </if>
+      <if test="configFormtype != null" >
+        config_formtype,
+      </if>
+      <if test="configSort != null" >
+        config_sort,
+      </if>
+      <if test="configCategoryId != null" >
+        config_category_id,
+      </if>
+      <if test="configShow != null" >
+        config_show,
+      </if>
+      <if test="configIntro != null" >
+        config_intro,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contentStandardId != null" >
+        #{contentStandardId,jdbcType=BIGINT},
+      </if>
+      <if test="contentStandardServerId != null" >
+        #{contentStandardServerId,jdbcType=BIGINT},
+      </if>
+      <if test="contentStandardConfigId != null" >
+        #{contentStandardConfigId,jdbcType=BIGINT},
+      </if>
+      <if test="contentStandardName != null" >
+        #{contentStandardName,jdbcType=VARCHAR},
+      </if>
+      <if test="contentStandardPrice != null" >
+        #{contentStandardPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="configId != null" >
+        #{configId,jdbcType=BIGINT},
+      </if>
+      <if test="configName != null" >
+        #{configName,jdbcType=VARCHAR},
+      </if>
+      <if test="configFormtype != null" >
+        #{configFormtype,jdbcType=INTEGER},
+      </if>
+      <if test="configSort != null" >
+        #{configSort,jdbcType=BIGINT},
+      </if>
+      <if test="configCategoryId != null" >
+        #{configCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="configShow != null" >
+        #{configShow,jdbcType=INTEGER},
+      </if>
+      <if test="configIntro != null" >
+        #{configIntro,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="getServiceContentStandardByIds" resultMap="BaseResultMap">
+  	select * from v_service_content_standard where content_standard_server_id in
+  		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+                #{item}       
+        </foreach>  
+  </select>
+  
+  <select id="getServiceContentStandardByServiceId" resultMap="BaseResultMap">
+  	select * from v_service_content_standard where content_standard_server_id = #{service_id}
+  </select>
+  
+</mapper>

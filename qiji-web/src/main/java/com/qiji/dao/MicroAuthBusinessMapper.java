@@ -16,4 +16,6 @@ public interface MicroAuthBusinessMapper {
     int updateByPrimaryKeyWithBLOBs(MicroAuthBusiness record);
 
     int updateByPrimaryKey(MicroAuthBusiness record);
+    
+    public Integer getNums();
 }

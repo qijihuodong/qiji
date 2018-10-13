@@ -42,6 +42,21 @@ public class MicroUsers {
     private String school;
 
     private String qrcode;
+    
+    private String name;
+    
+    private String mobile;
+    
+    private String idCardImg1;
+    
+    private String idCardImg2;
+    
+    private String img1;
+    
+    private String img2;
+    
+    private String img3;
+    
 
     public Integer getUid() {
         return uid;
@@ -202,4 +217,62 @@ public class MicroUsers {
     public void setQrcode(String qrcode) {
         this.qrcode = qrcode == null ? null : qrcode.trim();
     }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getIdCardImg1() {
+		return idCardImg1;
+	}
+
+	public void setIdCardImg1(String idCardImg1) {
+		this.idCardImg1 = idCardImg1;
+	}
+
+	public String getIdCardImg2() {
+		return idCardImg2;
+	}
+
+	public void setIdCardImg2(String idCardImg2) {
+		this.idCardImg2 = idCardImg2;
+	}
+
+	public String getImg1() {
+		return img1;
+	}
+
+	public void setImg1(String img1) {
+		this.img1 = img1;
+	}
+
+	public String getImg2() {
+		return img2;
+	}
+
+	public void setImg2(String img2) {
+		this.img2 = img2;
+	}
+
+	public String getImg3() {
+		return img3;
+	}
+
+	public void setImg3(String img3) {
+		this.img3 = img3;
+	}
+    
+    
 }

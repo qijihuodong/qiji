@@ -1,0 +1,136 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="common/inc::common_header('个人资料')">
+	</head>
+<body>
+   <header th:replace="common/header :: header"></header>
+		<div class="page">
+			<div class="case clearfix area">
+				<div class="case-l left">
+					<ul>
+						<li>
+							<h3>用户中心</h3>
+							<a class="active" href="javascript:void(0)">个人资料</a>
+							<a href="javascript:void(0)">组织管理</a>
+							<a href="javascript:void(0)">资金管理</a>
+							<a href="javascript:void(0)">账户管理</a>
+						</li>
+						<li>
+							<h3>服务管理</h3>
+							<a href="javascript:void(0)">认证的服务</a>
+							<a href="javascript:void(0)">增加服务</a>
+							<a href="javascript:void(0)">限时促销</a>
+							<a href="javascript:void(0)">案例管理</a>
+						</li>
+						<li>
+							<h3>订单管理</h3>
+							<a href="javascript:void(0)">我的抢单</a>
+							<a href="javascript:void(0)">我的订单</a>
+							<a href="javascript:void(0)">交易记录</a>
+							<a href="javascript:void(0)">数据统计</a>
+						</li>
+						<li>
+							<h3>订单管理</h3>
+							<a href="javascript:void(0)">我的抢单</a>
+							<a href="javascript:void(0)">我的订单</a>
+							<a href="javascript:void(0)">交易记录</a>
+							<a href="javascript:void(0)">数据统计</a>
+						</li>
+						<li>
+							<h3>雇主管理</h3>
+							<a href="javascript:void(0)">服务商访问记录</a>
+							<a href="javascript:void(0)">合作的雇主</a>
+						</li>
+						<li>
+							<h3>消息中心</h3>
+							<a href="javascript:void(0)">未读消息</a>
+							<a href="javascript:void(0)">已读消息</a>
+						</li>
+					</ul>
+				</div>
+				<div class="case-r right">					
+					<div class="pageSlider"><a href="">我是服务商</a>>个人资料</div>
+					<div class="accout-management information">
+						<h5>基础信息</h5>
+						<div class="ipt">
+							<label><i>*</i>昵称：</label>
+							<input type="text" name="nickname" id="myInfo_nickname" />
+						</div>
+						<div class="ipt">
+							<label><i>*</i>姓名：</label>
+							<input type="text" name="name" id="myInfo_name"  />
+						</div>
+						<div class="sex">
+							<span><i>*</i>性别：</span>
+							<div class="sex-ipt">
+								<label><input type="radio" checked="checked" name="gender" value="1" id="myInfo_gender_male"  radiogroup="sexgroup" /></label>
+								<label><input type="radio" name="gender" value="0" id="myInfo_gender_female" radiogroup="sexgroup" /></label>
+							</div>
+						</div>
+						<div class="addImg">
+							<span><i>*</i>头像：</span>
+							<div class="addImg-right">
+								<div id="logoUrl_uploadImg">
+								
+								</div>
+							</div>
+							<p>图片格式JPG、JPEG、PNG文件大小3M以内</p>
+						</div>
+						<div class="confirmImg">
+							<span><i>*</i>身份认证：</span>
+							<div class="confirmImg-right">
+								<div id="idCard_uploadImg">
+								
+								</div>
+								<p>身份证</p>
+							</div>
+							<div class="confirmImg-right">
+								<div id="studentImg_uploadImg">
+								
+								</div>
+								<p>学生证</p>
+							</div>
+							<p>图片格式JPG、JPEG、PNG文件大小3M以内</p>
+						</div>
+						<div class="address sex">
+							<span><i>*</i>地址：</span>
+							<div class="address-con">
+								<select name="province" id="myInfo_provinces">
+									<option value=""></option>
+								</select><i>-</i>
+								<select name="city"     id="myInfo_city"></select><i>-</i>
+								<select name="area"     id="myInfo_area"></select>
+							</div>
+						</div>
+						
+					
+						<div class="school sex">
+							<span><i>*</i>学校：</span>
+							<div class="address-con school-con">
+								<select name="school"     id="myInfo_school"></select>
+							</div>
+						</div>
+						<div class="ipt info">
+							<label><i>*</i>简介：</label>
+							<textarea name="intro" rows="" cols="" id="myInfo_intro"></textarea>
+						</div>
+						<div class="ipt">
+							<label><i>*</i>联系方式：</label>
+							<input type="text" name="mobile" id="myInfo_mobile"  />
+						</div>
+						<div class="ipt">
+							<label><i>*</i>邮箱：</label>
+							<input type="text" name="email" id="myInfo_email" />
+						</div>
+						<div class="info-btn">          	
+		                	<input class="btn" type="button" value="保存" id="myInfo_save_btn">	
+		                </div> 
+					</div>
+				</div>
+			</div>
+		</div>
+   <footer th:replace="common/footer :: footer"></footer>
+</body>
+<link rel="stylesheet" type="text/css" href="css/my.css" th:href="@{css/my.css}" />
+</html>

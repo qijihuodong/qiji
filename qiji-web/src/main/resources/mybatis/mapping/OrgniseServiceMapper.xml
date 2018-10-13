@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.OrgniseServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.OrgniseService" >
+    <result column="service_id" property="serviceId" jdbcType="BIGINT" />
+    <result column="service_uid" property="serviceUid" jdbcType="BIGINT" />
+    <result column="service_ogid" property="serviceOgid" jdbcType="BIGINT" />
+    <result column="service_utype" property="serviceUtype" jdbcType="INTEGER" />
+    <result column="service_parent_category_id" property="serviceParentCategoryId" jdbcType="BIGINT" />
+    <result column="service_category_id" property="serviceCategoryId" jdbcType="BIGINT" />
+    <result column="service_create_time" property="serviceCreateTime" jdbcType="VARCHAR" />
+    <result column="service_status" property="serviceStatus" jdbcType="INTEGER" />
+    <result column="service_reason" property="serviceReason" jdbcType="VARCHAR" />
+    <result column="orgnise_name" property="orgniseName" jdbcType="VARCHAR" />
+    <result column="orgnise_email" property="orgniseEmail" jdbcType="VARCHAR" />
+    <result column="orgnise_img2" property="orgniseImg2" jdbcType="VARCHAR" />
+    <result column="orgnise_img3" property="orgniseImg3" jdbcType="VARCHAR" />
+    <result column="orgnise_remark" property="orgniseRemark" jdbcType="VARCHAR" />
+    <result column="orgnise_img1" property="orgniseImg1" jdbcType="VARCHAR" />
+    <result column="orgnise_tel" property="orgniseTel" jdbcType="VARCHAR" />
+    <result column="orgnise_logourl" property="orgniseLogourl" jdbcType="VARCHAR" />
+    <result column="orgnise_type" property="orgniseType" jdbcType="VARCHAR" />
+    <result column="orgnise_status" property="orgniseStatus" jdbcType="INTEGER" />
+    <result column="orgnise_intro" property="orgniseIntro" jdbcType="DOUBLE" />
+    <result column="orgnise_id" property="orgniseId" jdbcType="BIGINT" />
+    <result column="orgnise_uid" property="orgniseUid" jdbcType="BIGINT" />
+    <result column="orgnise_nums" property="orgniseNums" jdbcType="BIGINT" />
+    <result column="orgnise_from_uid" property="orgniseFromUid" jdbcType="BIGINT" />
+    <result column="orgnise_create_time" property="orgniseCreateTime" jdbcType="VARCHAR" />
+    <result column="orgnise_update_time" property="orgniseUpdateTime" jdbcType="VARCHAR" />
+    <result column="orgnise_check_time" property="orgniseCheckTime" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
+    <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+    <result column="category_parent_id" property="categoryParentId" jdbcType="BIGINT" />
+    <result column="category_type" property="categoryType" jdbcType="INTEGER" />
+    <result column="category_sort" property="categorySort" jdbcType="BIGINT" />
+    <result column="parent_category_id" property="parentCategoryId" jdbcType="BIGINT" />
+    <result column="parent_category_name" property="parentCategoryName" jdbcType="VARCHAR" />
+    <result column="parent_category_parent_id" property="parentCategoryParentId" jdbcType="BIGINT" />
+    <result column="parent_category_type" property="parentCategoryType" jdbcType="INTEGER" />
+    <result column="parent_category_sort" property="parentCategorySort" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="com.qiji.domain.OrgniseService" >
+    insert into v_orgnise_service (service_id, service_uid, service_ogid, 
+      service_utype, service_parent_category_id, service_category_id, 
+      service_create_time, service_status, service_reason, 
+      orgnise_name, orgnise_email, orgnise_img2, 
+      orgnise_img3, orgnise_remark, orgnise_img1, 
+      orgnise_tel, orgnise_logourl, orgnise_type, 
+      orgnise_status, orgnise_intro, orgnise_id, 
+      orgnise_uid, orgnise_nums, orgnise_from_uid, 
+      orgnise_create_time, orgnise_update_time, orgnise_check_time, 
+      category_id, category_name, category_parent_id, 
+      category_type, category_sort, parent_category_id, 
+      parent_category_name, parent_category_parent_id, 
+      parent_category_type, parent_category_sort)
+    values (#{serviceId,jdbcType=BIGINT}, #{serviceUid,jdbcType=BIGINT}, #{serviceOgid,jdbcType=BIGINT}, 
+      #{serviceUtype,jdbcType=INTEGER}, #{serviceParentCategoryId,jdbcType=BIGINT}, #{serviceCategoryId,jdbcType=BIGINT}, 
+      #{serviceCreateTime,jdbcType=VARCHAR}, #{serviceStatus,jdbcType=INTEGER}, #{serviceReason,jdbcType=VARCHAR}, 
+      #{orgniseName,jdbcType=VARCHAR}, #{orgniseEmail,jdbcType=VARCHAR}, #{orgniseImg2,jdbcType=VARCHAR}, 
+      #{orgniseImg3,jdbcType=VARCHAR}, #{orgniseRemark,jdbcType=VARCHAR}, #{orgniseImg1,jdbcType=VARCHAR}, 
+      #{orgniseTel,jdbcType=VARCHAR}, #{orgniseLogourl,jdbcType=VARCHAR}, #{orgniseType,jdbcType=VARCHAR}, 
+      #{orgniseStatus,jdbcType=INTEGER}, #{orgniseIntro,jdbcType=DOUBLE}, #{orgniseId,jdbcType=BIGINT}, 
+      #{orgniseUid,jdbcType=BIGINT}, #{orgniseNums,jdbcType=BIGINT}, #{orgniseFromUid,jdbcType=BIGINT}, 
+      #{orgniseCreateTime,jdbcType=VARCHAR}, #{orgniseUpdateTime,jdbcType=VARCHAR}, #{orgniseCheckTime,jdbcType=VARCHAR}, 
+      #{categoryId,jdbcType=BIGINT}, #{categoryName,jdbcType=VARCHAR}, #{categoryParentId,jdbcType=BIGINT}, 
+      #{categoryType,jdbcType=INTEGER}, #{categorySort,jdbcType=BIGINT}, #{parentCategoryId,jdbcType=BIGINT}, 
+      #{parentCategoryName,jdbcType=VARCHAR}, #{parentCategoryParentId,jdbcType=BIGINT}, 
+      #{parentCategoryType,jdbcType=INTEGER}, #{parentCategorySort,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.OrgniseService" >
+    insert into v_orgnise_service
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serviceId != null" >
+        service_id,
+      </if>
+      <if test="serviceUid != null" >
+        service_uid,
+      </if>
+      <if test="serviceOgid != null" >
+        service_ogid,
+      </if>
+      <if test="serviceUtype != null" >
+        service_utype,
+      </if>
+      <if test="serviceParentCategoryId != null" >
+        service_parent_category_id,
+      </if>
+      <if test="serviceCategoryId != null" >
+        service_category_id,
+      </if>
+      <if test="serviceCreateTime != null" >
+        service_create_time,
+      </if>
+      <if test="serviceStatus != null" >
+        service_status,
+      </if>
+      <if test="serviceReason != null" >
+        service_reason,
+      </if>
+      <if test="orgniseName != null" >
+        orgnise_name,
+      </if>
+      <if test="orgniseEmail != null" >
+        orgnise_email,
+      </if>
+      <if test="orgniseImg2 != null" >
+        orgnise_img2,
+      </if>
+      <if test="orgniseImg3 != null" >
+        orgnise_img3,
+      </if>
+      <if test="orgniseRemark != null" >
+        orgnise_remark,
+      </if>
+      <if test="orgniseImg1 != null" >
+        orgnise_img1,
+      </if>
+      <if test="orgniseTel != null" >
+        orgnise_tel,
+      </if>
+      <if test="orgniseLogourl != null" >
+        orgnise_logourl,
+      </if>
+      <if test="orgniseType != null" >
+        orgnise_type,
+      </if>
+      <if test="orgniseStatus != null" >
+        orgnise_status,
+      </if>
+      <if test="orgniseIntro != null" >
+        orgnise_intro,
+      </if>
+      <if test="orgniseId != null" >
+        orgnise_id,
+      </if>
+      <if test="orgniseUid != null" >
+        orgnise_uid,
+      </if>
+      <if test="orgniseNums != null" >
+        orgnise_nums,
+      </if>
+      <if test="orgniseFromUid != null" >
+        orgnise_from_uid,
+      </if>
+      <if test="orgniseCreateTime != null" >
+        orgnise_create_time,
+      </if>
+      <if test="orgniseUpdateTime != null" >
+        orgnise_update_time,
+      </if>
+      <if test="orgniseCheckTime != null" >
+        orgnise_check_time,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="categoryName != null" >
+        category_name,
+      </if>
+      <if test="categoryParentId != null" >
+        category_parent_id,
+      </if>
+      <if test="categoryType != null" >
+        category_type,
+      </if>
+      <if test="categorySort != null" >
+        category_sort,
+      </if>
+      <if test="parentCategoryId != null" >
+        parent_category_id,
+      </if>
+      <if test="parentCategoryName != null" >
+        parent_category_name,
+      </if>
+      <if test="parentCategoryParentId != null" >
+        parent_category_parent_id,
+      </if>
+      <if test="parentCategoryType != null" >
+        parent_category_type,
+      </if>
+      <if test="parentCategorySort != null" >
+        parent_category_sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=BIGINT},
+      </if>
+      <if test="serviceUid != null" >
+        #{serviceUid,jdbcType=BIGINT},
+      </if>
+      <if test="serviceOgid != null" >
+        #{serviceOgid,jdbcType=BIGINT},
+      </if>
+      <if test="serviceUtype != null" >
+        #{serviceUtype,jdbcType=INTEGER},
+      </if>
+      <if test="serviceParentCategoryId != null" >
+        #{serviceParentCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="serviceCategoryId != null" >
+        #{serviceCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="serviceCreateTime != null" >
+        #{serviceCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceStatus != null" >
+        #{serviceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="serviceReason != null" >
+        #{serviceReason,jdbcType=VARCHAR},
+      </if>
+      <if test="orgniseName != null" >
+        #{orgniseName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgniseEmail != null" >
+        #{orgniseEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="orgniseImg2 != null" >
+        #{orgniseImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="orgniseImg3 != null" >
+        #{orgniseImg3,jdbcType=VARCHAR},
+      </if>
+      <if test="orgniseRemark != null" >
+        #{orgniseRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="orgniseImg1 != null" >
+        #{orgniseImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="orgniseTel != null" >
+        #{orgniseTel,jdbcType=VARCHAR},
+      </if>
+      <if test="orgniseLogourl != null" >
+        #{orgniseLogourl,jdbcType=VARCHAR},
+      </if>
+      <if test="orgniseType != null" >
+        #{orgniseType,jdbcType=VARCHAR},
+      </if>
+      <if test="orgniseStatus != null" >
+        #{orgniseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orgniseIntro != null" >
+        #{orgniseIntro,jdbcType=DOUBLE},
+      </if>
+      <if test="orgniseId != null" >
+        #{orgniseId,jdbcType=BIGINT},
+      </if>
+      <if test="orgniseUid != null" >
+        #{orgniseUid,jdbcType=BIGINT},
+      </if>
+      <if test="orgniseNums != null" >
+        #{orgniseNums,jdbcType=BIGINT},
+      </if>
+      <if test="orgniseFromUid != null" >
+        #{orgniseFromUid,jdbcType=BIGINT},
+      </if>
+      <if test="orgniseCreateTime != null" >
+        #{orgniseCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="orgniseUpdateTime != null" >
+        #{orgniseUpdateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="orgniseCheckTime != null" >
+        #{orgniseCheckTime,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryName != null" >
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryParentId != null" >
+        #{categoryParentId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryType != null" >
+        #{categoryType,jdbcType=INTEGER},
+      </if>
+      <if test="categorySort != null" >
+        #{categorySort,jdbcType=BIGINT},
+      </if>
+      <if test="parentCategoryId != null" >
+        #{parentCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="parentCategoryName != null" >
+        #{parentCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCategoryParentId != null" >
+        #{parentCategoryParentId,jdbcType=BIGINT},
+      </if>
+      <if test="parentCategoryType != null" >
+        #{parentCategoryType,jdbcType=INTEGER},
+      </if>
+      <if test="parentCategorySort != null" >
+        #{parentCategorySort,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

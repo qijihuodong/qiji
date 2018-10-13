@@ -138,4 +138,105 @@
       reason = #{reason,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="getNewestService" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from micro_service
+    where 1=1
+     <if test="uid != null" >
+        and uid = #{uid,jdbcType=INTEGER}
+      </if>
+      <if test="ogid != null" >
+        and ogid = #{ogid,jdbcType=INTEGER}
+      </if>
+      <if test="utype != null" >
+        and utype = #{utype,jdbcType=TINYINT}
+      </if>
+      <if test="parentCategoryId != null" >
+        and parent_category_id = #{parentCategoryId,jdbcType=INTEGER}
+      </if>
+      <if test="categoryId != null" >
+        and category_id = #{categoryId,jdbcType=INTEGER}
+      </if>
+      
+      <if test="status != null" >
+        and status = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="reason != null and reason != '' " >
+        and reason = #{reason,jdbcType=VARCHAR}
+      </if>
+      <if test="uid != null" >
+        and uid = #{uid,jdbcType=INTEGER}
+      </if>
+      order by create_time
+      limit #{startIndex},#{nums}
+      
+  </select>
+  
+  <select id="getServiceByProp" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from micro_service
+    where 1=1
+     <if test="uid != null" >
+        and uid = #{uid,jdbcType=INTEGER}
+      </if>
+      <if test="ogid != null" >
+        and ogid = #{ogid,jdbcType=INTEGER}
+      </if>
+      <if test="utype != null" >
+        and utype = #{utype,jdbcType=TINYINT}
+      </if>
+      <if test="parentCategoryId != null" >
+        and parent_category_id = #{parentCategoryId,jdbcType=INTEGER}
+      </if>
+      <if test="categoryId != null" >
+        and category_id = #{categoryId,jdbcType=INTEGER}
+      </if>
+      
+      <if test="status != null" >
+        and status = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="reason != null and reason != '' " >
+        and reason = #{reason,jdbcType=VARCHAR}
+      </if>
+      <if test="uid != null" >
+        and uid = #{uid,jdbcType=INTEGER}
+      </if>
+      order by id
+  </select>
+  
+  <select id="countServiceByProp" resultType="Integer">
+    select 
+    count(1)
+    from micro_service
+    where 1=1
+     <if test="uid != null" >
+        and uid = #{uid,jdbcType=INTEGER}
+      </if>
+      <if test="ogid != null" >
+        and ogid = #{ogid,jdbcType=INTEGER}
+      </if>
+      <if test="utype != null" >
+        and utype = #{utype,jdbcType=TINYINT}
+      </if>
+      <if test="parentCategoryId != null" >
+        and parent_category_id = #{parentCategoryId,jdbcType=INTEGER}
+      </if>
+      <if test="categoryId != null" >
+        and category_id = #{categoryId,jdbcType=INTEGER}
+      </if>
+      
+      <if test="status != null" >
+        and status = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="reason != null and reason != '' " >
+        and reason = #{reason,jdbcType=VARCHAR}
+      </if>
+      <if test="uid != null" >
+        and uid = #{uid,jdbcType=INTEGER}
+      </if>
+      
+  </select>
 </mapper>

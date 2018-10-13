@@ -22,10 +22,17 @@
     <result column="intro" property="intro" jdbcType="VARCHAR" />
     <result column="school" property="school" jdbcType="VARCHAR" />
     <result column="qrcode" property="qrcode" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="id_card_img1" property="idCardImg1" jdbcType="VARCHAR" />
+    <result column="id_card_img2" property="idCardImg2" jdbcType="VARCHAR" />
+    <result column="img1" property="img1" jdbcType="VARCHAR" />
+    <result column="img2" property="img2" jdbcType="VARCHAR" />
+    <result column="img3" property="img3" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     uid, utel, nickname, upwd, vcode, utype, login_ip, create_time, status, email, address, 
-    logourl, integral, password, check_time, update_time, gender, intro, school, qrcode
+    logourl, integral, password, check_time, update_time, gender, intro, school, qrcode,name,mobile,id_card_img1,id_card_img2,img1,img2,img3
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -44,14 +51,15 @@
       address, logourl, integral, 
       password, check_time, update_time, 
       gender, intro, school, 
-      qrcode)
+      qrcode,name,mobile,id_card_img1,id_card_img2,img1,img2,img3)
     values (#{uid,jdbcType=INTEGER}, #{utel,jdbcType=CHAR}, #{nickname,jdbcType=VARCHAR}, 
       #{upwd,jdbcType=VARCHAR}, #{vcode,jdbcType=CHAR}, #{utype,jdbcType=TINYINT}, #{loginIp,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, #{email,jdbcType=CHAR}, 
       #{address,jdbcType=VARCHAR}, #{logourl,jdbcType=VARCHAR}, #{integral,jdbcType=INTEGER}, 
       #{password,jdbcType=VARCHAR}, #{checkTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{gender,jdbcType=TINYINT}, #{intro,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, 
-      #{qrcode,jdbcType=VARCHAR})
+      #{qrcode,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{mobile,jdbcType=VARCHAR},#{idCardImg1,jdbcType=VARCHAR},
+      #{idCardImg2,jdbcType=VARCHAR},#{img1,jdbcType=VARCHAR},#{img2,jdbcType=VARCHAR},#{img3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qiji.domain.MicroUsers" >
     insert into micro_users
@@ -116,6 +124,27 @@
       <if test="qrcode != null" >
         qrcode,
       </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="idCardImg1 != null" >
+        id_card_img1,
+      </if>
+      <if test="idCardImg2 != null" >
+        id_card_img2,
+      </if>
+      <if test="img1 != null" >
+        img1,
+      </if>
+      <if test="img2 != null" >
+        img2,
+      </if>
+      <if test="img3 != null" >
+        img3,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="uid != null" >
@@ -177,6 +206,28 @@
       </if>
       <if test="qrcode != null" >
         #{qrcode,jdbcType=VARCHAR},
+      </if>
+      
+       <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+       <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+       <if test="idCardImg1 != null" >
+        #{idCardImg1,jdbcType=VARCHAR},
+      </if>
+       <if test="idCardImg2 != null" >
+        #{idCardImg2,jdbcType=VARCHAR},
+      </if>
+       <if test="img1 != null" >
+        #{img1,jdbcType=VARCHAR},
+      </if>
+       <if test="img2 != null" >
+        #{img2,jdbcType=VARCHAR},
+      </if>
+       <if test="img3 != null" >
+        #{img3,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -240,6 +291,31 @@
       <if test="qrcode != null" >
         qrcode = #{qrcode,jdbcType=VARCHAR},
       </if>
+      
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcode != null" >
+        qrcode = #{qrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardImg1 != null" >
+        idCardImg1 = #{idCardImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardImg2 != null" >
+        idCardImg2 = #{idCardImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="img1 != null" >
+        img1 = #{img1,jdbcType=VARCHAR},
+      </if>
+      <if test="img2 != null" >
+        img2 = #{img2,jdbcType=VARCHAR},
+      </if>
+      <if test="img3 != null" >
+        img3 = #{img3,jdbcType=VARCHAR},
+      </if>
     </set>
     where uid = #{uid,jdbcType=INTEGER}
   </update>
@@ -263,7 +339,14 @@
       gender = #{gender,jdbcType=TINYINT},
       intro = #{intro,jdbcType=VARCHAR},
       school = #{school,jdbcType=VARCHAR},
-      qrcode = #{qrcode,jdbcType=VARCHAR}
+      qrcode = #{qrcode,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      idCardImg1 = #{idCardImg1,jdbcType=VARCHAR},
+      idCardImg2 = #{idCardImg2,jdbcType=VARCHAR},
+      img1 = #{img1,jdbcType=VARCHAR},
+      img2 = #{img2,jdbcType=VARCHAR},
+      img3 = #{img3,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
   
@@ -280,7 +363,33 @@
   <select id="getLoginUser" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from micro_users where utel = #{utel,jdbcType=CHAR} and utype = #{utype,jdbcType=TINYINT} and upwd = #{upwd,jdbcType=VARCHAR};
+    from micro_users where utel = #{utel,jdbcType=CHAR} and upwd = #{upwd,jdbcType=VARCHAR};
   </select>
   
+   <select id="getUserByUtel" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from micro_users where utel = #{utel,jdbcType=CHAR};
+  </select>
+  
+  <update id="updateMyInfoByPrimaryKey" parameterType="com.qiji.domain.MicroUsers" >
+    update micro_users
+    set 
+      nickname = #{nickname,jdbcType=VARCHAR},
+      email = #{email,jdbcType=CHAR},
+      address = #{address,jdbcType=VARCHAR},
+      logourl = #{logourl,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      gender = #{gender,jdbcType=TINYINT},
+      intro = #{intro,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      id_card_img1 = #{idCardImg1,jdbcType=VARCHAR},
+      id_card_img2 = #{idCardImg2,jdbcType=VARCHAR},
+      img1 = #{img1,jdbcType=VARCHAR},
+      img2 = #{img2,jdbcType=VARCHAR},
+      img3 = #{img3,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
 </mapper>

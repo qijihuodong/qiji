@@ -26,7 +26,7 @@
   <sql id="Base_Column_List" >
     id, buy_uid, sell_uid, standard_id, service_id, price, number, add_time, status, 
     trade_no, taobao_trade_no, trade_status, weixin_trade_no, requirement, feedback, 
-    comment, requirement_attach, feedback_attach, comment_attach, order
+    comment, requirement_attach, feedback_attach, comment_attach, `order`
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -45,7 +45,7 @@
       trade_no, taobao_trade_no, trade_status, 
       weixin_trade_no, requirement, feedback, 
       comment, requirement_attach, feedback_attach, 
-      comment_attach, order)
+      comment_attach, `order`)
     values (#{id,jdbcType=INTEGER}, #{buyUid,jdbcType=INTEGER}, #{sellUid,jdbcType=INTEGER}, 
       #{standardId,jdbcType=INTEGER}, #{serviceId,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
       #{number,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, 
@@ -115,7 +115,7 @@
         comment_attach,
       </if>
       <if test="order != null" >
-        order,
+        `order`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -239,7 +239,7 @@
         comment_attach = #{commentAttach,jdbcType=VARCHAR},
       </if>
       <if test="order != null" >
-        order = #{order,jdbcType=TINYINT},
+        `order` = #{order,jdbcType=TINYINT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -264,7 +264,37 @@
       requirement_attach = #{requirementAttach,jdbcType=VARCHAR},
       feedback_attach = #{feedbackAttach,jdbcType=VARCHAR},
       comment_attach = #{commentAttach,jdbcType=VARCHAR},
-      order = #{order,jdbcType=TINYINT}
+      `order` = #{order,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="queryOrderByTradeNo" parameterType="String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from micro_order
+    where trade_no = #{tradeNo,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="queryMyBuyOrder" resultMap="BaseResultMap">
+  	select 
+    id, buy_uid, sell_uid, standard_id, service_id, price, number, add_time, status, 
+    trade_no, taobao_trade_no, trade_status, weixin_trade_no, requirement, feedback, 
+    comment, requirement_attach, feedback_attach, comment_attach, t.order
+    from micro_order t
+    where  buy_uid = #{buyUid,jdbcType=INTEGER}
+      <if test="status != null" >
+       and status = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="tradeStatus != null" >
+        and trade_status = #{tradeStatus,jdbcType=TINYINT}
+      </if>
+  </select>
+  
+  <update id="updateOrderByTradeNo" parameterType="com.qiji.domain.MicroOrder" >
+  update micro_order
+    set status = #{status,jdbcType=TINYINT},
+    	weixin_trade_no = #{weixinTradeNo,jdbcType=VARCHAR}
+    where trade_no = #{tradeNo,jdbcType=VARCHAR} and price = #{price,jdbcType=DECIMAL}
+  </update>
+  
 </mapper>

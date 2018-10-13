@@ -5,87 +5,254 @@
 	</head>
 <body>
    <header th:replace="common/header :: header"></header>
-		<div class="page">
-			<div class="serviceXQ area">
-				<div class="pageSlider">
-					<a href="">首页</a>>服务详情</div>
-				<div class="requireXQ-con">
-					<div class="required-list">
+		<div class="page area">
+			<div class="service_details_banner min_area">
+				<div class="slider2">
+					<div class="slide"><img src="img/banner-1.png"></div>
+					<div class="slide"><img src="img/banner-1.png"></div>
+					<div class="slide"><img src="img/banner-1.png"></div>
+				</div>
+			</div>
+			<div class="pageSlider min_area">
+					<a href="">首页</a>>服务详情
+				</div>
+				<div class="service_resourcesXQ min_area">
+					<div class="required-list clearfix">
 						<div class="required-list-l left">
 							<img src="img/11.png" />
 						</div>
 						<div class="required-list-r right">
-							<h4>需求名称：寻找昆明理工大学的场地</h4>
-							<p>需求简介：需要一个200平方的场地，距离200人学生，参加网音乐歌手大赛</p>
-							<p>要求：需求项目要达到的效果，注意事项等等问题</p>
-							<p>报价：6000元</p>
-							<span>历史购买：1200次</span>
-							<span>是否预约：是</span>
-							<span>地址：昆明理工大学</span>
-							<a href="" class="head-btn shopBtn">加入购物车</a>
-							<a href="" class="head-btn qgBtn">立即抢单</a>
+							<div>
+								<h4 th:each="head : ${requireXQ_head}" id="serviceXQ_serviceId" 
+									th:attr="serviceId=${head.serviceId}"
+									th:if="${head.servicePropName} == '服务商' " 
+									
+									th:utext="'服务商名称：' + ${head.servicePropValue} + '<span>' + (${head.serviceType} == '1'?'个人':'组织') + '</span>'">服务商名称：寻找昆明理工大学的场地<span>组织</span></h4>
+							</div>
+							
+							<p th:each="head : ${requireXQ_head}" 
+									th:if="${head.servicePropName} == '服务名称' " th:text="'服务类型：' + ${head.servicePropValue}">需求类型：线上 -微信公众号</p>
+							<p th:each="head : ${requireXQ_head}" 
+									th:if="${head.servicePropName} == '服务简介' " th:text="'服务简介：' + ${head.servicePropValue}">需求简介：需要一个200平方的场地，距离200人学生，参加网音乐歌手大赛</p>
+							
+							<p th:each="head : ${requireXQ_head}" 
+									th:if="${head.servicePropName} == '单价' " th:text="'单价：' + ${head.servicePropValue}">单价：30元</p>
+									
+							<div class="resourcesNum" id="serviceXQ_contentStandardId" contentStandardId="">
+								<span
+								th:each="standard , standardStat : ${requireXQ_content_standard}"  th:if="${standard} != null" 
+								th:attr="contentStandardId=${standard.contentStandardId}" 
+								th:class="${standardStat.index == 0}?'resourcesNumselected':''"
+								th:text="${standard.contentStandardName} + ': ' + ${standard.contentStandardPrice} + '元' " 
+								onclick="setContentStandardId(this)">容纳30—50人: 1200 元</span>
+							</div>
+							<div class="resourcesBtn">
+								<a href="javascript:void(0);">加入购物车</a>
+								<a href="javascript:void(0);" id="serviceXQ_qiangdan" >立即抢单</a>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="pinglun-con">
-					<div class="pinglun-title">
-						<h5>评价（<i>200</i>）</h5></div>
-					<div class="pinglunList clearfix">
-						<div class="pinglunList-l left">
-							<img src="img/required-5.png" />
-						</div>
-						<div class="pinglunList-r left">
-							<div class="pinglunList-t">
-								<span class="right">2017.6.22</span>
-								<h4>那年夏天</h4>
-							</div>
-							<p>那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那 那年夏天那年夏天那年夏天那年夏天
-							</p>
-						</div>
+				<div class="service_details_list min_area">
+					<div class="service_details_tab">
+						<span class="details_tabSelect">详情</span>
+						<span>评价(100)</span>
 					</div>
-					<div class="pinglunList clearfix">
-						<div class="pinglunList-l left">
-							<img src="img/required-5.png" />
-						</div>
-						<div class="pinglunList-r left">
-							<div class="pinglunList-t">
-								<span class="right">2017.6.22</span>
-								<h4>那年夏天</h4>
+					<div class="service_details_view">
+						<div class="service_details_list">
+							<div class="service_resources_item">
+							
+								<p th:each="content : ${requireXQ_content}" 
+									th:utext="'<span>' + ${content.configName} + ': ' + '</span>' + ${content.contentValue} ">11111</p>
 							</div>
-							<p>那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那 那年夏天那年夏天那年夏天那年夏天
-							</p>
 						</div>
+						<div class="service_details_list" style="display: none;">22</div>
 					</div>
-					<div class="pinglunList clearfix">
-						<div class="pinglunList-l left">
-							<img src="img/required-5.png" />
-						</div>
-						<div class="pinglunList-r left">
-							<div class="pinglunList-t">
-								<span class="right">2017.6.22</span>
-								<h4>那年夏天</h4>
-							</div>
-							<p>那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那 那年夏天那年夏天那年夏天那年夏天
-							</p>
-						</div>
-					</div>
-					<div class="pinglunList clearfix">
-						<div class="pinglunList-l left">
-							<img src="img/required-5.png" />
-						</div>
-						<div class="pinglunList-r left">
-							<div class="pinglunList-t">
-								<span class="right">2017.6.22</span>
-								<h4>那年夏天</h4>
-							</div>
-							<p>那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那年夏天那 那年夏天那年夏天那年夏天那年夏天
-							</p>
-						</div>
-					</div>
+				</div>
+				
+				
+				<div class="service_details_else">
+				<div class="else_title min_area">
+					<span>其他服务</span>
+					<a href="">点击查看更多</a>					
+				</div>
+				<div class="else_title_banner">
+					<div class="slider3">
+				      <div class="slide">
+				      	<img src="img/11.png">
+				      	<p>场地-报告厅&nbsp;6000/次</p>
+				      	<div class="show">
+				      		<div class="showbg"></div>
+				      		<p>服务商名称：昆明理工大学学生会</p>
+				      		<p>服务类型：线上-微信公众号</p>
+				      		<p>公众号名称：巴拉巴拉</p>
+				      		<p>报价：6000元</p>
+				      	</div>
+				      </div>
+				      <div class="slide">
+				      	<img src="img/11.png">
+				      	<p>场地-报告厅&nbsp;6000/次</p>
+				      	<div class="show">
+				      		<div class="showbg"></div>
+				      		<p>服务商名称：昆明理工大学学生会</p>
+				      		<p>服务类型：线上-微信公众号</p>
+				      		<p>公众号名称：巴拉巴拉</p>
+				      		<p>报价：6000元</p>
+				      	</div>
+				      </div>
+				      <div class="slide">
+				      	<img src="img/11.png">
+				      	<p>场地-报告厅&nbsp;6000/次</p>
+				      	<div class="show">
+				      		<div class="showbg"></div>
+				      		<p>服务商名称：昆明理工大学学生会</p>
+				      		<p>服务类型：线上-微信公众号</p>
+				      		<p>公众号名称：巴拉巴拉</p>
+				      		<p>报价：6000元</p>
+				      	</div>
+				      </div>
+				      <div class="slide">
+				      	<img src="img/11.png">
+				      	<p>场地-报告厅&nbsp;6000/次</p>
+				      	<div class="show">
+				      		<div class="showbg"></div>
+				      		<p>服务商名称：昆明理工大学学生会</p>
+				      		<p>服务类型：线上-微信公众号</p>
+				      		<p>公众号名称：巴拉巴拉</p>
+				      		<p>报价：6000元</p>
+				      	</div>
+				      </div>
+				      <div class="slide">
+				      	<img src="img/11.png">
+				      	<p>场地-报告厅&nbsp;6000/次</p>
+				      	<div class="show">
+				      		<div class="showbg"></div>
+				      		<p>服务商名称：昆明理工大学学生会</p>
+				      		<p>服务类型：线上-微信公众号</p>
+				      		<p>公众号名称：巴拉巴拉</p>
+				      		<p>报价：6000元</p>
+				      	</div>
+				      </div>
+				      <div class="slide">
+				      	<img src="img/11.png">
+				      	<p>场地-报告厅&nbsp;6000/次</p>
+				      	<div class="show">
+				      		<div class="showbg"></div>
+				      		<p>服务商名称：昆明理工大学学生会</p>
+				      		<p>服务类型：线上-微信公众号</p>
+				      		<p>公众号名称：巴拉巴拉</p>
+				      		<p>报价：6000元</p>
+				      	</div>
+				      </div>
+				      <div class="slide">
+				      	<img src="img/11.png">
+				      	<p>场地-报告厅&nbsp;6000/次</p>
+				      	<div class="show">
+				      		<div class="showbg"></div>
+				      		<p>服务商名称：昆明理工大学学生会</p>
+				      		<p>服务类型：线上-微信公众号</p>
+				      		<p>公众号名称：巴拉巴拉</p>
+				      		<p>报价：6000元</p>
+				      	</div>
+				      </div>
+				      <div class="slide">
+				      	<img src="img/11.png">
+				      	<p>场地-报告厅&nbsp;6000/次</p>
+				      	<div class="show">
+				      		<div class="showbg"></div>
+				      		<p>服务商名称：昆明理工大学学生会</p>
+				      		<p>服务类型：线上-微信公众号</p>
+				      		<p>公众号名称：巴拉巴拉</p>
+				      		<p>报价：6000元</p>
+				      	</div>
+				      </div>
+				      <div class="slide">
+				      	<img src="img/11.png">
+				      	<p>场地-报告厅&nbsp;6000/次</p>
+				      	<div class="show">
+				      		<div class="showbg"></div>
+				      		<p>服务商名称：昆明理工大学学生会</p>
+				      		<p>服务类型：线上-微信公众号</p>
+				      		<p>公众号名称：巴拉巴拉</p>
+				      		<p>报价：6000元</p>
+				      	</div>
+				      </div>
+				      <div class="slide">
+				      	<img src="img/11.png">
+				      	<p>场地-报告厅&nbsp;6000/次</p>
+				      	<div class="show">
+				      		<div class="showbg"></div>
+				      		<p>服务商名称：昆明理工大学学生会</p>
+				      		<p>服务类型：线上-微信公众号</p>
+				      		<p>公众号名称：巴拉巴拉</p>
+				      		<p>报价：6000元</p>
+				      	</div>
+				      </div>
+				      <div class="slide">
+				      	<img src="img/11.png">
+				      	<p>场地-报告厅&nbsp;6000/次</p>
+				      	<div class="show">
+				      		<div class="showbg"></div>
+				      		<p>服务商名称：昆明理工大学学生会</p>
+				      		<p>服务类型：线上-微信公众号</p>
+				      		<p>公众号名称：巴拉巴拉</p>
+				      		<p>报价：6000元</p>
+				      	</div>
+				      </div>
+				    </div>
 				</div>
 			</div>
 		</div>
+		
+
    <footer th:replace="common/footer :: footer"></footer>
 </body>
+
+<script>
+	$(function(){
+		$('.slider2').bxSlider({
+			mode: 'fade',
+			infiniteLoop: true,
+			auto: true,
+			speed:400,
+			hideControlOnEnd: true
+		});
+		$('.slider3').bxSlider({
+            slideWidth: 240,
+            minSlides: 2,
+            maxSlides: 3,
+			moveSlides: 1,
+            slideMargin: 10
+         });
+	});
+	$.fn.hc_proTabChange = function(ev) {
+		var ev = ev || 'click';
+		var _this = $(this);
+		_this.find('.service_details_tab span').each(function(i) {
+			$(this)[ev](function() {
+				$(this).addClass('details_tabSelect').siblings('.service_details_tab span').removeClass('details_tabSelect');
+				_this.find('.service_details_view>.service_details_list').eq(i).show().siblings('.service_details_view>.service_details_list').hide();
+			})
+		})
+	}
+	$(function() {
+		$('.service_details_list').hc_proTabChange();
+	});
+	
+	function setContentStandardId(_this){
+		$(_this).addClass('resourcesNumselected').siblings().removeClass('resourcesNumselected');
+		var contentStandardId = $(_this).attr('contentStandardId');
+		$('#serviceXQ_contentStandardId').attr('contentStandardId',contentStandardId);
+	}
+	$("#serviceXQ_qiangdan").click(function(){
+		var contentStandardId = $('.resourcesNumselected').attr('contentStandardId');
+		var serviceId = $('#serviceXQ_serviceId').attr('serviceId');
+		if(contentStandardId == undefined){
+			contentStandardId = -1;
+		}
+		window.location.href="/qiji/pay?serviceId=" + serviceId + "&contentStandardId=" + contentStandardId;
+		
+	});
+</script>
 
 </html>

@@ -68,4 +68,13 @@
       province = #{province,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="getAllProvinces" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_provinces
+    order by provinceid
+  </select>
+  
+  
 </mapper>

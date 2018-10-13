@@ -11,15 +11,17 @@
 					<div class="search-list">
 						<span class="left">服务类型</span>
 						<div class="search-list-r left">
-							<a href="javascript:void(0)">线上</a>
-							<a href="javascript:void(0)">线上</a>
-							<a href="javascript:void(0)">人员</a>
-							<a href="javascript:void(0)">场地</a>
-							<a href="javascript:void(0)">内容场地</a>
-							<a href="javascript:void(0)">制作/搭建</a>
+							<a href="javascript:void(0)" th:each="entry,iterEntry:${require_rootCategoryLists}" th:text="${entry.name}" th:attr="category_parent_id=${entry.id}">线上</a>
 						</div>
 					</div>
-					<div class="search-list">
+					<div class="search-list secondCategory clearfix" >
+						<span class="left">服务分类</span>
+						<div class="search-list-r left" id="require_secondCategoryLists">
+							<a href="javascript:void(0)" th:each="entry,iterEntry:${require_secondCategoryLists}" th:text="${entry.name}" th:attr="category_id=${entry.id}">微信公众号</a>
+						</div>
+						<span class="secondCategoryTaggle"><i></i></span>
+					</div>
+					<div class="search-list"  style="display: none;">
 						<span class="left">价格</span>
 						<div class="search-list-r left">
 							<a href="javascript:void(0)">&lt;50</a>
@@ -29,97 +31,80 @@
 							<a href="javascript:void(0)">&gt;5000</a>
 						</div>
 					</div>
-					<div class="search-list">
+					<div class="search-list city clearfix"  style="display: none;">
 						<span class="left">地区</span>
 						<div class="search-list-r left">
-							<a href="javascript:void(0)">北京</a>
-							<a href="javascript:void(0)">上海</a>
-							<a href="javascript:void(0)">天津</a>
-							<a href="javascript:void(0)">北京</a>
-							<a href="javascript:void(0)">上海</a>
-							<a href="javascript:void(0)">天津</a>
-							<a href="javascript:void(0)">上海</a>
-							<a href="javascript:void(0)">天津</a>
-							<a href="javascript:void(0)">北京</a>
-							<a href="javascript:void(0)">上海</a>
-							<a href="javascript:void(0)">天津</a>							
-							<a href="javascript:void(0)">天津</a>
-							<a href="javascript:void(0)">北京</a>
+							<a href="javascript:void(0)"  th:each="entry,iterEntry:${require_microCitiesLists}" th:text="${entry.city}" th:attr="cid=${entry.id},cityid=${entry.cityid},provinceid=${entry.provinceid}">北京</a>
 						</div>
+						<span class="cityTaggle"><i></i></span>
 					</div>
-					<div class="search-list">
+					<div class="search-list"  style="display: none;">
 						<span class="left">院校</span>
 						<div class="search-list-r left">
-							<a href="javascript:void(0)">985</a>
-							<a href="javascript:void(0)">211</a>
-							<a href="javascript:void(0)">一本</a>
-							<a href="javascript:void(0)">二本</a>
-							<a href="javascript:void(0)">三本</a>
+							<a href="javascript:void(0)"  th:each="entry,iterEntry:${require_schoolTypes}" th:text="${entry}">985</a>
 						</div>
+					</div>
+					<div class="sortBox sortBox_b">
+						<span>筛选条件</span>
+						<a href="javascript:void(0)">省</a>
+						<a href="javascript:void(0)">市</a>
+						<a href="javascript:void(0)">区</a>
+						<a href="javascript:void(0)">学校类别</a>
+						<a href="javascript:void(0)">学校名称</a>
+						<a href="javascript:void(0)">院系</a>
 					</div>
 				</div>
 				<div class="title">
 					<h2>最新资源</h2>
 				</div>
-				<div class="sortBox">
-					<span>排序</span>
-					<a href="">地区</a>
-					<a href="">类型</a>
-					<a href="">预算</a>
-					<a href="">开始时间</a>
+				<div class="service_title">
+					<span class="service_title_active">综合排序</span>
+					<span>价格</span>
+					<span>开始时间</span>
 				</div>
 				<div class="line"></div>
 				<div class="required-main">
-					<div class="required-list">
-						<div class="required-list-l left">
-							<img src="img/11.png"/>
+					<div th:each="entry,iterEntry:${require_activityLists}" class="required-list" >
+							<div class="required-list-l left">
+								<img th:src="'http://qj101.com' + ${entry.activityPictureUrl}" src="img/11.png" style="height:150px;width:230px;"/>
+							</div>
+							<div class="required-list-r left">
+								
+								<h4 style="float:left;" th:text="'需求类型 : ' + ${entry.parentCategoryName}">需求类型：线上</h4>
+								<p style="margin-left:20px;display:inline;" th:text="'需求名称 : ' + ${entry.categoryName} + '推广'">需求名称：微信公众号推广</p>
+								<p th:text="'企业名称 : ' + ${entry.activityOgname}">企业名称：中国人民大学</p>
+								<p th:text="'需求简介 : ' + ${entry.activityContent}">主要介绍项目推广的目的，想到达到什么样的效果主要介绍项目推广的目的，想到．．．．</p>
+								<span th:text="'地区: ' + ${entry.activityAddress}">地区：杭州市</span>
+								<span th:text="'预算 : ' + ${entry.activityActback}">预算：10000</span>
+								<span th:text="'开始时间 : ' + ${entry.activityStartTime}">开始时间：2017.9.16</span>
+								<div class="required-bottom-info">
+									<span th:text="'结束时间 : ' + ${entry.activityEndTime}">结束时间：2017.12.31</span>
+									<span class="right">距离抢单结束时间还有：
+										
+										<span class="countdown">
+											<span th:text="${entry.activityEndTime}" hidden="true"></span>
+											<i class="days">00</i>
+											<i class="days_ref"> 天  </i>
+											<i class="hours">00</i>
+											<i>:</i>
+											<i class="minutes">00</i>
+											<i>:</i>
+											<i class="seconds">00</i>
+										</span>
+									</span>
+								</div>
+								<span th:text="${entry.activityActid}" style="display:none;"></span>
+								<a href="" class="head-btn">马上抢</a>
+							</div>
 						</div>
-						<div class="required-list-r left">
-							<h4>需求类型：微信公众号推广</h4>
-							<p>企业名称：中国人民大学</p>
-							<p>需求简介：主要介绍项目推广的目的，想到达到什么样的效果主要介绍项目推广的目的，想到．．．．</p>
-							<span>地区：杭州市</span>
-							<span>预算：10000</span>
-							<span>开始时间：2017.9.16</span>
-							<div class="required-bottom-info"><span>结束时间：2017.12.31</span><span class="right">距离抢单结束时间还有：<i>00:21:10</i></span></div>
-							<a href="" class="head-btn">马上抢</a>
-						</div>
-					</div>
-					<div class="required-list">
-						<div class="required-list-l left">
-							<img src="img/11.png"/>
-						</div>
-						<div class="required-list-r left">
-							<h4>需求类型：微信公众号推广</h4>
-							<p>企业名称：中国人民大学</p>
-							<p>需求简介：主要介绍项目推广的目的，想到达到什么样的效果主要介绍项目推广的目的，想到．．．．</p>
-							<span>地区：杭州市</span>
-							<span>预算：10000</span>
-							<span>开始时间：2017.9.16</span>
-							<div class="required-bottom-info"><span>结束时间：2017.12.31</span><span class="right">距离抢单结束时间还有：<i>00:21:10</i></span></div>
-							<a href="" class="head-btn">马上抢</a>
-						</div>
-					</div>
-					<div class="required-list">
-						<div class="required-list-l left">
-							<img src="img/11.png"/>
-						</div>
-						<div class="required-list-r left">
-							<h4>需求类型：微信公众号推广</h4>
-							<p>企业名称：中国人民大学</p>
-							<p>需求简介：主要介绍项目推广的目的，想到达到什么样的效果主要介绍项目推广的目的，想到．．．．</p>
-							<span>地区：杭州市</span>
-							<span>预算：10000</span>
-							<span>开始时间：2017.9.16</span>
-							<div class="required-bottom-info"><span>结束时间：2017.12.31</span><span class="right">距离抢单结束时间还有：<i>00:21:10</i></span></div>
-							<a href="" class="head-btn">马上抢</a>
-						</div>
-					</div>
 				</div>
+				<ul class="pagination" id="pagination"></ul>
 			</div>
 		</div>
    <footer th:replace="common/footer :: footer"></footer>
 </body>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script type="text/javascript" src="js/require.js"></script>
 <script type="text/javascript">
 $(function(){
 	$(".nav-selected").removeClass("nav-selected");

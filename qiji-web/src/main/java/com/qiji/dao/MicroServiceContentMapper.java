@@ -14,4 +14,6 @@ public interface MicroServiceContentMapper {
     int updateByPrimaryKeySelective(MicroServiceContent record);
 
     int updateByPrimaryKey(MicroServiceContent record);
+    
+    
 }

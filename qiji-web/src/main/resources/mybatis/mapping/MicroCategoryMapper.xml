@@ -92,12 +92,22 @@
   </update>
   
   
-  <select id="getCatagoryByParentId" resultMap="BaseResultMap" >
+  <select id="getCategoryByParentId" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
     from micro_category
     where parent_id = #{parentId,jdbcType=INTEGER}
-    order by sort asc
+    order by sort,id asc
+  </select>
+  
+  <select id="getFirstForSecondCategory" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_category
+    where parent_id in(
+		select id from micro_category where name = '线上'
+	)
+	order by sort asc
   </select>
   
   

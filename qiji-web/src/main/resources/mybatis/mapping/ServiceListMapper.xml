@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.ServiceListMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.ServiceList" >
+    <result column="service_id" property="serviceId" jdbcType="BIGINT" />
+    <result column="service_url" property="serviceUrl" jdbcType="VARCHAR" />
+    <result column="service_type" property="serviceType" jdbcType="VARCHAR" />
+    <result column="service_prop_name" property="servicePropName" jdbcType="VARCHAR" />
+    <result column="service_prop_value" property="servicePropValue" jdbcType="VARCHAR" />
+    <result column="prop_type" property="propType" jdbcType="VARCHAR" />
+    <result column="prop_sort" property="propSort" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getServiceByProp" resultMap="BaseResultMap">
+  	select * from v_service_list
+  	where 1=1
+  	   <if test="serviceId != null" >
+        and service_id = #{serviceId,jdbcType=BIGINT}
+      </if>
+      <if test="serviceType != null and serviceType != '' " >
+        and service_type = #{serviceType,jdbcType=VARCHAR}
+      </if>
+      <if test="servicePropName != null and servicePropName != '' " >
+        and service_prop_name = #{servicePropName,jdbcType=VARCHAR}
+      </if>
+      <if test="propType != null and propType != '' " >
+        and prop_type =  #{propType,jdbcType=VARCHAR}
+      </if>
+      <if test="propSort != null and propSort != '' " >
+        and prop_sort = #{propSort,jdbcType=VARCHAR}
+      </if>
+      
+      order by prop_type,prop_sort
+
+  </select>
+  
+  <select id="getServiceById" resultMap="BaseResultMap">
+  	select * from v_service_list
+  	where service_id = #{serviceId}
+      order by prop_type,prop_sort
+
+  </select>
+</mapper>

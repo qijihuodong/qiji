@@ -16,4 +16,6 @@ public interface MicroAuthOrgniseMapper {
     int updateByPrimaryKeyWithBLOBs(MicroAuthOrgnise record);
 
     int updateByPrimaryKey(MicroAuthOrgnise record);
+    
+    public Integer getNums();
 }

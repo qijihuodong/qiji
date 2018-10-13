@@ -79,4 +79,20 @@
       cityid = #{cityid,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="getAllAreas" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_areas
+    order by cityid,areaid
+  </select>
+  
+  <select id="getAreasByCityId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_areas
+    where cityid = #{cityId,jdbcType=VARCHAR}
+    order by cityid,areaid
+  </select>
+  
 </mapper>

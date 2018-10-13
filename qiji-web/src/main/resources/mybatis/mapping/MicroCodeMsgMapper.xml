@@ -90,4 +90,17 @@
       result = #{result,jdbcType=VARCHAR}
     where code_id = #{codeId,jdbcType=INTEGER}
   </update>
+  
+  <select id="isVCodeRight" parameterType="com.qiji.domain.MicroCodeMsg" resultType="int">
+  	select 
+    	count(1)
+    from micro_code_msg
+    where mobile = #{mobile,jdbcType=VARCHAR} and code = #{code,jdbcType=VARCHAR} 
+    	and add_time &lt;= #{addTime,jdbcType=INTEGER} and add_time &gt;= (#{addTime,jdbcType=INTEGER}-300)
+  </select>
+  <select id="isVCodeExits" parameterType="com.qiji.domain.MicroCodeMsg" resultType="int">
+  	select count(1)
+    from micro_code_msg
+    where mobile = #{mobile,jdbcType=VARCHAR}
+  </select>
 </mapper>

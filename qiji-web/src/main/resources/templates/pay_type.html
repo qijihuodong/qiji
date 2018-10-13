@@ -1,0 +1,171 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="common/inc::common_header('服务详情')">
+	</head>
+<body>
+   <header th:replace="common/header :: header"></header>
+		<div class="page">
+			<div class="pay area">
+				<div class="order pay_type">
+					<div class="pay_type_info">
+						<h3><i></i>支付说明</h3>
+						<p>1.关于服务对接：您在奇迹活动平台付款后，奇迹助手会在24小时内与您联系，并为您对接相关服务，请您放心购买。</p>
+						<p>2.关于定金：因部分校园营销资源位稀缺且成本较高，您预付定金后平台会为您锁定此项服务，因此需要支付定金。</p>
+						<p>3.关于退款：您购买商品后，在服务未开始执行前您可申请退款，一旦服务开始执行，因服务商已产生成本，则不可退
+							款，具体以双方协商为准。</p>
+						<p>4.如有疑问请咨询售后电话：<i>010-57158847</i>奇迹助手1：<i>18518516372</i>奇迹助手2：<i>Vvvlyd789</i></p>																				
+					</div>
+				</div>
+				<div class="pay_type_b" id="pay_type_order" th:attr="serviceId=${payVo.serviceId},contentStandardId=${payVo.serviceStandardId}">
+					<h2 class="pay_title">支付方式</h2>
+					<h4><span>应付</span><i th:text="${payVo.priceAll}">￥69.00</i><p>（请选择支付方式）</p></h4>
+					<div class="type_item">
+						<span class="type_item_select">
+							<img src="img/type1.png"/>
+							<img src="img/123.png"/>
+						</span>
+						<span style="display:none;">
+							<img src="img/type2.png"/>						
+							<img src="img/123.png"/>
+						</span>
+					</div>
+					<a class="pay_btn" style="margin-top:40px;margin-bottom:100px;" href="javascript:void(0);" id="serviceXQ_qiangdan">确定支付</a>
+				</div>
+			</div>
+		</div>
+		<div id="popup_gray"></div>
+<div class="popup" id="popup">
+	<div class="min">
+		<div class="min_nav"><p class="min-l">商品名称：<span id="serviceXQ_orderNm" th:text="${payVo.desc}">1111111111111</span> </p>
+		<p class="min-r">订单号：<span id="serviceXQ_orderId">1111111111111</span></p></div>
+		<div class="tc_login">
+			<div class="tc_login_left">
+				<div><img id="serviceXQ_erweima" src="images/erweima.jpg" /></div>
+				<dd>
+				
+					<div align="center">扫描二维码支付</div>
+				</dd>
+			</div>  
+			<span class="button" id="pay_type_btn_succ">支付成功</span>
+			
+		</div>
+	</div>
+</div>
+	<footer th:replace="common/footer :: footer"></footer>	
+	</body>
+	<style type="text/css">
+
+#popup_gray{width:100%;height:100%;background:rgba(0,0,0,0.3);position:fixed;top:0px;display:none;z-index:99;}
+
+.popup{
+	width:800px; 
+	height:500px;
+	background-color:#f7f7f7;
+	position:fixed;
+	z-index:100;
+	border:1px solid #ebeaea;
+	left:50%;
+	margin-left:-400px;
+	top:50%;
+	margin-top:-250px;
+	padding:40px;
+	box-sizing:border-box;
+	display:none;
+}
+.popup .min{width:100%;height:auto;}
+.min_nav{width:100%;height:40px;line-height:40px;}
+.min_nav .min-l{float:left;font-size:14px;}
+.min_nav .min-r{float:right;font-size:16px;}
+.tc_login{width:100%;height:350px;background-color:#fff;padding-top:20px;box-sizing:border-box;}
+.tc_login .tc_login_left img{width:200px;margin:0 auto 0;display:block;}
+.tc_login .tc_login_left dd{height:30px;font:14px/30px 'microsoft yahei';color:#666;text-align:center;display:block;}
+
+.tc_login .button{
+    background:#d7532e;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    display:block;
+    height: 40px;
+    line-height:40px;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    text-align: center;
+    width: 200px;
+    margin:30px auto;
+	font-weight: bold;
+	}
+
+</style>
+
+	<script type="text/javascript">
+			$(function(){
+				$('.type_item>span').click(function(){
+					$(this).addClass('type_item_select').siblings('span').removeClass('type_item_select');
+				})
+			});
+		</script>
+		<script>
+
+
+function showDiv(){
+	$("#popup_gray").show();
+	$("#popup").show();//查找ID为popup的DIV show()显示#gray
+	tc_center();
+}
+function closeDiv(){
+    $(".lbOverlay").hide();
+    $(".hidden_pro_au").hide();
+}
+/*
+function tc_center(){
+	var _top=($(window).height()-$(".popup").height())/2;
+	var _left=($(window).width()-$(".popup").width())/2;
+	
+	$(".popup").css({top:_top,left:_left});
+}*/	
+$(function(){
+	$("#serviceXQ_qiangdan").click(function(){
+		
+		var contentStandardId = $('#pay_type_order').attr('contentStandardId');
+		var serviceId = $('#pay_type_order').attr('serviceId');
+		
+		$.ajax({
+	     	type :"post" ,
+	     	url :"/qiji/wxPay/unifiedOrder",
+	     	data :{
+	     		serviceId : serviceId,
+	     		standardId : contentStandardId
+	     	},
+	     	dataType: "json" ,
+	     	async :true ,
+	     	success: function(data) {
+	     		if(data.operSucc && data.succ){
+	     			
+	     			$('#serviceXQ_orderNm').text(data.obj.orderNm);
+	     			$('#serviceXQ_orderId').text(data.obj.orderId);
+	     			$('#serviceXQ_erweima').attr("src","data:image/jpeg;base64,"+data.obj.qrCode)
+	     			showDiv();
+	     		}else{
+	     			if(null!=data.message && "跳转" == data.message){
+	     				window.location.href="/qiji/index";
+	     				alert("请先登录!");
+	     			}else{
+	     				alert(data.message);
+	     			}
+	     			
+	     		}
+	     	},
+	        error: function(data) {
+	        	
+	       }
+		});
+	});
+	
+	$('#pay_type_btn_succ').click(function(){
+		
+	});
+});
+</script>
+</html>

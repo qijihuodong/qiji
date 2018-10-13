@@ -79,4 +79,22 @@
       type = #{type,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="getSchoolTypes" resultType="String" >
+    select distinct type
+    from micro_school
+  </select>
+  
+  <select id="getSchoolsByType" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_school
+    where type = #{type,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getSchoolIdsByType" resultType="Integer" parameterType="String">
+    select id
+    from micro_school
+    where type = #{type,jdbcType=VARCHAR}
+  </select>
 </mapper>

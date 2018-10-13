@@ -14,4 +14,9 @@ public interface IMicroUsersService {
 	
 	public void register(MicroUsers user);
 	
+	public void forget(MicroUsers user);
+	
+	public MicroUsers updateMyInfo(MicroUsers user); 
+	
+	public MicroUsers getMyInfo(String utel);
 }

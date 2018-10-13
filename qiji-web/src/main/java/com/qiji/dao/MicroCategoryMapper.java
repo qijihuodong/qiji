@@ -17,5 +17,7 @@ public interface MicroCategoryMapper {
 
     int updateByPrimaryKey(MicroCategory record);
     
-    List<MicroCategory> getCatagoryByParentId(MicroCategory record);
+    public List<MicroCategory> getCategoryByParentId(Integer parentId);
+    
+    public List<MicroCategory> getFirstForSecondCategory();
 }

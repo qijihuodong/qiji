@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiji.dao.UserServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.qiji.domain.UserService" >
+    <result column="service_id" property="serviceId" jdbcType="BIGINT" />
+    <result column="service_uid" property="serviceUid" jdbcType="BIGINT" />
+    <result column="service_ogid" property="serviceOgid" jdbcType="BIGINT" />
+    <result column="service_utype" property="serviceUtype" jdbcType="INTEGER" />
+    <result column="service_parent_category_id" property="serviceParentCategoryId" jdbcType="BIGINT" />
+    <result column="service_category_id" property="serviceCategoryId" jdbcType="BIGINT" />
+    <result column="service_create_time" property="serviceCreateTime" jdbcType="VARCHAR" />
+    <result column="service_status" property="serviceStatus" jdbcType="INTEGER" />
+    <result column="service_reason" property="serviceReason" jdbcType="VARCHAR" />
+    <result column="user_uid" property="userUid" jdbcType="BIGINT" />
+    <result column="user_utype" property="userUtype" jdbcType="INTEGER" />
+    <result column="user_status" property="userStatus" jdbcType="INTEGER" />
+    <result column="user_integral" property="userIntegral" jdbcType="BIGINT" />
+    <result column="user_gender" property="userGender" jdbcType="INTEGER" />
+    <result column="user_utel" property="userUtel" jdbcType="VARCHAR" />
+    <result column="user_nickname" property="userNickname" jdbcType="VARCHAR" />
+    <result column="user_upwd" property="userUpwd" jdbcType="VARCHAR" />
+    <result column="user_vcode" property="userVcode" jdbcType="VARCHAR" />
+    <result column="user_login_ip" property="userLoginIp" jdbcType="VARCHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="user_address" property="userAddress" jdbcType="VARCHAR" />
+    <result column="user_logourl" property="userLogourl" jdbcType="VARCHAR" />
+    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="user_intro" property="userIntro" jdbcType="VARCHAR" />
+    <result column="user_school" property="userSchool" jdbcType="VARCHAR" />
+    <result column="user_qrcode" property="userQrcode" jdbcType="VARCHAR" />
+    <result column="user_create_time" property="userCreateTime" jdbcType="VARCHAR" />
+    <result column="user_check_time" property="userCheckTime" jdbcType="VARCHAR" />
+    <result column="user_update_time" property="userUpdateTime" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
+    <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+    <result column="category_parent_id" property="categoryParentId" jdbcType="BIGINT" />
+    <result column="category_type" property="categoryType" jdbcType="INTEGER" />
+    <result column="category_sort" property="categorySort" jdbcType="BIGINT" />
+    <result column="parent_category_id" property="parentCategoryId" jdbcType="BIGINT" />
+    <result column="parent_category_name" property="parentCategoryName" jdbcType="VARCHAR" />
+    <result column="parent_category_parent_id" property="parentCategoryParentId" jdbcType="BIGINT" />
+    <result column="parent_category_type" property="parentCategoryType" jdbcType="INTEGER" />
+    <result column="parent_category_sort" property="parentCategorySort" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="com.qiji.domain.UserService" >
+    insert into v_user_service (service_id, service_uid, service_ogid, 
+      service_utype, service_parent_category_id, service_category_id, 
+      service_create_time, service_status, service_reason, 
+      user_uid, user_utype, user_status, 
+      user_integral, user_gender, user_utel, 
+      user_nickname, user_upwd, user_vcode, 
+      user_login_ip, user_email, user_address, 
+      user_logourl, user_password, user_intro, 
+      user_school, user_qrcode, user_create_time, 
+      user_check_time, user_update_time, category_id, 
+      category_name, category_parent_id, category_type, 
+      category_sort, parent_category_id, parent_category_name, 
+      parent_category_parent_id, parent_category_type, 
+      parent_category_sort)
+    values (#{serviceId,jdbcType=BIGINT}, #{serviceUid,jdbcType=BIGINT}, #{serviceOgid,jdbcType=BIGINT}, 
+      #{serviceUtype,jdbcType=INTEGER}, #{serviceParentCategoryId,jdbcType=BIGINT}, #{serviceCategoryId,jdbcType=BIGINT}, 
+      #{serviceCreateTime,jdbcType=VARCHAR}, #{serviceStatus,jdbcType=INTEGER}, #{serviceReason,jdbcType=VARCHAR}, 
+      #{userUid,jdbcType=BIGINT}, #{userUtype,jdbcType=INTEGER}, #{userStatus,jdbcType=INTEGER}, 
+      #{userIntegral,jdbcType=BIGINT}, #{userGender,jdbcType=INTEGER}, #{userUtel,jdbcType=VARCHAR}, 
+      #{userNickname,jdbcType=VARCHAR}, #{userUpwd,jdbcType=VARCHAR}, #{userVcode,jdbcType=VARCHAR}, 
+      #{userLoginIp,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userAddress,jdbcType=VARCHAR}, 
+      #{userLogourl,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{userIntro,jdbcType=VARCHAR}, 
+      #{userSchool,jdbcType=VARCHAR}, #{userQrcode,jdbcType=VARCHAR}, #{userCreateTime,jdbcType=VARCHAR}, 
+      #{userCheckTime,jdbcType=VARCHAR}, #{userUpdateTime,jdbcType=VARCHAR}, #{categoryId,jdbcType=BIGINT}, 
+      #{categoryName,jdbcType=VARCHAR}, #{categoryParentId,jdbcType=BIGINT}, #{categoryType,jdbcType=INTEGER}, 
+      #{categorySort,jdbcType=BIGINT}, #{parentCategoryId,jdbcType=BIGINT}, #{parentCategoryName,jdbcType=VARCHAR}, 
+      #{parentCategoryParentId,jdbcType=BIGINT}, #{parentCategoryType,jdbcType=INTEGER}, 
+      #{parentCategorySort,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiji.domain.UserService" >
+    insert into v_user_service
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serviceId != null" >
+        service_id,
+      </if>
+      <if test="serviceUid != null" >
+        service_uid,
+      </if>
+      <if test="serviceOgid != null" >
+        service_ogid,
+      </if>
+      <if test="serviceUtype != null" >
+        service_utype,
+      </if>
+      <if test="serviceParentCategoryId != null" >
+        service_parent_category_id,
+      </if>
+      <if test="serviceCategoryId != null" >
+        service_category_id,
+      </if>
+      <if test="serviceCreateTime != null" >
+        service_create_time,
+      </if>
+      <if test="serviceStatus != null" >
+        service_status,
+      </if>
+      <if test="serviceReason != null" >
+        service_reason,
+      </if>
+      <if test="userUid != null" >
+        user_uid,
+      </if>
+      <if test="userUtype != null" >
+        user_utype,
+      </if>
+      <if test="userStatus != null" >
+        user_status,
+      </if>
+      <if test="userIntegral != null" >
+        user_integral,
+      </if>
+      <if test="userGender != null" >
+        user_gender,
+      </if>
+      <if test="userUtel != null" >
+        user_utel,
+      </if>
+      <if test="userNickname != null" >
+        user_nickname,
+      </if>
+      <if test="userUpwd != null" >
+        user_upwd,
+      </if>
+      <if test="userVcode != null" >
+        user_vcode,
+      </if>
+      <if test="userLoginIp != null" >
+        user_login_ip,
+      </if>
+      <if test="userEmail != null" >
+        user_email,
+      </if>
+      <if test="userAddress != null" >
+        user_address,
+      </if>
+      <if test="userLogourl != null" >
+        user_logourl,
+      </if>
+      <if test="userPassword != null" >
+        user_password,
+      </if>
+      <if test="userIntro != null" >
+        user_intro,
+      </if>
+      <if test="userSchool != null" >
+        user_school,
+      </if>
+      <if test="userQrcode != null" >
+        user_qrcode,
+      </if>
+      <if test="userCreateTime != null" >
+        user_create_time,
+      </if>
+      <if test="userCheckTime != null" >
+        user_check_time,
+      </if>
+      <if test="userUpdateTime != null" >
+        user_update_time,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="categoryName != null" >
+        category_name,
+      </if>
+      <if test="categoryParentId != null" >
+        category_parent_id,
+      </if>
+      <if test="categoryType != null" >
+        category_type,
+      </if>
+      <if test="categorySort != null" >
+        category_sort,
+      </if>
+      <if test="parentCategoryId != null" >
+        parent_category_id,
+      </if>
+      <if test="parentCategoryName != null" >
+        parent_category_name,
+      </if>
+      <if test="parentCategoryParentId != null" >
+        parent_category_parent_id,
+      </if>
+      <if test="parentCategoryType != null" >
+        parent_category_type,
+      </if>
+      <if test="parentCategorySort != null" >
+        parent_category_sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=BIGINT},
+      </if>
+      <if test="serviceUid != null" >
+        #{serviceUid,jdbcType=BIGINT},
+      </if>
+      <if test="serviceOgid != null" >
+        #{serviceOgid,jdbcType=BIGINT},
+      </if>
+      <if test="serviceUtype != null" >
+        #{serviceUtype,jdbcType=INTEGER},
+      </if>
+      <if test="serviceParentCategoryId != null" >
+        #{serviceParentCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="serviceCategoryId != null" >
+        #{serviceCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="serviceCreateTime != null" >
+        #{serviceCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceStatus != null" >
+        #{serviceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="serviceReason != null" >
+        #{serviceReason,jdbcType=VARCHAR},
+      </if>
+      <if test="userUid != null" >
+        #{userUid,jdbcType=BIGINT},
+      </if>
+      <if test="userUtype != null" >
+        #{userUtype,jdbcType=INTEGER},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userIntegral != null" >
+        #{userIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="userGender != null" >
+        #{userGender,jdbcType=INTEGER},
+      </if>
+      <if test="userUtel != null" >
+        #{userUtel,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null" >
+        #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userUpwd != null" >
+        #{userUpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userVcode != null" >
+        #{userVcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginIp != null" >
+        #{userLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null" >
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userLogourl != null" >
+        #{userLogourl,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userIntro != null" >
+        #{userIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="userSchool != null" >
+        #{userSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="userQrcode != null" >
+        #{userQrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userCreateTime != null" >
+        #{userCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="userCheckTime != null" >
+        #{userCheckTime,jdbcType=VARCHAR},
+      </if>
+      <if test="userUpdateTime != null" >
+        #{userUpdateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryName != null" >
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryParentId != null" >
+        #{categoryParentId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryType != null" >
+        #{categoryType,jdbcType=INTEGER},
+      </if>
+      <if test="categorySort != null" >
+        #{categorySort,jdbcType=BIGINT},
+      </if>
+      <if test="parentCategoryId != null" >
+        #{parentCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="parentCategoryName != null" >
+        #{parentCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCategoryParentId != null" >
+        #{parentCategoryParentId,jdbcType=BIGINT},
+      </if>
+      <if test="parentCategoryType != null" >
+        #{parentCategoryType,jdbcType=INTEGER},
+      </if>
+      <if test="parentCategorySort != null" >
+        #{parentCategorySort,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

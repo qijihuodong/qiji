@@ -3,6 +3,11 @@ package com.qiji.domain;
 import java.util.Date;
 
 public class MicroService {
+	
+	private Integer startIndex;//取服务个数
+	
+	private Integer nums;
+	
     private Integer id;
 
     private Integer uid;
@@ -20,8 +25,26 @@ public class MicroService {
     private Byte status;
 
     private String reason;
+    
+    
+    
+    public Integer getStartIndex() {
+		return startIndex;
+	}
 
-    public Integer getId() {
+	public void setStartIndex(Integer startIndex) {
+		this.startIndex = startIndex;
+	}
+
+	public Integer getNums() {
+		return nums;
+	}
+
+	public void setNums(Integer nums) {
+		this.nums = nums;
+	}
+
+	public Integer getId() {
         return id;
     }
 

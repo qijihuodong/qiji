@@ -9,8 +9,7 @@
 			<div class="bannerBox area">
 				<div id="user_login_before" class="userCenter left">
 					<div class="userCenter-tab">
-						<span id="user_login_student" class="userCenter-tab-selected" style="cursor:pointer;">雇主登陆</span>
-						<span id="user_login_business" style="cursor:pointer;">服务商登陆</span>
+						<span class="userCenter-tab-selected">用户登录</span>
 					</div>
 					<div class="loginBox">
 						<form id="userlogina" action="">
@@ -24,7 +23,7 @@
 			                	<label for="user_login_tel">密码</label>
 			                    <input id="user_login_password" name="upwd" type="password" placeholder="请输入您的密码"/>
 			                </div>
-			                <a href="/qiji/forget" id="forgot">忘记密码</a>           
+			                <a href="forget" id="forgot">忘记密码</a>           
 			                <input type="button" id="login_btn" value="登录" style="cursor: pointer;"/>	                                
 			                <div class="forget_box">
 			                    <div class="forget_l">
@@ -37,18 +36,18 @@
 			            <div class="else-login">
 			            	<p><i class="line-l"></i>其他方式登陆<i class="line-r"></i></p>
 			            	<div class="login-way">
-			            		<a class="qq" href=""></a>
-			            		<a class="weixin" href=""></a>
-			            		<a class="weibo" href=""></a>
+			            		<a class="qq" href="javascript:void(0);" onClick="alert('接入中，敬请期待！')"></a>
+			            		<a class="weixin" href="javascript:void(0);" onClick="alert('接入中，敬请期待！')"></a>
+			            		<a class="weibo" href="javascript:void(0);" onClick="alert('接入中，敬请期待！')"></a>
 			            	</div>
 			            </div>
 		            </div>
 		            <div class="login-userMsg">
 						<div class="login-userMsg-tBox">
 							<div class="login-userMsg-t">								
-								<a href="">[退出]</a>
+								<a href="javascript:void(0);" id="index_logout">[退出]</a>
 								<img src="img/required-5.png"/>
-								<span id="">18310481391</span>
+								<span id="user_login_after_tel"></span>
 							</div>
 						</div>
 						<ul class="dingdanList clearfix">
@@ -62,35 +61,25 @@
 						<a class="userLink" href="">进入个人中心</a>
 					</div>
 				</div>
-				<div  id="user_login_after" class="userCenter left" style="display:none">
-					<div class="userCenter-tab">
-						<span id="user_login_student_after" class="userCenter-tab-selected">雇主登陆</span>
-						<span id="user_login_business_after" >服务商登陆</span>
-					</div>
-					<div>
-						<img id="user_login_after_touxiang" alt="头像" src="upload/userimg/user_default.jepg" style="float: left;" />
-						用户名：<span id="user_login_after_tel"></span>
-						<span id="user_login_after_exit" style="float: right;color: rgb(52, 134, 192);font: 14px/1em 微软雅黑;">[退出]</span>
-						<hr style="height:1px;border:none;border-top:1px solid #555555;" />
-						
-					</div>
-				</div>
+				
 				<div class="banner left">
 					<div class="slider1">
-						<div class="slide"><img src="img/banner-1.png"/></div>
-						<div class="slide"><img src="img/banner-1.png"/></div>
+						<div class="slide"><img src="http://qj101.com/upload/carousel/5ae14fde5a1af.jpg"/></div>
+						<div class="slide"><img src="http://qj101.com/upload/carousel/5b2335fe78c76.png"/></div>
+						<div class="slide"><img src="http://qj101.com/upload/carousel/5b178912b1e41.jpg"/></div>
+						<div class="slide"><img src="http://qj101.com/upload/carousel/5b20ac303193b.jpg"/></div>
 						<div class="slide"><img src="img/banner-1.png"/></div>
 					</div>
 				</div>
 				<div class="banner-right right">
 					<p class="head-btn">让企业营销推广变得简单</p>
 					<div class="banner-right-number">
-						<span>已入住社团</span>
-						<h2>12345678</h2>
+						<span>已入住企业</span>
+						<h2 th:text="${businessNums}">12345678</h2>
 					</div>
 					<div class="banner-right-number">
 						<span>已入住社团</span>
-						<h2>12345678</h2>
+						<h2 th:text="${OrgniseNums}">12345678</h2>
 					</div>
 				</div>
 			</div>
@@ -106,73 +95,39 @@
 						<a href="">更多需求</a>
 						<h2>最新需求</h2>
 					</div>
-					<div class="sortBox">
-						<span>排序</span>
-						<a href="">地区</a>
-						<a href="">类型</a>
-						<a href="">预算</a>
-						<a href="">开始时间</a>
-					</div>
 					<div class="line"></div>
 					<div class="required-main"  id="index-required-list">
-						<div class="required-list">
+						<div th:each="entry,iterEntry:${activityContentList}" class="required-list" >
 							<div class="required-list-l left">
-								<img src="img/11.png"/>
+								<img th:src="'http://qj101.com' + ${entry.activityPictureUrl}" src="img/11.png" style="height:150px;width:230px;"/>
 							</div>
 							<div class="required-list-r right">
-								<h4>需求类型：微信公众号推广</h4>
-								<p>企业名称：中国人民大学</p>
-								<p>需求简介：主要介绍项目推广的目的，想到达到什么样的效果主要介绍项目推广的目的，想到．．．．</p>
-								<span>地区：杭州市</span>
-								<span>预算：10000</span>
-								<span>开始时间：2017.9.16</span>
-								<div class="required-bottom-info"><span>结束时间：2017.12.31</span><span class="right">距离抢单结束时间还有：<i>00:21:10</i></span></div>
-								<a href="" class="head-btn">马上抢</a>
-							</div>
-						</div>
-						<div class="required-list">
-							<div class="required-list-l left">
-								<img src="img/11.png"/>
-							</div>
-							<div class="required-list-r right">
-								<h4>需求类型：微信公众号推广</h4>
-								<p>企业名称：中国人民大学</p>
-								<p>需求简介：主要介绍项目推广的目的，想到达到什么样的效果主要介绍项目推广的目的，想到．．．．</p>
-								<span>地区：杭州市</span>
-								<span>预算：10000</span>
-								<span>开始时间：2017.9.16</span>
-								<div class="required-bottom-info"><span>结束时间：2017.12.31</span><span class="right">距离抢单结束时间还有：<i>00:21:10</i></span></div>
-								<a href="" class="head-btn">马上抢</a>
-							</div>
-						</div>
-						<div class="required-list">
-					<div class="required-list-l left">
-						<img src="img/11.png"/>
-					</div>
-							<div class="required-list-r right">
-								<h4>需求类型：微信公众号推广</h4>
-								<p>企业名称：中国人民大学</p>
-								<p>需求简介：主要介绍项目推广的目的，想到达到什么样的效果主要介绍项目推广的目的，想到．．．．</p>
-								<span>地区：杭州市</span>
-								<span>预算：10000</span>
-								<span>开始时间：2017.9.16</span>
-								<div class="required-bottom-info"><span>结束时间：2017.12.31</span><span class="right">距离抢单结束时间还有：<i>00:21:10</i></span></div>
-								<a href="" class="head-btn">马上抢</a>
-							</div>
-						</div>
-						<div class="required-list">
-							<div class="required-list-l left">
-								<img src="img/11.png"/>
-							</div>
-							<div class="required-list-r right">
-								<h4>需求类型：微信公众号推广</h4>
-								<p>企业名称：中国人民大学</p>
-								<p>需求简介：主要介绍项目推广的目的，想到达到什么样的效果主要介绍项目推广的目的，想到．．．．</p>
-								<span>地区：杭州市</span>
-								<span>预算：10000</span>
-								<span>开始时间：2017.9.16</span>
-								<div class="required-bottom-info"><span>结束时间：2017.12.31</span><span class="right">距离抢单结束时间还有：<i>00:21:10</i></span></div>
-								<a href="" class="head-btn">马上抢</a>
+								
+								<h4 style="float:left;" th:text="'需求类型 : ' + ${entry.parentCategoryName}">需求类型：线上</h4>
+								<p style="margin-left:20px;display:inline;" th:text="'需求名称 : ' + ${entry.categoryName} + '推广'">需求名称：微信公众号推广</p>
+								<p th:text="'企业名称 : ' + ${entry.activityOgname}">企业名称：中国人民大学</p>
+								<p th:text="'需求简介 : ' + ${entry.activityContent}">主要介绍项目推广的目的，想到达到什么样的效果主要介绍项目推广的目的，想到．．．．</p>
+								<span th:text="'地区: ' + ${entry.activityAddress}">地区：杭州市</span>
+								<span th:text="'预算 : ' + ${entry.activityActback}">预算：10000</span>
+								<span th:text="'开始时间 : ' + ${entry.activityStartTime}">开始时间：2017.9.16</span>
+								<div class="required-bottom-info">
+									<span th:text="'结束时间 : ' + ${entry.activityEndTime}">结束时间：2017.12.31</span>
+									<span class="right">距离抢单结束时间还有：
+										
+										<span class="countdown">
+											<span th:text="${entry.activityEndTime}" hidden="true"></span>
+											<i class="days">00</i>
+											<i class="days_ref"> 天  </i>
+											<i class="hours">00</i>
+											<i>:</i>
+											<i class="minutes">00</i>
+											<i>:</i>
+											<i class="seconds">00</i>
+										</span>
+									</span>
+								</div>
+								<span th:text="${entry.activityActid}" style="display:none;"></span>
+								<a href="javascript:void(0);" class="head-btn">马上抢</a>
 							</div>
 						</div>
 					</div>
@@ -194,145 +149,37 @@
 				<div class="required-left left">
 					<h2 class="head-btn">服务列表</h2>
 					<div class="serviceBox">
-						<div class="service-item">
-							<h5>线上</h5>
+						<div th:each="mapS,iterStat:${serviceList}" class="service-item">
+							<h5 th:text="${iterStat.current.key}">线上</h5>
 							<div class="service-item-text clearfix">							
-								<a href="">微信公众号</a>
-								<a href="">微博</a>
-								<a href="">朋友圈</a>
-								<a href="">校内群</a>
-								<a href="">QQ空间转发</a>
-								<a href="">BBS</a>
-								<a href="">贴吧</a>
-							</div>
-						</div>
-						<div class="service-item">
-							<h5>线下</h5>
-							<div class="service-item-text clearfix">							
-								<a href="">广播站</a>
-								<a href="">宣传栏</a>
-								<a href="">电子屏</a>
-								<a href="">海报</a>
-								<a href="">宣传单</a>
-								<a href="">横幅/喷绘</a>
-								<a href="">桌贴</a>
-								<a href="">灯箱广告</a>
-							</div>
-						</div>
-						<div class="service-item">
-							<h5>人员</h5>
-							<div class="service-item-text clearfix">							
-								<a href="">主持人</a>
-								<a href="">coser</a>
-								<a href="">网红主播</a>
-								<a href="">礼仪模特</a>
-								<a href="">兼职充场</a>
-								<a href="">其他特长</a>
-							</div>
-						</div>
-						<div class="service-item">
-							<h5>场地</h5>
-							<div class="service-item-text clearfix">							
-								<a href="">室外路演</a>
-								<a href="">教室</a>
-								<a href="">篮球场</a>
-								<a href="">足球场</a>
-								<a href="">报告厅</a>
-								<a href="">礼堂/剧场</a>
-								<a href="">体育馆</a>
-							</div>
-						</div>
-						<div class="service-item">
-							<h5>内容创作</h5>
-							<div class="service-item-text clearfix">							
-								<a href="">营销方案</a>
-								<a href="">设计</a>
-								<a href="">文案写作</a>
-							</div>
-						</div>
-						<div class="service-item">
-							<h5>制作/搭建</h5>
-							<div class="service-item-text clearfix">							
-								<a href="">物料制作</a>
-								<a href="">舞台搭建</a>
+								<a  th:each="service,serviceStat : ${iterStat.current.value}" th:text="${service.name}" href="">微信公众号</a>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="required-right right">
 					<div class="title">
-						<a href="">更多需求</a>
+						<a href="">更多服务</a>
 						<h2>最新服务</h2>
-					</div>
-					<div class="sortBox">
-						<span>排序</span>
-						<a href="">地区</a>
-						<a href="">学校</a>
-						<a href="">院系</a>
-						<a href="">价格</a>
-						<a href="">预约</a>
-						<a href="">评价</a>
 					</div>
 					<div class="line"></div>
 					<div class="required-main" id="index-service-list">
-						<div class="required-list">
+						<div th:each="mapS,iterStat:${serviceContentList}" class="required-list">
 							<div class="required-list-l left">
-								<img src="img/11.png"/>
+								<img th:each="serviceContent,serviceContentStat : ${iterStat.current.value}" 
+									src='img/11.png' th:if="${serviceContent.propType} == 'A'" th:src="'http://qj101.com/upload/' + ${serviceContent.servicePropValue}"/>
 							</div>
-							<div class="required-list-r right">
-								<h4>服务名称：微信公众号推广</h4>
-								<p>服务组织：中国人民大学</p>
-								<p>服务简介：主要介绍项目推广的目的，想到达到什么样的效果主要介绍项目推广的目的，想到．．．．</p>
-								<span>学校：中国人民大学</span>
-								<span>预约：2天</span>
-								<span>价格：300</span>
-								<span>评价：4.9</span>
-								<a href="" class="head-btn service-btn"></a>
-							</div>
-						</div>
-						<div class="required-list">
-							<div class="required-list-l left">
-								<img src="img/11.png"/>
-							</div>
-							<div class="required-list-r right">
-								<h4>服务名称：微信公众号推广</h4>
-								<p>服务组织：中国人民大学</p>
-								<p>服务简介：主要介绍项目推广的目的，想到达到什么样的效果主要介绍项目推广的目的，想到．．．．</p>
-								<span>学校：中国人民大学</span>
-								<span>预约：2天</span>
-								<span>价格：300</span>
-								<span>评价：4.9</span>
-								<a href="" class="head-btn service-btn"></a>
-							</div>
-						</div>
-						<div class="required-list">
-							<div class="required-list-l left">
-								<img src="img/11.png"/>
-							</div>
-							<div class="required-list-r right">
-								<h4>服务名称：微信公众号推广</h4>
-								<p>服务组织：中国人民大学</p>
-								<p>服务简介：主要介绍项目推广的目的，想到达到什么样的效果主要介绍项目推广的目的，想到．．．．</p>
-								<span>学校：中国人民大学</span>
-								<span>预约：2天</span>
-								<span>价格：300</span>
-								<span>评价：4.9</span>
-								<a href="" class="head-btn service-btn"></a>
-							</div>
-						</div>
-						<div class="required-list">
-							<div class="required-list-l left">
-								<img src="img/11.png"/>
-							</div>
-							<div class="required-list-r right">
-								<h4>服务名称：微信公众号推广</h4>
-								<p>服务组织：中国人民大学</p>
-								<p>服务简介：主要介绍项目推广的目的，想到达到什么样的效果主要介绍项目推广的目的，想到．．．．</p>
-								<span>学校：中国人民大学</span>
-								<span>预约：2天</span>
-								<span>价格：300</span>
-								<span>评价：4.9</span>
-								<a href="" class="head-btn service-btn"></a>
+							<div class="required-list-r right">   								
+								<h4 th:each="serviceContent,serviceContentStat : ${iterStat.current.value}" 
+									th:text="${serviceContent.servicePropName}+ ' : ' + ${serviceContent.servicePropValue}"
+									th:if="${serviceContent.propType} == 'a'">服务名称：微信公众号推广</h4>
+								<p th:each="serviceContent,serviceContentStat : ${iterStat.current.value}" 
+									th:text="${serviceContent.servicePropName}+ ' : ' + ${serviceContent.servicePropValue}"
+									th:if="${serviceContent.propType} == 'b'">服务组织：中国人民大学</p>
+								<span th:each="serviceContent,serviceContentStat : ${iterStat.current.value}" 
+									th:text="${serviceContent.servicePropName}+ ' : ' + ${serviceContent.servicePropValue}"
+									th:if="${serviceContent.propType} == 'c'">服务组织：中国人民大学</span>
+								<a href="javascript:void(0);" class="head-btn service-btn" th:value="${iterStat.current.key}"></a>
 							</div>
 						</div>
 					</div>
@@ -457,8 +304,29 @@
    <footer th:replace="common/footer :: footer"></footer>
 </body>
 <script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript">
+
+	
 	$(function(){
+		if(myStorage.getItem("isLogin")!=null && myStorage.getItem("isLogin")=="1"){//说明已登录
+			$('#user_login_after_tel').html(myStorage.getItem('utel'));
+ 			$('.userCenter-tab').hide();
+ 			$('.loginBox').hide();
+ 			$('.login-userMsg').show();
+		}
+		
+
+		$('.countdown').each(function(index,element){
+			
+			$(this).downCount({
+				date: $(this).find('span:first-child').html(),
+				offset: +10
+			}, function () {
+				$(element).html('<i>已结束</i>');
+			});
+		});
+		
 		//首页首屏轮播图
 		$('.slider1').bxSlider({
 			mode: 'fade',
@@ -467,25 +335,23 @@
 			speed:400,
 			hideControlOnEnd: true
 		});
-		$("#user_login_student").click(function(){
-			$(".userCenter-tab>span").removeClass("userCenter-tab-selected");
-			$(this).addClass('userCenter-tab-selected');
-			$("#user_login_utype").val("2");
-		});
-		$("#user_login_business").click(function(){
-			$(".userCenter-tab>span").removeClass("userCenter-tab-selected");
-			$(this).addClass('userCenter-tab-selected');
-			$("#user_login_utype").val("3");
-			
-		});
+		
+		
+		
 		$("#user_login_remind").click(function(){
 			$(this).attr("checked",!$(this).attr("checked"));
 		});
 		
 		$(".nav-selected").removeClass("nav-selected");
 		$(".navBox li").eq(0).addClass("nav-selected");
-		$("#index-required-list").find("a").attr("href","/qiji/requireXQ");
-		$("#index-service-list").find("a").attr("href","/qiji/serviceXQ");
+		$("#index-required-list").find("a").click(function(){
+			$(this).attr("href","/qiji/requireXQ?activityActid="+$(this).prev().html());
+		});
+		
+		$("#index-service-list").find("a").click(function(){
+			$(this).attr("href","/qiji/serviceXQ?serviceId="+$(this).attr("value"));
+		});
+		
 	});
 </script>
 </html>

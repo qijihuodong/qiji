@@ -1,5 +1,7 @@
 package com.qiji.dao;
 
+import java.util.List;
+
 import com.qiji.domain.MicroAreas;
 
 public interface MicroAreasMapper {
@@ -14,4 +16,11 @@ public interface MicroAreasMapper {
     int updateByPrimaryKeySelective(MicroAreas record);
 
     int updateByPrimaryKey(MicroAreas record);
+    
+    public List<MicroAreas> getAllAreas();
+    
+    
+    public List<MicroAreas> getAreasByCityId(String cityId);
+    
+    
 }
