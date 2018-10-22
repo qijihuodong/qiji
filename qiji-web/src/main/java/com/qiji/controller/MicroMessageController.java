@@ -6,10 +6,7 @@ import com.qiji.domain.MicroMessage;
 import com.qiji.service.impl.MicroMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.constraints.NotNull;
@@ -32,5 +29,21 @@ public class MicroMessageController {
         PageInfo<MicroMessage> pageInfo=new PageInfo<>(list);
 
         return  new ModelAndView("message-list","page",pageInfo);
+    }
+
+    @RequestMapping("/part")//@ResponseBody
+    public ModelAndView showContentPart() {
+        MicroMessage param=new MicroMessage();
+        param.setIsRead(0);
+        PageHelper.startPage(1,10);
+        List<MicroMessage> list=microMessageService.selectList(param);
+        PageInfo<MicroMessage> pageInfo=new PageInfo<>(list);
+
+        return new ModelAndView( "message-list::content","page",pageInfo);
+    }
+    @RequestMapping("/ajax")
+    public String dd(){
+
+        return "ajax-demo";
     }
 }
