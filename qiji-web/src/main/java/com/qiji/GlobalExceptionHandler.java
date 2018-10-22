@@ -13,11 +13,13 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(RuntimeException.class)
 	@ResponseBody
-	public Map<String ,Object> resultError(){
+	public Map<String ,Object> resultError(Exception ex){
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("errCode", "500");
 		result.put("errorMsg", "系统错误！");
-		
+		System.out.println(ex);
+		System.out.println(ex.getStackTrace());
+
 		return result;
 	}
 }

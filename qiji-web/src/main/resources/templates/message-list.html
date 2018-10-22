@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="common/center-layout (title=${#httpServletRequest.getParameter('isRead')=='1'? '已读消息':'未读消息'})">
+<!-- layout文件路径-->
+<div th:fragment="content">
+    <div th:if="${page.total>0}" class="unread-messages" th:each="msg:${page.list}">
+        <div class="unread-item">
+            <p><i></i><span th:text="${msg.msg}"></span></p>
+        </div>
+    </div>
+    <div th:replace="common/list-empty::none-data(${page.total})"></div>
+    <div th:replace="common/pagination::page(${page.pageNum},${page.pageSize},${page.total})"></div>
+</div>
+</html>

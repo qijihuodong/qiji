@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-	<footer>	
+	<footer th:fragment="footer">
 		<div class="footer">
 			<div class="area footerNav">
 				<h5>联系我们</h5>
@@ -17,7 +17,7 @@
 					</li>
 				</ul>				
 				<div class="erweimaBox">
-					<span class="erweima"><img src="img/erweima.png"/></span>
+					<span class="erweima"><img th:src="@{/img/erweima.png}"/></span>
 					<p>奇迹活动微信公众号</p>
 				</div>
 			</div>

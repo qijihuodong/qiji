@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common/inc::common_header(${title})">
+</head>
+<body>
+<div th:replace="common/header::header"></div>
+<div class="page">
+    <div class="case clearfix area">
+        <div class="case-l left" th:include="common/center-menu :: menu(${title})">
+
+        </div>
+        <div class="case-r right">
+            <div class="pageSlider"><a href="">我是雇主</a>><span th:text="${title}"></span></div>
+            <div class="container" th:include="::content"></div>
+        </div>
+    </div>
+</div>
+<div th:replace="common/footer::footer"></div>
+</body>
+</html>

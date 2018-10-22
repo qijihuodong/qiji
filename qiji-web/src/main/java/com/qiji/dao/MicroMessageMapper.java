@@ -2,6 +2,8 @@ package com.qiji.dao;
 
 import com.qiji.domain.MicroMessage;
 
+import java.util.List;
+
 public interface MicroMessageMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface MicroMessageMapper {
     int updateByPrimaryKeySelective(MicroMessage record);
 
     int updateByPrimaryKey(MicroMessage record);
+
+    List<MicroMessage> selectList(MicroMessage param);
 }

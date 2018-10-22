@@ -125,4 +125,18 @@
       recuid = #{recuid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectList" resultMap="BaseResultMap" parameterType="com.qiji.domain.MicroMessage">
+    select * from micro_message
+    where 1=1
+    <if test="recid != null" >
+      and recid = #{recid}
+    </if>
+    <if test="isRead != null" >
+      and is_read = #{isRead}
+    </if>
+    <if test="recuid != null" >
+      and recuid = #{recuid}
+    </if>
+  </select>
 </mapper>
