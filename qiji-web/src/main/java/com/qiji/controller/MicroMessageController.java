@@ -22,8 +22,8 @@ public class MicroMessageController {
     @Autowired
     MicroMessageService microMessageService;
 
-    @RequestMapping("/index/{pageNum}")
-    public ModelAndView selectList(@PathVariable Integer pageNum, @RequestParam @NotNull Integer isRead){
+    @RequestMapping("/index")
+    public ModelAndView selectList(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam @NotNull Integer isRead){
         MicroMessage param=new MicroMessage();
         param.setIsRead(isRead);
 

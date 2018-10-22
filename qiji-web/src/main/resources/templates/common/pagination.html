@@ -16,7 +16,17 @@
                 last: '<li class="last"><a href="javascript:void(0);">末页</a></li>',		// 最后一页的样式
                 page: '<li class="page"><a href="javascript:void(0);">{{page}}</a></li>',	// 当前页样式
                 onPageChange: function (num, type) {						// 点页码的回调
-                    //searchData(num,this.pageSize);
+
+                    if(type!='change') return;
+
+                    var reg=/pageNum=[\d]+/;
+                    if(reg.test(self.location.href)){
+                        self.location=self.location.href.replace(reg,'pageNum='+num);
+                    }else if(self.location.search==''){
+                        self.location=self.location.href+'?pageNum='+num;
+                    }else{
+                        self.location=self.location.href+'&pageNum='+num;
+                    }
                 }
             });
         })
